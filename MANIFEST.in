@@ -1,0 +1,9 @@
+include versioneer.py
+include axiomapy/_version.py
+include axiomapy/config.ini
+include axiomapy/examples/*
+include axiomapy/examples/credentials/*
+include axiomapy/examples/sample_data/*
+include CHANGELOG.rst
+include CONTRIBUTING.md
+include README.md

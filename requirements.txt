@@ -1,0 +1,3 @@
+.[test,develop]
+
+# Copyright © 2022 Qontigo GmbH.

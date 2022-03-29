@@ -1,0 +1,30 @@
+name: Automatically Add Approver Individuals and Groups - master branch
+
+on:
+  workflow_dispatch:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+    types: [ opened ]
+          
+jobs:
+  add_reviewer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: Qontigo/gh-action-github-script           # based on public actions/github-script
+          ref: refs/tags/v3
+          token: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
+          path: ./.github/actions/
+      - name: Run Private Action - Add Reviewers
+        uses: ./.github/actions/
+        with:
+          github-token: ${{secrets.QONTIGO_GH_ACTION_PAT}}
+          script: |
+            github.pulls.requestReviewers({
+              pull_number: context.payload.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              team_reviewers: ['technologysolutions']
+            })

@@ -1,0 +1,30 @@
+{
+    "set1": [
+        {
+            "name": "RH_API_Demo_Test_1",
+            "description": "RH TEST",
+            "defaultCurrency": "EUR",
+            "defaultDataPartition": "AxiomaUS",
+            "riskDataSource": "Default",
+            "attributes": {
+                "newAttribute": "value"
+            }
+        },
+        {
+            "name": "RH_API_Demo_Test_2",
+            "longName": "US Assets",
+            "description": "My US Assets",
+            "defaultCurrency": "USD",
+            "defaultDataPartition": "Axioma",
+            "riskDataSource": "Default",
+            "defaultRiskModel": {
+                "type": "Axioma",
+                "name": "WW21AxiomaSH-S"
+            },
+            "attributes": {
+                "CurrencyRisk": "Regular",
+                "OriginalCurrency": "USD"
+            }
+        }
+    ]
+}

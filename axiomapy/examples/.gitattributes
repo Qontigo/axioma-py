@@ -1,0 +1,3 @@
+*.ipynb filter=strip-notebook-output
+
+test.ipynb filter=test-notebook-clean

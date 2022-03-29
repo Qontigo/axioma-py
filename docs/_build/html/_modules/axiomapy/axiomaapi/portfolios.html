@@ -1,0 +1,740 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>axiomapy.axiomaapi.portfolios &mdash; axiomapy 0+untagged.1.g162d57e documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> axiomapy
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Examples and Use Cases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples2.html">Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Packages:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../sessions.html">Sessions Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../axiomapyapi.html">AxiomaAPI Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../odatafilterhelpers.html">oDataFilterHelpers</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">axiomapy</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>axiomapy.axiomaapi.portfolios</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for axiomapy.axiomaapi.portfolios</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Copyright © 2022 Qontigo GmbH.</span>
+<span class="sd">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="sd">you may not use this file except in compliance with the License.</span>
+<span class="sd">You may obtain a copy of the License at</span>
+
+<span class="sd">  http://www.apache.org/licenses/LICENSE-2.0</span>
+
+<span class="sd">Unless required by applicable law or agreed to in writing,</span>
+<span class="sd">software distributed under the License is distributed on an</span>
+<span class="sd">&quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</span>
+<span class="sd">KIND, either express or implied.  See the License for the</span>
+<span class="sd">specific language governing permissions and limitations</span>
+<span class="sd">under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
+<span class="kn">from</span> <span class="nn">axiomapy.utils</span> <span class="kn">import</span> <span class="n">odata_params</span>
+
+<span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">())</span>
+
+
+<div class="viewcode-block" id="PortfoliosAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI">[docs]</a><span class="k">class</span> <span class="nc">PortfoliosAPI</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Access api methods of portfolios using the active session</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_portfolios"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_portfolios">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_portfolios</span><span class="p">(</span>
+        <span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to get the list of portfolios</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            filter_results:user can apply filters to the list</span>
+<span class="sd">            top:returns top N number of elements</span>
+<span class="sd">            skip:skips first N elements</span>
+<span class="sd">            orderby:sorts in particular order</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list of portfolios</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/portfolios&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_portfolio"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_portfolio">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_portfolio</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method retrieves a portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The id of the portfolio that needs to be fetched</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A single portfolio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.post_portfolio"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.post_portfolio">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">post_portfolio</span><span class="p">(</span>
+        <span class="n">portfolio</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method creates a new portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio: portfolio json with the details of portfolio to be created</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the portfolio is created. Code 201.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/portfolios&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">portfolio</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.put_portfolio"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.put_portfolio">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">put_portfolio</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">portfolio</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method updates an existing portfolio with the provided data</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:id of the portfolio</span>
+<span class="sd">            portfolio:the updated portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the portfolio is updated. Code 204</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Putting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">portfolio</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.delete_portfolio"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.delete_portfolio">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">delete_portfolio</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method deletes an existing portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The id of the portfolio that you would like to delete</span>
+<span class="sd">            </span>
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the portfolio is deleted. Code 204</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting at </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.patch_portfolios"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.patch_portfolios">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">patch_portfolios</span><span class="p">(</span>
+        <span class="n">portfolios_upsert</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">portfolios_remove</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to update, create, delete positions of a portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolios_upsert: The positions that needs to be added to the portfolio</span>
+<span class="sd">            portfolios_remove: The positions that needs to be removed from the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message of the portfolio is updated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">portfolios_upsert</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">portfolios_upsert</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">portfolios_remove</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">portfolios_remove</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/portfolios&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patching to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">portfolios_patch</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;upsert&quot;</span><span class="p">:</span> <span class="n">portfolios_upsert</span><span class="p">,</span> <span class="s2">&quot;remove&quot;</span><span class="p">:</span> <span class="n">portfolios_remove</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_patch</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">portfolios_patch</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_position_dates"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_position_dates">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_position_dates</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to list dates for which there are positions for the portfolio, latest first</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: Id of the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The dates for which the portfolio is available</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/positions&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_positions_at_date"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_positions_at_date">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_positions_at_date</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to list the positions of portfolio on a particular date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The id of the portfolio for which composition is requested</span>
+<span class="sd">            as_of_date: The date on which portfolio composition is requested</span>
+<span class="sd">            filter_results: filters the response to include only the results that meet the criteria</span>
+<span class="sd">            top: only includes top N results</span>
+<span class="sd">            skip: Skips the first N results</span>
+<span class="sd">            orderby: Sorts the results included in the response</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Portfolio composition on the specified date</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/positions/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.delete_positions"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.delete_positions">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">delete_positions</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to delete the portfolio entry on a particular date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The identity of the portfolio</span>
+<span class="sd">            as_of_date: The date on which portfolio composition needs to be deleted</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message that the positions for the date are deleted</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/positions/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.post_position"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.post_position">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">post_position</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">position</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The method is used to create a new position in the portfolio on the given date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:The id of the portfolio</span>
+<span class="sd">            as_of_date:The date for which position needs to be created</span>
+<span class="sd">            position:The position of the portfolio that needs to be created</span>
+<span class="sd">            return_response:If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the positions are created. Code 201.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/positions/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.patch_positions"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.patch_positions">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">patch_positions</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">positions_upsert</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">positions_remove</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method is used to patch the existing positions according to the supplied operations</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:the id of the portfolio to update positions in</span>
+<span class="sd">            as_of_date:The date of the positions</span>
+<span class="sd">            positions_upsert:The positions that needs to be updated or created</span>
+<span class="sd">            positions_remove:The positions that needs to be removed</span>
+<span class="sd">            return_response:If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            If the positions are updated a success message is returned. Code 200</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">positions_upsert</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">positions_upsert</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">positions_remove</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">positions_remove</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/positions/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patching from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">positions_patch</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;upsert&quot;</span><span class="p">:</span> <span class="n">positions_upsert</span><span class="p">,</span> <span class="s2">&quot;remove&quot;</span><span class="p">:</span> <span class="n">positions_remove</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_patch</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">positions_patch</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.rollover_request"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.rollover_request">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">rollover_request</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">rollover_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">attributes</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; This method rolls over the positions from the as Of Date to the rollover date provided.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The id of the portfolio</span>
+<span class="sd">            as_of_date: The date from where the positions are to be copied</span>
+<span class="sd">            rollover_date: The date to which the positions are to be copied</span>
+<span class="sd">            attributes: The optional attributes to be added to all positions</span>
+<span class="sd">            return_response: if set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if positions are created. Code 201</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">attributes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">):</span>
+            <span class="n">attributes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/positions/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">/rollover-requests&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;rollOverToDate&quot;</span><span class="p">:</span> <span class="n">rollover_date</span><span class="p">,</span> <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="n">attributes</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">body</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_portfolio_benchmark"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_portfolio_benchmark">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_portfolio_benchmark</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method returns the benchmark for the portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:The id of the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The benchmark for the portfolio</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/benchmark&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.put_portfolio_benchmark"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.put_portfolio_benchmark">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">put_portfolio_benchmark</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method sets the benchmark for the given portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The id of the portfolio</span>
+<span class="sd">            benchmark:The benchmark to be set for the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the portfolio is updated with the benchmark. Code 204</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/benchmark&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Putting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.delete_portfolio_benchmark"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.delete_portfolio_benchmark">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">delete_portfolio_benchmark</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method deletes the benchmark from the portfolio</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:The id of the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message when the benchmark is removed. Code 204</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/benchmark&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting at </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_valuation_dates"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_valuation_dates">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_valuation_dates</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method lists the dates there are Valuations for the portfolio, latest first</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: The id of the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The collection of the Valuations dates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.get_valuation_at_date"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.get_valuation_at_date">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_valuation_at_date</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method retrieves the portfolio valuation for a given date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id: id of the portfolio</span>
+<span class="sd">            as_of_date:The date for which valuation is requested</span>
+<span class="sd">            filter_results: filters the response to include only the results that meet the criteria</span>
+<span class="sd">            top:only includes top N results</span>
+<span class="sd">            skip:Skips the first N results</span>
+<span class="sd">            orderby:Sorts the results included in the response</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            The portfolio valuation for the specified date</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.delete_valuation"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.delete_valuation">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">delete_valuation</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The method deletes the specified valuation from the portfolio for a given date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:id of the portfolio</span>
+<span class="sd">            as_of_date:the date for which valuation needs to be deleted</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message when the valuation is deleted. Code 204</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.post_valuation"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.post_valuation">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">post_valuation</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">valuation</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The method creates or updates the portfolio valuation for the portfolio on the given date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:id of the portfolio</span>
+<span class="sd">            as_of_date:the date for which valuation needs to be created or updated</span>
+<span class="sd">            valuation:portfolio valuation</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the valuation is created. Code 201</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">valuation</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.put_valuation"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.put_valuation">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">put_valuation</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">valuation</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The method replaces or creates the portfolio valuation for the given date</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:id of the portfolio</span>
+<span class="sd">            as_of_date:the date for which valuation needs to be created or updated</span>
+<span class="sd">            valuation:valuation of the portfolio</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the valuation is updated. Code 204</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">valuation</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfoliosAPI.patch_valuations"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI.patch_valuations">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">patch_valuations</span><span class="p">(</span>
+        <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">valuations_upsert</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">valuations_remove</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This method patches the existing collection of portfolio valuations according to the inputs</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_id:id of the portfolio</span>
+<span class="sd">            as_of_date:the date for which valuations are being patched</span>
+<span class="sd">            valuations_upsert:valuations to be created or updated</span>
+<span class="sd">            valuations_remove:the valuations that needs to be deleted</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the valuations are patched. Code 200</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">valuations_upsert</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">valuations_upsert</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">valuations_remove</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">valuations_remove</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patching from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">valuations_patch</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;upsert&quot;</span><span class="p">:</span> <span class="n">valuations_upsert</span><span class="p">,</span> <span class="s2">&quot;remove&quot;</span><span class="p">:</span> <span class="n">valuations_remove</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_patch</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">valuations_patch</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2022 Qontigo GmbH.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

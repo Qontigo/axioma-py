@@ -1,0 +1,206 @@
+{
+    "templateName": "{DefaultTemplateFor_PerformanceAttributionSettings}",
+    "content": {
+        "riskDataSource": "Default",
+        "name": "PerfSettings_USD_API_Test",
+        "hierarchy": [
+            {
+                "$type": "ViewReportingLevelOnInstrument",
+                "dataId": "RefType|Name|ClientCode=ViewReportingLevelOnInstrument|Region|T1",
+                "name": "Region",
+                "attributeName": "Region",
+                "drilldown": null,
+                "instrumentAttributeSource": "Axioma"
+            },
+            {
+                "$type": "ViewReportingLevelOnInstrument",
+                "dataId": "RefType|Name|ClientCode=ViewReportingLevelOnInstrument|Country|T1",
+                "name": "Country",
+                "attributeName": "Country",
+                "drilldown": null,
+                "instrumentAttributeSource": "Axioma"
+            },
+            {
+                "$type": "ViewReportingLevelOnInstrument",
+                "dataId": "RefType|Name|ClientCode=ViewReportingLevelOnInstrument|GicsLevel1|T1",
+                "name": "GicsLevel1",
+                "attributeName": "GicsLevel1",
+                "drilldown": null,
+                "instrumentAttributeSource": "Axioma"
+            }
+        ],
+        "reportingCurrency": "ForcedDataId=USD;USD",
+        "currencyFxVersion": "London",
+        "lookupSelectionRulesName": "Default",
+        "attributionType": "Allocation_Selection",
+        "dataPartition": "AxiomaUS",
+        "riskModel": {
+            "$type": "TemplatedRawDataInputs",
+            "templateName": "{DefaultTemplateFor_RiskModelAnalysisSettings}",
+            "content": {
+                "name": "MAC-Global",
+                "analysisCurrency": "ForcedDataId=USD;USD",
+                "covarianceRescalingSettings": {
+                    "$type": "CovarianceResultsNoRescaling"
+                },
+                "exposuresNormalizationSettings": {
+                    "$type": "ExposuresNormalizationSettings.AsFractionOfExposedValue",
+                    "exposedValueSource": "ExposedPresentValue",
+                    "customExposuresSettings": null,
+                    "normalizationMethod": "Gross",
+                    "resultsRescaling": {
+                        "$type": "ExposuresResultsNoRescaling"
+                    }
+                },
+                "outputLatestDailyRiskFactorsReturns": true,
+                "riskDecomposition": [
+                    {
+                        "dataId": "reftype|dimensionid=risktypedrilldownelem|risktype"
+                    },
+                    {
+                        "dataId": "reftype|dimensionid=riskcomponentdrilldownelem|decomposition.factortypes"
+                    },
+                    {
+                        "dataId": "reftype|dimensionid=riskfactordrilldownelem|riskfactor"
+                    }
+                ],
+                "riskFactorsReduction": "",
+                "riskModelSettings": {
+                    "$type": "TemplatedRawDataInputs",
+                    "templateName": "{DefaultTemplateFor_MACRiskModelSettings}",
+                    "content": {
+                        "name": "MAC Global",
+                        "riskHorizon": {
+                            "$type": "ExtendedPeriod",
+                            "numberOfUnits": 1,
+                            "unit": "Day"
+                        },
+                        "businessDayAdjustment": "NoAdjustment",
+                        "holidays": "NoHolidays",
+                        "riskResolution": "ForcedDataId=reftype|name|clientcode=riskresolutiondefinition|mac global-sr|ax;MAC Global",
+                        "parametricAndMonteCarloDetails": {
+                            "$type": "ParametricAndMonteCarloSettings",
+                            "historicalDataDetails": {
+                                "correlationEstimationDetails": {
+                                    "$type": "TemplatedRawDataInputs",
+                                    "templateName": "{DefaultTemplateFor_HistoricalEstimationSettings}",
+                                    "content": {
+                                        "name": "1Y EWMA",
+                                        "weighting": {
+                                            "$type": "HistoricalDataWeighting.EWMAWeighting",
+                                            "weight": {
+                                                "$type": "EWMAWeight.DecayFactor",
+                                                "decayFactorValue": 0.94
+                                            }
+                                        },
+                                        "history": {
+                                            "$type": "HistoricalDataSettings.Daily",
+                                            "history": [
+                                                {
+                                                    "start": {
+                                                        "$type": "HistoricalWindowAnchorDate.RelativeDate",
+                                                        "period": {
+                                                            "numberOfUnits": 1,
+                                                            "unit": "Year"
+                                                        },
+                                                        "businessDayAdjustment": "NoAdjustment"
+                                                    },
+                                                    "end": {
+                                                        "$type": "HistoricalWindowAnchorDate.RelativeDate",
+                                                        "period": {
+                                                            "numberOfUnits": 0,
+                                                            "unit": "BusinessDay"
+                                                        },
+                                                        "businessDayAdjustment": "NoAdjustment"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "_links": {
+                                        "self": {
+                                            "href": "/api/v1/templates/PerformanceAttributionSettings/*/%7BDefaultTemplateFor_HistoricalEstimationSettings%7D/1487346"
+                                        }
+                                    }
+                                },
+                                "volatilityEstimationDetails": {
+                                    "dataId": "RefType|Name|ClientCode=HistoricalEstimationSettings|1Y EWMA|T1",
+                                    "dataLookups": [
+                                        "1Y"
+                                    ]
+                                }
+                            },
+                            "monteCarloSimulationDetails": {
+                                "distributionAssumption": {
+                                    "$type": "MonteCarloDistributionAssumption.Normal"
+                                },
+                                "advancedSettings": {
+                                    "numberOfSimulations": 1000
+                                }
+                            },
+                            "neweyWestCorrectionLags": 0,
+                            "covarianceMatrixUse": {
+                                "$type": "RiskModelCovarianceMatrixSettings.UseOnTheFlyCreatedMatrix"
+                            }
+                        },
+                        "historicalSimulationsDetails": {
+                            "$type": "HistoricalSimulationSettings",
+                            "historicalDataDetails": {
+                                "history": [
+                                    {
+                                        "start": {
+                                            "$type": "HistoricalWindowAnchorDate.RelativeDate",
+                                            "period": {
+                                                "numberOfUnits": 1,
+                                                "unit": "Year"
+                                            },
+                                            "businessDayAdjustment": "NoAdjustment"
+                                        },
+                                        "end": {
+                                            "$type": "HistoricalWindowAnchorDate.RelativeDate",
+                                            "period": {
+                                                "numberOfUnits": 0,
+                                                "unit": "BusinessDay"
+                                            },
+                                            "businessDayAdjustment": "NoAdjustment"
+                                        }
+                                    }
+                                ]
+                            },
+                            "weightingScheme": {
+                                "$type": "HistoricalDataWeighting.FlatWeighting"
+                            },
+                            "advancedSettings": {
+                                "useNonRandomSamples": true,
+                                "rescaleSimulatedResultsToAct365Horizons": false
+                            }
+                        },
+                        "advancedSettings": {
+                            "$type": "MACRiskModelAdvancedSettings",
+                            "historicalDataProxy": null,
+                            "fairConversionRates": null,
+                            "rebaseFXRateRiskFactors": true,
+                            "derivedAttributes": null,
+                            "applyFXHedging": false,
+                            "securitiesAgingStrategy": null
+                        }
+                    },
+                    "_links": {
+                        "self": {
+                            "href": "/api/v1/templates/PerformanceAttributionSettings/*/%7BDefaultTemplateFor_MACRiskModelSettings%7D/1487348"
+                        }
+                    }
+                },
+                "isDemeaningOfHistoricalReturnsEnabled": true,
+                "matrixOutputSettings": {
+                    "$type": "CovarianceMatrixOutputSettings.Standard"
+                }
+            },
+            "_links": {
+                "self": {
+                    "href": "/api/v1/templates/PerformanceAttributionSettings/*/%7BDefaultTemplateFor_RiskModelAnalysisSettings%7D/1487347"
+                }
+            }
+        }
+    }
+}

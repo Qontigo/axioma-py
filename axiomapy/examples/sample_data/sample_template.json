@@ -1,0 +1,49 @@
+{
+    "definition": [
+        {
+            "path": "/termsAndConditions/forwardCurrency",
+            "parameter": "Sell Currency"
+        },
+        {
+            "path": "/termsAndConditions/foreignCurrency",
+            "parameter": "Buy Currency"
+        },
+        {
+            "path": "/termsAndConditions/forwardRate",
+            "parameter": "Forward Rate",
+            "defaultValue": "NaN"
+        },
+        {
+            "path": "/termsAndConditions/maturityDate",
+            "parameter": "Maturity Date"
+        },
+        {
+            "path": "/termsAndConditions",
+            "type": "FXForward"
+        },
+        {
+            "path": "/termsAndConditions/businessDayConvention",
+            "value": "Following"
+        },
+        {
+            "path": "/termsAndConditions/holidays",
+            "value": "WeekendsOnly"
+        },
+        {
+            "path": "/termsAndConditions/notional",
+            "value": 1
+        },
+        {
+            "path": "/modelingAssumptions",
+            "type": "FXForward_ValuationThrough_SpotMarketExpectationsModel"
+        },
+        {
+            "path": "/modelingAssumptions/calibrationMethods/base",
+            "type": "SpotMarketExpectationsModel.Calibrator"
+        },
+        {
+            "path": "/modelingAssumptions/calibrationMethods/base/interestRateCurveInterpolationMethod",
+            "value": "PieceWiseLinear"
+        }
+    ]
+}

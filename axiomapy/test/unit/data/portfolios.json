@@ -1,0 +1,64 @@
+{
+    "camelCase": [
+        {
+            "name": "Portfolio"
+        },
+        {
+            "name": "Portfolio",
+            "longName": "long name",
+            "description": "description",
+            "defaultCurrency": "USD"
+        },
+        {
+            "name": "Portfolio",
+            "longName": "long name",
+            "description": "description",
+            "defaultDataPartition": "AxiomaUS"
+        },
+        {
+            "name": "Portfolio",
+            "longName": "long name",
+            "description": "description",
+            "defaultDataPartition": "AxiomaUS",
+            "id": 1
+        },
+        {
+            "name": "Portfolio",
+            "longName": "long name",
+            "description": "description",
+            "defaultDataPartition": "AxiomaUS",
+            "id": 1
+        }
+    ],
+    "snakecase": [
+        {
+            "name": "Portfolio"
+        },
+        {
+            "name": "Portfolio",
+            "long_name": "long name",
+            "description": "description",
+            "default_currency": "USD"
+        },
+        {
+            "name": "Portfolio",
+            "long_name": "long name",
+            "description": "description",
+            "default_data_partition": "AxiomaUS"
+        },
+        {
+            "name": "Portfolio",
+            "long_name": "long name",
+            "description": "description",
+            "default_data_partition": "AxiomaUS",
+            "id": 1
+        },
+        {
+            "name": "Portfolio",
+            "longName": "long name",
+            "description": "description",
+            "default_data_partition": "AxiomaUS",
+            "id": 1
+        }
+    ]
+}

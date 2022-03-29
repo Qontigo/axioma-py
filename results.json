@@ -1,0 +1,1 @@
+{"tableSchema":{"columns":[{"name":"Instruments","dataType":"string"},{"name":"Clean PV","dataType":"double","currency":"USD"}]},"rows":[["TICKER=IBM;ISIN=US4592001014","127.11001"]]}

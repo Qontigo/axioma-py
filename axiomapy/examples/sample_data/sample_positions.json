@@ -1,0 +1,61 @@
+{
+    "set1": [
+        {
+            "clientId": "TestPortfolio_001",
+            "description": "TestPortfolio_001",
+            "identifiers": [
+                {
+                    "type": "Currency",
+                    "value": "GBP"
+                }
+            ],
+            "quantity": {
+                "value": 684010255.65,
+                "scale": "DirtyMarketValue",
+                "currency": "GBP"
+            },
+            "attributes": {
+                "Type": "FundOrETF",
+                "isin": "IE00B29R7820"
+            }
+        },
+        {
+            "clientId": "TestPortfolio_002",
+            "description": "TestPortfolio_002",
+            "identifiers": [
+                {
+                    "type": "SEDOL",
+                    "value": "2886907"
+                }
+            ],
+            "quantity": {
+                "value": 11688,
+                "scale": "NumberOfInstruments",
+                "currency": "USD"
+            },
+            "attributes": {
+                "Type": "Equity",
+                "isin": "US8835561023"
+            }
+        },
+        {
+            "clientId": "TestPortfolio_003",
+            "description": "TestPortfolio_003",
+            "identifiers": [
+                {
+                    "type": "SEDOL",
+                    "value": "2896713"
+                }
+            ],
+            "quantity": {
+                "value": 3068,
+                "scale": "NumberOfInstruments",
+                "currency": "USD"
+            },
+            "attributes": {
+                "Type": "Equity",
+                "isin": "US8910271043"
+            }
+        }
+    ]
+}
