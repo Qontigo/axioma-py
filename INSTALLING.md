@@ -88,7 +88,7 @@ The online help manual reads like a standard user's guide, and the numerous "sou
 
 ## Thank You!
 
-Thank you again for reviewing this project. If you have any comments or suggestions, or are just curious, we'd love hearing from you.  Please contact us at <axioma-py@qontigo.com> and put "axioma-py" in the subject line.  
+Thank you again for reviewing this project. If you have any comments or suggestions, or are just curious, we'd love hearing from you. Please contact us at <axioma-py@qontigo.com> and put "axioma-py" in the subject line.  
 
 --*The axioma-py Team*
 
