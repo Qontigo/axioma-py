@@ -1316,9 +1316,7 @@ def render_pep440_old(pieces):
                 rendered += ".dev0"
     else:
         # exception #1
-        rendered = "0.post%d" % pieces["distance"]
-        if pieces["dirty"]:
-            rendered += ".dev0"
+        rendered = "1.%d" % pieces["distance"]
     return rendered
 
 
