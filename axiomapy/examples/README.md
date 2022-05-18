@@ -68,7 +68,7 @@ Getting started covers most of the basics: [getting started](./getting_started.i
 
 How to use sessions: [with_sessions](./with_sessions.ipynb)
 
-For advaced level examples: [with_axiomaapi](./with_axiomaapi.ipynb)
+For advanced level examples: [with_axiomaapi](./with_axiomaapi.ipynb)
 
 
 ### For Developers
