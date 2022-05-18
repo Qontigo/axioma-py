@@ -49,4 +49,3 @@ You can find some examples [here](axiomapy/examples). In addition, the documents
 ## Where Can I Get Help, if I need it?  
 
 You are welcome to submit an issue, if your question is complex or bug-related. Just click "Issues" on the top menu bar over the project to get to the Issues screen. If your problem requires a more immediate response or discussion, please email <axioma-py@qontigo.com> and put **axioma-py** in the message title.  
-
