@@ -68,19 +68,11 @@ Getting started covers most of the basics: [getting started](./getting_started.i
 
 How to use sessions: [with_sessions](./with_sessions.ipynb)
 
-How to work with portfolios: [with_portfolios](./with_portfolios.ipynb)
-
-How to work with portfolio positions: [with_positions](./with_positions.ipynb)
-
-How to work with analysis definitions: [with_analysis_definitions](./with_analysis_definitions.ipynb)
-
-How to work with portfolio analyses: [with_analyses](./with_analyses.ipynb)
-
-How to work with instrument analyses: [with_instrument_analyses](./with_instrument_analyses.ipynb)
+For advanced level examples: [with_axiomaapi](./with_axiomaapi.ipynb)
 
 
 ### For Developers
 
-Examples of the methods of the base types [with_base_types](./with_base_types.ipynb)
+Examples of the methods of the base types [with_entitybase](./with_entitybase.ipynb)
 
 See also [contributing.md](../../CONTRIBUTING.md)
