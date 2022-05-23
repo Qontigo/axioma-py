@@ -42,7 +42,7 @@ pip install jupyter
 
 Depending how you launch jupyter, you may also need to add a python kernel for your new virtual environment which can be selected when running jupyter notebook.
 ```
-ipython kernel install --name "bluepysdk-venv" --user
+ipython kernel install --name "axiomapy-venv" --user
 ```
 
 Then start the notebook and open the examples.
@@ -52,7 +52,7 @@ jupyter notebook
 ```
 
 Then browse to the examples.
-In the the repository, a copy of each example is available as a script that can be run directly.
+In the repository, a copy of each example is available as a script that can be run directly.
 
 
 ```

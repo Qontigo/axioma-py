@@ -14,9 +14,6 @@ This is for clients and prospects of Qontigo who would prefer to use a python-ba
 
 * If you don't already have one, create a virtualenv using [these instructions](https://docs.python.org/3/library/venv.html) from the official Python documentation.  Per the instructions, "It is always recommended to use a virtualenv while developing Python applications."
 
-* Currently, axioma-py is hosted on GitHub in our [axiomapy-beta branch](https://github.com/Qontigo/bluepysdk-package/tree/axiomapy-beta/axiomapy ).   
-
-
 * In order to install the package for development, install in editable mode with optional dependencies. See the "with_entitybase" examples in the [examples](axiomapy/examples) folder for info on how new instances should be defined.
 
 
@@ -34,7 +31,7 @@ There are coverage tests located in the [test](axiomapy/test) subdirectory.
 
 ## Downloading, Configuring Python, and Important File Locations
 
-Perform a Git checkout of the **axiomapy-beta** branch of the project. It contains the most recent code. **git checkout -b <branch_name>** will create a new branch and switch to it at the same time (a separate branch is an essential prerequisite for contributing).
+Perform a Git checkout of the **master** branch of the project. It contains the most recent code. **git checkout -b <branch_name>** will create a new branch and switch to it at the same time (a separate branch is an essential prerequisite for contributing).
 
 * The code is formatted with black and linted with flake8 (see .flake8 config).
 
@@ -79,7 +76,7 @@ While the documentation is pre-built, if you have added code and documented it s
 
 * Navigate to the pre_scripts directory, and execute **build_docs.bat**.
  
-* When the html documents are built, navigate in your local checkout to the built documents folder, for example: **bluepysdk-package\docs\_build\html**.  
+* When the html documents are built, navigate in your local checkout to the built documents folder, for example: **axioma-py\docs\_build\html**.  
 
 * Double-click **index.html** to open the online help to the contents page. 
 
