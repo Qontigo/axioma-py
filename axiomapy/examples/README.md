@@ -52,7 +52,7 @@ jupyter notebook
 ```
 
 Then browse to the examples.
-In the the repository, a copy of each example is available as a script that can be run directly.
+In the repository, a copy of each example is available as a script that can be run directly.
 
 
 ```

@@ -14,9 +14,6 @@ This is for clients and prospects of Qontigo who would prefer to use a python-ba
 
 * If you don't already have one, create a virtualenv using [these instructions](https://docs.python.org/3/library/venv.html) from the official Python documentation.  Per the instructions, "It is always recommended to use a virtualenv while developing Python applications."
 
-* Currently, axioma-py is hosted on GitHub in our [axiomapy-beta branch](https://github.com/Qontigo/bluepysdk-package/tree/axiomapy-beta/axiomapy ).   
-
-
 * In order to install the package for development, install in editable mode with optional dependencies. See the "with_entitybase" examples in the [examples](axiomapy/examples) folder for info on how new instances should be defined.
 
 
