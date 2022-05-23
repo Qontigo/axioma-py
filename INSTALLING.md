@@ -31,7 +31,7 @@ There are coverage tests located in the [test](axiomapy/test) subdirectory.
 
 ## Downloading, Configuring Python, and Important File Locations
 
-Perform a Git checkout of the **axiomapy-beta** branch of the project. It contains the most recent code. **git checkout -b <branch_name>** will create a new branch and switch to it at the same time (a separate branch is an essential prerequisite for contributing).
+Perform a Git checkout of the **master** branch of the project. It contains the most recent code. **git checkout -b <branch_name>** will create a new branch and switch to it at the same time (a separate branch is an essential prerequisite for contributing).
 
 * The code is formatted with black and linted with flake8 (see .flake8 config).
 
