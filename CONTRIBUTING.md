@@ -42,9 +42,9 @@ Currently, axioma-py makes it simpler for you to:
 
 * When you're ready to get started, the usual workflow for this project involves downloading the **master** branch, then creating a branch offline from this existing branch. Put your work in your new branch. Then, when finished, check it in, and we'll review it. 
 
-* We may post information about areas that we need help developing on our [Github Project Issues page](https://github.com/Qontigo/bluepysdk-package/issues), but with this project we expect that most of our users will know what they want to develop and just build it. If you are in that latter group and want to contribute your improvement to the overall project you are welcome to upload your branch, but there is no requirement to do so.
+* We may post information about areas that we need help developing on our [Github Project Issues page](https://github.com/Qontigo/axioma-py/issues), but with this project we expect that most of our users will know what they want to develop and just build it. If you are in that latter group and want to contribute your improvement to the overall project you are welcome to upload your branch, but there is no requirement to do so.
 
-* You are also invited to make suggestions for improvements you would like us to implement by adding bugs or improvement ideas on this  [Issues page](https://github.com/Qontigo/bluepysdk-package/issues). 
+* You are also invited to make suggestions for improvements you would like us to implement by adding bugs or improvement ideas on this  [Issues page](https://github.com/Qontigo/axioma-py/issues). 
    
  
 

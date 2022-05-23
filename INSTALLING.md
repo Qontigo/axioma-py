@@ -76,7 +76,7 @@ While the documentation is pre-built, if you have added code and documented it s
 
 * Navigate to the pre_scripts directory, and execute **build_docs.bat**.
  
-* When the html documents are built, navigate in your local checkout to the built documents folder, for example: **bluepysdk-package\docs\_build\html**.  
+* When the html documents are built, navigate in your local checkout to the built documents folder, for example: **axioma-py\docs\_build\html**.  
 
 * Double-click **index.html** to open the online help to the contents page. 
 
