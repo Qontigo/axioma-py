@@ -1,5 +1,11 @@
+<img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-v1_subs_horiz.png" width="400">
+
+[![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
+
 # Welcome to axioma-py! 
 ## Qontigo’s open-source software for our API users
+
 
 Thank you for your interest in our project. We are excited to share it with you and hear your feedback.
 
