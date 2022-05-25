@@ -1,4 +1,5 @@
-<img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-v1_subs_horiz.png" width="400">
+<img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-Logo---no-padding.jpg" width="400">
+
 
 [![Apache-2 license](https://img.shields.io/badge/license-Apache2-brightgreen.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
