@@ -49,7 +49,6 @@ setuptools.setup(
     ],
     extras_require={
         "notebook": ["jupyter"],
-        "use_cases": ["jupyter", "cvxpy", "cvxopt"],
         "test": [
             "pytest",
             "pytest-cov",
