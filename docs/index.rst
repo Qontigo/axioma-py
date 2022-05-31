@@ -52,7 +52,7 @@ Now the package is ready to use.
 Getting Started and Examples
 =============================
 
-Head to the :ref:`Examples <bluepysdk-examples>` pages to get started.
+Head to the :ref:`Examples <axioma-py-examples>` pages to get started.
 
 
 Contributing

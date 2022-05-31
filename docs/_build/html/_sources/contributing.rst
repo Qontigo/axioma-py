@@ -57,7 +57,7 @@ In order to use the hook as defined in the pre-commit-config.yaml run:
 
 In order to install the package for development, install in editable mode with optional dependencies.
 
-See axiomapy\examples\with_entitybase examples for info on how new instances should be defined.
+See axioma-py\\examples\\with_entitybase examples for info on how new instances should be defined.
 
 When creating notebook examples or use cases, a git filter is defined (see .gitconfig and .gitattributes files in folders containing notebooks).
 The output is automatically removed from notebooks on commit.

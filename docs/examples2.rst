@@ -1,4 +1,4 @@
-.. _bluepysdk-examples:
+.. _axioma-py-examples:
 
 Examples
 ===================
@@ -43,7 +43,7 @@ Optional: Depending how you launch jupyter you may also need to add a Python Ker
 
 .. code-block:: bash
 
-    ipython kernel install --name "bluepysdk-venv-kernel" --user
+    ipython kernel install --name "axiomapy-venv-kernel" --user
 
 
 The start the notebook and open the examples.

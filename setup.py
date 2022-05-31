@@ -25,7 +25,7 @@ setuptools.setup(
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
     author="Qontigo",
-    author_email="q@q.com",
+    author_email="axioma-py@qontigo.com",
     description="Ideas for an api toolkit package",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -49,7 +49,6 @@ setuptools.setup(
     ],
     extras_require={
         "notebook": ["jupyter"],
-        "use_cases": ["jupyter", "cvxpy", "cvxopt"],
         "test": [
             "pytest",
             "pytest-cov",

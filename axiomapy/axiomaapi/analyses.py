@@ -256,7 +256,7 @@ class AnalysesRiskAPI(AnalysesAPI):
     def get_instruments_request(
         request_id: int, original: bool = False, return_response: bool = False
     ):
-        """This method returns the the instrument analysis request
+        """This method returns the instrument analysis request
 
         Args:
             request_id: id of the initial request
