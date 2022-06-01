@@ -1,7 +1,9 @@
-<img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-Logo---no-padding.jpg" width="400">
+<img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-Logo---no-padding.jpg" width="400"><br>
 
 
-[![License](license-apache.png)
+
+
+[<img src="license-apache.png" width="150"/>](license.md)
 
 
 # Welcome to axioma-py! 
