@@ -1,8 +1,6 @@
 <img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-Logo---no-padding.jpg" width="400"><br>
 
 
-
-
 [<img src="license-apache.png" width="150"/>](LICENSE)
 
 
