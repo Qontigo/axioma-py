@@ -18,7 +18,6 @@ Key Features
 ============
 
 - Offers a more intuitive interface for users less familiar with the API and its data models.
-- Provides async support for relevant methods.
 - Allows developers to work with dict representations alongside typed instances where this is more convenient.
 - Improves the developer and API user’s experience.
 - Comes fully documented with tutorials and examples and packaged with more boilerplate code to reduce time needed to build applications.
