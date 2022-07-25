@@ -48,7 +48,7 @@ _logger.addHandler(logging.NullHandler())
 
 API_VERSION = "v1"
 API_TYPE = "REST"
-DEFAULT_APP = "Blue_API"
+DEFAULT_APP = "REST_API"
 
 
 @unique
@@ -281,9 +281,7 @@ class AxiomaSession(BaseContext):
         self.api_type = api_type
         self.api_version = api_version
         self.session_type = httpx.Client
-        self.async_session_type = httpx.AsyncClient
         self._session = None
-        self._async_session = None
         self.proxy = proxy
 
     @classmethod
@@ -524,8 +522,7 @@ class AxiomaSession(BaseContext):
         method: HttpMethods,
         cls: type,
         stream: bool,
-        return_response: bool = False,
-        async_client: bool = False,
+        return_response: bool = False
     ):
         """A subset of the response object is returned or instances of types.
         The response will vary depending on the request type and the passed args.
@@ -539,22 +536,13 @@ class AxiomaSession(BaseContext):
         """
 
         if stream and False:
-            if async_client:
-                return {
-                    "headers": response.headers,
-                    "aiter_content": response.aiter_bytes(),
-                    "aiter_lines": response.aiter_lines(),
-                    "status_code": response.status_code,
-                    "close": response.aclose,
-                }
-            else:
-                return {
-                    "headers": response.headers,
-                    "iter_content": response.iter_bytes(),
-                    "iter_lines": response.iter_lines(),
-                    "status_code": response.status_code,
-                    "close": response.close,
-                }
+            return {
+                "headers": response.headers,
+                "iter_content": response.iter_bytes(),
+                "iter_lines": response.iter_lines(),
+                "status_code": response.status_code,
+                "close": response.close,
+            }
 
         if (method == HttpMethods.GET or method == HttpMethods.PATCH) and cls:
             res_json = response.json()
@@ -867,10 +855,5 @@ class SimpleAuthSession(AxiomaSession):
 
         self._session.headers.update(auth_headers)
         self._session.timeout = httpx.Timeout(self.timeout)
-
-        # update the async session if it is instantiated
-        if self._async_session is not None:
-            self._async_session.headers.update(auth_headers)
-            self._async_session.timeout = httpx.Timeout(self.timeout)
 
         return True
