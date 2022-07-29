@@ -270,6 +270,7 @@ class AxiomaSession(BaseContext):
         self,
         domain: str,
         proxy=None,
+        certificates=None,
         api_type: str = API_TYPE,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
@@ -283,6 +284,7 @@ class AxiomaSession(BaseContext):
         self.session_type = httpx.Client
         self._session = None
         self.proxy = proxy
+        self.certificates = certificates
 
     @classmethod
     def get_session(
@@ -292,6 +294,7 @@ class AxiomaSession(BaseContext):
         password: str,
         domain: str,
         proxy=None,
+        certificates=None,
         api_type: str = API_TYPE,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
@@ -333,6 +336,7 @@ class AxiomaSession(BaseContext):
             password,
             domain,
             proxy,
+            certificates,
             api_type,
             application_name,
             api_version,
@@ -342,7 +346,8 @@ class AxiomaSession(BaseContext):
     def init(self) -> None:
         """Initializes the http client and authenticates the session"""
         if not self._session:
-            self._session = self.session_type()
+            #self._session = self.session_type()
+            self._session = httpx.Client(proxies=self.proxy, verify=self.certificates)
             self._is_authenticated = self._authenticate()
             if self._is_authenticated:
                 if self.event_hooks is not None:
@@ -356,6 +361,7 @@ class AxiomaSession(BaseContext):
         password: str,
         domain: str,
         proxy=None,
+        certificates=None,
         api_type: str = API_TYPE,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
@@ -388,6 +394,7 @@ class AxiomaSession(BaseContext):
             password=password,
             domain=domain,
             proxy=proxy,
+            certificates=certificates,
             api_type=api_type,
             application_name=application_name,
             api_version=api_version,
@@ -781,6 +788,7 @@ class SimpleAuthSession(AxiomaSession):
         password: str,
         domain: str,
         proxy=None,
+        certificates=None,
         api_type: str = API_TYPE,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
@@ -789,6 +797,7 @@ class SimpleAuthSession(AxiomaSession):
         super().__init__(
             domain=domain,
             proxy=proxy,
+            certificates=certificates,
             api_type=api_type,
             application_name=application_name,
             api_version=api_version,
@@ -805,6 +814,7 @@ class SimpleAuthSession(AxiomaSession):
         self.username = username
         self.password = password
         self.proxy = proxy
+        self.certificates = certificates
 
     def _authenticate(self):
         credentials = {
@@ -818,13 +828,14 @@ class SimpleAuthSession(AxiomaSession):
             "Content-Type": "application/x-www-form-urlencoded",
         }
         proxy = self.proxy
+        certificates = self.certificates
         _logger.info("Preparing to authenticate:")
 
         # drop prepared request workflow with httpx
         # req = httpx.Request("POST", self.auth_url, data=credentials, headers=headers)
         # response = self._session.send(req, timeout=self.auth_timeout)
 
-        with httpx.Client(proxies=proxy) as client:
+        with httpx.Client(proxies=proxy, verify=certificates) as client:
             response = client.post(self.auth_url, data=credentials, headers=headers)
 
         _logger.info(f"Sending authentication request to {self.auth_url}")
