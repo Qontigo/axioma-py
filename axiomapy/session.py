@@ -347,7 +347,10 @@ class AxiomaSession(BaseContext):
         """Initializes the http client and authenticates the session"""
         if not self._session:
             #self._session = self.session_type()
-            self._session = httpx.Client(proxies=self.proxy, verify=self.certificates)
+            if(self.certificates is not None and self.certificates != ''):
+                self._session = httpx.Client(proxies=self.proxy, verify=self.certificates)
+            else:
+                self._session = self.session_type()
             self._is_authenticated = self._authenticate()
             if self._is_authenticated:
                 if self.event_hooks is not None:
