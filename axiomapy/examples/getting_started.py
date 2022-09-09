@@ -326,7 +326,7 @@ status.content
 logs = AnalysesRiskAPI.get_analyses_log(requestId)
 
 
-results = AnalysesAPI.get_analyses(requestId).json()
+results = AnalysesRiskAPI.get_analyses(requestId).json()
 
 
 ### Search for Entities
