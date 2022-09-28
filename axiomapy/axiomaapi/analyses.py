@@ -387,7 +387,7 @@ class AnalysesRiskAPI(AnalysesAPI):
     @staticmethod
     def get_risk_model_results(
         request_id: int,
-        show_raw_results: bool,
+        show_raw_results: bool = False,
         headers: dict = None,
         stream: bool = False,
         return_response: bool = False,
