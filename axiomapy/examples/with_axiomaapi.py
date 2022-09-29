@@ -185,9 +185,9 @@ results = AnalysesRiskAPI.get_risk_model_results(request_id=requestId, show_raw_
 headers={"Accept":"multipart/x-zip"}
 raw_results = AnalysesRiskAPI.get_risk_model_results(request_id=requestId, headers=headers)
 
-#This data can be extracted and saved to a local directory "C:/RMS/temp" with a sample code below
+#This data can be extracted and saved to a local directory with a sample code below
 import zipfile
 from io import BytesIO
 z = zipfile.ZipFile(BytesIO(raw_results.content))
 for name in z.namelist():
-    z.extract(name, "C:/RMS/temp/")
+    z.extract(name)
