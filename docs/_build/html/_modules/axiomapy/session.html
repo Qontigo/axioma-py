@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.session &mdash; axiomapy 0+untagged.16.g3a2f60b documentation</title>
+  <title>axiomapy.session &mdash; axiomapy 1.47 documentation</title>
   
 
   
@@ -216,7 +216,7 @@
 
 <span class="n">API_VERSION</span> <span class="o">=</span> <span class="s2">&quot;v1&quot;</span>
 <span class="n">API_TYPE</span> <span class="o">=</span> <span class="s2">&quot;REST&quot;</span>
-<span class="n">DEFAULT_APP</span> <span class="o">=</span> <span class="s2">&quot;Blue_API&quot;</span>
+<span class="n">DEFAULT_APP</span> <span class="o">=</span> <span class="s2">&quot;REST_API&quot;</span>
 
 
 <span class="nd">@unique</span>
@@ -438,6 +438,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">proxy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">certificates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">api_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_TYPE</span><span class="p">,</span>
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
@@ -449,10 +450,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">api_type</span> <span class="o">=</span> <span class="n">api_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">api_version</span> <span class="o">=</span> <span class="n">api_version</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">session_type</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">async_session_type</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">AsyncClient</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_async_session</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="n">proxy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span> <span class="o">=</span> <span class="n">certificates</span>
 
 <div class="viewcode-block" id="AxiomaSession.get_session"><a class="viewcode-back" href="../../sessions.html#axiomapy.AxiomaSession.get_session">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_session</span><span class="p">(</span>
@@ -462,6 +462,7 @@
         <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">proxy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">certificates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">api_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_TYPE</span><span class="p">,</span>
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
@@ -503,6 +504,7 @@
             <span class="n">password</span><span class="p">,</span>
             <span class="n">domain</span><span class="p">,</span>
             <span class="n">proxy</span><span class="p">,</span>
+            <span class="n">certificates</span><span class="p">,</span>
             <span class="n">api_type</span><span class="p">,</span>
             <span class="n">application_name</span><span class="p">,</span>
             <span class="n">api_version</span><span class="p">,</span>
@@ -512,7 +514,11 @@
 <div class="viewcode-block" id="AxiomaSession.init"><a class="viewcode-back" href="../../sessions.html#axiomapy.AxiomaSession.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="sd">&quot;&quot;&quot;Initializes the http client and authenticates the session&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_type</span><span class="p">()</span>
+            <span class="c1">#self._session = self.session_type()</span>
+            <span class="k">if</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">certificates</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">proxy</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">certificates</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">session_type</span><span class="p">()</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_is_authenticated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate</span><span class="p">()</span>
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_authenticated</span><span class="p">:</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">event_hooks</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -526,6 +532,7 @@
         <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">proxy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">certificates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">api_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_TYPE</span><span class="p">,</span>
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
@@ -558,6 +565,7 @@
             <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">,</span>
             <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span>
             <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span>
+            <span class="n">certificates</span><span class="o">=</span><span class="n">certificates</span><span class="p">,</span>
             <span class="n">api_type</span><span class="o">=</span><span class="n">api_type</span><span class="p">,</span>
             <span class="n">application_name</span><span class="o">=</span><span class="n">application_name</span><span class="p">,</span>
             <span class="n">api_version</span><span class="o">=</span><span class="n">api_version</span><span class="p">,</span>
@@ -692,8 +700,7 @@
         <span class="n">method</span><span class="p">:</span> <span class="n">HttpMethods</span><span class="p">,</span>
         <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span><span class="p">,</span>
         <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
-        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">async_client</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;A subset of the response object is returned or instances of types.</span>
 <span class="sd">        The response will vary depending on the request type and the passed args.</span>
@@ -707,22 +714,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">stream</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">async_client</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">{</span>
-                    <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-                    <span class="s2">&quot;aiter_content&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">aiter_bytes</span><span class="p">(),</span>
-                    <span class="s2">&quot;aiter_lines&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">aiter_lines</span><span class="p">(),</span>
-                    <span class="s2">&quot;status_code&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                    <span class="s2">&quot;close&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">aclose</span><span class="p">,</span>
-                <span class="p">}</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="p">{</span>
-                    <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
-                    <span class="s2">&quot;iter_content&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_bytes</span><span class="p">(),</span>
-                    <span class="s2">&quot;iter_lines&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">(),</span>
-                    <span class="s2">&quot;status_code&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
-                    <span class="s2">&quot;close&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">,</span>
-                <span class="p">}</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;headers&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="p">,</span>
+                <span class="s2">&quot;iter_content&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_bytes</span><span class="p">(),</span>
+                <span class="s2">&quot;iter_lines&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">iter_lines</span><span class="p">(),</span>
+                <span class="s2">&quot;status_code&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s2">&quot;close&quot;</span><span class="p">:</span> <span class="n">response</span><span class="o">.</span><span class="n">close</span><span class="p">,</span>
+            <span class="p">}</span>
 
         <span class="k">if</span> <span class="p">(</span><span class="n">method</span> <span class="o">==</span> <span class="n">HttpMethods</span><span class="o">.</span><span class="n">GET</span> <span class="ow">or</span> <span class="n">method</span> <span class="o">==</span> <span class="n">HttpMethods</span><span class="o">.</span><span class="n">PATCH</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">cls</span><span class="p">:</span>
             <span class="n">res_json</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
@@ -961,6 +959,7 @@
         <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">domain</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">proxy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">certificates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">api_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_TYPE</span><span class="p">,</span>
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
@@ -969,6 +968,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span>
             <span class="n">proxy</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span>
+            <span class="n">certificates</span><span class="o">=</span><span class="n">certificates</span><span class="p">,</span>
             <span class="n">api_type</span><span class="o">=</span><span class="n">api_type</span><span class="p">,</span>
             <span class="n">application_name</span><span class="o">=</span><span class="n">application_name</span><span class="p">,</span>
             <span class="n">api_version</span><span class="o">=</span><span class="n">api_version</span><span class="p">,</span>
@@ -985,6 +985,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="n">proxy</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span> <span class="o">=</span> <span class="n">certificates</span>
 
     <span class="k">def</span> <span class="nf">_authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -998,13 +999,14 @@
             <span class="s2">&quot;Content-Type&quot;</span><span class="p">:</span> <span class="s2">&quot;application/x-www-form-urlencoded&quot;</span><span class="p">,</span>
         <span class="p">}</span>
         <span class="n">proxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span>
+        <span class="n">certificates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing to authenticate:&quot;</span><span class="p">)</span>
 
         <span class="c1"># drop prepared request workflow with httpx</span>
         <span class="c1"># req = httpx.Request(&quot;POST&quot;, self.auth_url, data=credentials, headers=headers)</span>
         <span class="c1"># response = self._session.send(req, timeout=self.auth_timeout)</span>
 
-        <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="n">proxy</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
+        <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">certificates</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">auth_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">credentials</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending authentication request to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">auth_url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -1035,11 +1037,6 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">auth_headers</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
-
-        <span class="c1"># update the async session if it is instantiated</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_async_session</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_async_session</span><span class="o">.</span><span class="n">headers</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">auth_headers</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_async_session</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Timeout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="kc">True</span>
 </pre></div>

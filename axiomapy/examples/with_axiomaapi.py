@@ -180,3 +180,14 @@ logs = AnalysesRiskAPI.get_risk_model_logs(requestId)
 #The user can get the results of the request using the requestId. The user can choose the results to be in raw format or refined by changing the parameter show_raw_results in the request.
 
 results = AnalysesRiskAPI.get_risk_model_results(request_id=requestId, show_raw_results=False)
+
+#The risk model data from the above step can also fetched in zipped format. 
+headers={"Accept":"multipart/x-zip"}
+raw_results = AnalysesRiskAPI.get_risk_model_results(request_id=requestId, headers=headers)
+
+#This data can be extracted and saved to a local directory with a sample code below
+import zipfile
+from io import BytesIO
+z = zipfile.ZipFile(BytesIO(raw_results.content))
+for name in z.namelist():
+    z.extract(name)
