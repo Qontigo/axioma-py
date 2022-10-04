@@ -31,19 +31,23 @@ class AnalysesAPI:
 
     """
     @staticmethod
-    def get_analyses(request_id: int, return_response: bool = False):
+    def get_analyses(request_id: int, as_csv: bool = False, return_response: bool = False):
         """The method is used to fetch the result of the analysis request.
 
         Args:
             request_id: Request id for the analysis request.
+            as_csv: Option to return the results as CSV rather than JSON
             return_response: If set to true, the response will be returned
 
         Returns:
             The result of the analysis are returned.
         """
         url = f"/analyses/{request_id}"
+        headers = None
         _logger.info(f"Getting from {url}")
-        response = AxiomaSession.current._get(url, return_response=return_response)
+        if as_csv:
+            headers = {"Accept": "text/csv"}
+        response = AxiomaSession.current._get(url, headers=headers, return_response=return_response)
         return response
 
     @staticmethod
