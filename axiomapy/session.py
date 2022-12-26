@@ -326,8 +326,8 @@ class AxiomaSession(BaseContext):
         if not isinstance(event_hooks, dict):
             hook_methods = HttpxLoggingHooks(application_name=application_name)
             event_hooks = {
-                "request": [hook_methods.log_request, hook_methods.log_request],
-                "response": [hook_methods.log_response, hook_methods.log_response],
+                "request": [hook_methods.log_request],
+                "response": [hook_methods.log_response],
             }
 
         return SimpleAuthSession(
