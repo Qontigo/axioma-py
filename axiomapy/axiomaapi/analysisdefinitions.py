@@ -76,3 +76,45 @@ class AnalysisDefinitionAPI():
             url, return_response=return_response
         )
         return response
+
+    @staticmethod
+    def post_analysis_definition(
+        analysis_def: dict, return_response: bool = False,
+    ):
+        """This method creates new analysis definitions
+
+        Args:
+            analysis_def:model to create a new analysis definition
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if analysis definition is created. Code 201
+        """
+        url = "/analysis-definitions"
+        _logger.info(f"Posting to {url}")
+        response = AxiomaSession.current._post(
+            url, json=analysis_def, return_response=return_response
+        )
+        return response
+
+    @staticmethod
+    def post_share_analysis_definition(
+        analysis_def_id: int, name: str, team: str, return_response: bool = False,
+    ):
+        """This method shares a view with a specific team
+
+        Args:
+            analysis_def_id:id of analysis definition to share
+            name:name for the new analysis definition
+            team:team with which analysis definition is to be shared
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message once shared. Code 201
+        """
+        url = f"analysis-definitions/{analysis_def_id}/share"
+        _logger.info(f"Posting to {url}")
+        response = AxiomaSession.current._post(
+            url, json={"team": team, "name": name}, return_response=return_response
+        )
+        return response

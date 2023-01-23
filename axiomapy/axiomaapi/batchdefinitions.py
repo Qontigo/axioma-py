@@ -84,3 +84,24 @@ class BatchDefinitionsAPI:
             url, return_response=return_response, headers=headers
         )
         return response
+
+    @staticmethod
+    def post_batch_definition(
+        batch_definition: dict, headers: dict = None, return_response: bool = False,
+    ):
+        """This method creates a new batch definition
+
+        Args:
+            batch_definition: parameters for the new batch definition
+            headers: Optional headers if any needed (Correlation ID , Content-Encoding)
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message once created. Code 201
+        """
+        url = "/batch-definitions"
+        _logger.info(f"Posting to {url}")
+        response = AxiomaSession.current._post(
+            url, batch_definition, return_response=return_response, headers=headers
+        )
+        return response
