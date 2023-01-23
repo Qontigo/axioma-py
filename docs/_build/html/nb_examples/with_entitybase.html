@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections &mdash; axiomapy 0+untagged.52.g60b20ba.dirty documentation</title>
+  <title>CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
   
 
   
@@ -300,10 +300,11 @@ div.nboutput.container div.prompt > div {
     }
 }
 
-/* disable scrollbars on prompts */
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
     overflow: hidden;
+    white-space: pre;
 }
 
 /* input/output area */
@@ -400,11 +401,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -413,10 +415,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -428,12 +434,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -541,38 +550,32 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EnumBase</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EnumBase</span>
 
 <span class="k">class</span> <span class="nc">SampleEnum</span><span class="p">(</span><span class="n">EnumBase</span><span class="p">):</span>
     <span class="n">Value1</span> <span class="o">=</span> <span class="s2">&quot;Value1&quot;</span>
     <span class="n">Value2</span> <span class="o">=</span> <span class="s2">&quot;Value2&quot;</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;Value1&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;Value1&#39;</span><span class="p">)</span>
 <span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;value1&#39;</span><span class="p">)</span>
 <span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;VALUE1&#39;</span><span class="p">)</span>
 
 <span class="c1"># access the value</span>
 <span class="n">enum</span><span class="o">.</span><span class="n">value</span>
-
-
-</pre></div>
+<br/><br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># The enum class does not serialise to json. The Enumbase subclasses str so it will.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The enum class does not serialise to json. The Enumbase subclasses str so it will.</span>
 <span class="c1"># Since the enum will be identified and converted explicitly this should be unnecessary.</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="n">test</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">enum</span><span class="p">}</span>
@@ -594,8 +597,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntityBase</span><span class="p">,</span> <span class="n">camel_case_translate</span><span class="p">,</span> <span class="n">do_not_clone</span><span class="p">,</span> <span class="n">do_not_serialise</span><span class="p">,</span> <span class="n">get_enum_value</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntityBase</span><span class="p">,</span> <span class="n">camel_case_translate</span><span class="p">,</span> <span class="n">do_not_clone</span><span class="p">,</span> <span class="n">do_not_serialise</span><span class="p">,</span> <span class="n">get_enum_value</span>
 <span class="kn">from</span> <span class="nn">axiomapy.utils</span> <span class="kn">import</span> <span class="n">date_arg_fmt</span><span class="p">,</span> <span class="n">date_arg_parse</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
@@ -680,11 +682,7 @@ div.rendered_html tbody tr:hover {
     <span class="nd">@not_serialize_field</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">not_serialize_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_not_serialize_field</span> <span class="o">=</span> <span class="n">value</span>
-
-
-
-
-</pre></div>
+<br/><br/><br/><br/></pre></div>
 </div>
 </div>
 <div class="section" id="Using-the-samples">
@@ -694,8 +692,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># only required args</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># only required args</span>
 <span class="n">new_sample</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="c1"># some optional args</span>
 <span class="n">another_sample</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">date_field_str</span><span class="o">=</span><span class="s2">&quot;2020-05-10&quot;</span><span class="p">,</span> <span class="n">enum_field</span><span class="o">=</span><span class="n">SampleEnum</span><span class="o">.</span><span class="n">Value2</span><span class="p">)</span>
@@ -709,8 +706,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sample_from_dict</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_from_dict</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -723,8 +719,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;new_sample has id: </span><span class="si">{</span><span class="n">new_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;new_sample has id: </span><span class="si">{</span><span class="n">new_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;another_sample has date: </span><span class="si">{</span><span class="n">another_sample</span><span class="o">.</span><span class="n">date_field_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;another_sample date_field_str can also be accessed via dateFieldStr </span><span class="si">{</span><span class="n">another_sample</span><span class="o">.</span><span class="n">dateFieldStr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;entities can be accessed in snakecase or camel case like a dict </span><span class="si">{</span><span class="n">another_sample</span><span class="p">[</span><span class="s1">&#39;dateFieldStr&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -739,8 +734,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date_field_datetime maps to prop: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_translate_to_class_prop</span><span class="p">(</span><span class="s1">&#39;date_field_datetime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date_field_datetime maps to prop: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_translate_to_class_prop</span><span class="p">(</span><span class="s1">&#39;date_field_datetime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dateFieldDatetime maps to prop: </span><span class="si">{</span><span class="n">EntityBase</span><span class="o">.</span><span class="n">_translate_to_class_prop</span><span class="p">(</span><span class="s1">&#39;dateFieldDatetime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -756,8 +750,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">cloned_sample</span> <span class="o">=</span> <span class="n">sample_from_dict</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cloned_sample</span> <span class="o">=</span> <span class="n">sample_from_dict</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The do_not_clone decorator on the id property means cloned_sample has an id of </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">cloned_sample_2</span> <span class="o">=</span> <span class="n">sample_from_dict</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">enum_field</span><span class="o">=</span><span class="s2">&quot;value2&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overrides can be applied when cloning, cloned_sample_2 has enum_field of </span><span class="si">{</span><span class="n">cloned_sample_2</span><span class="o">.</span><span class="n">enum_field</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -772,8 +765,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cloned_sample.id before update </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cloned_sample.id before update </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">cloned_sample</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cloned_sample.id before update </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The full cloned_sample after update is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cloned_sample_2</span><span class="p">)</span>
@@ -790,8 +782,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">cloned_sample_2</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cloned_sample_2</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After replacing the sample is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cloned_sample_2</span><span class="p">)</span>
 </pre></div>
@@ -808,14 +799,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sample_to_serialize</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_to_serialize</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">sample_to_serialize</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 <span class="c1"># for example without translating</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sample_to_serialize</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">translate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="section" id="How-Serialization-works">
@@ -826,8 +815,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># show the properties that can be considered for serialization</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the properties that can be considered for serialization</span>
 <span class="n">class_props</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">class_properties</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The set of properties are: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">class_props</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -838,8 +826,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">prop_type_enums</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;prop: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> has type: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_get_prop_type</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">class_props</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_type_enums</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;prop: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> has type: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_get_prop_type</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">class_props</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">prop_type_enums</span><span class="p">)</span>
 </pre></div>
@@ -856,8 +843,7 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">NestedEntity</span><span class="p">(</span><span class="n">EntityBase</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NestedEntity</span><span class="p">(</span><span class="n">EntityBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">inner_entity</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -884,18 +870,14 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
             <span class="bp">self</span><span class="o">.</span><span class="n">_list_of_entities</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_list_of_entities</span> <span class="o">=</span> <span class="p">[</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">get_as_instance</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
-
-
-
-</pre></div>
+<br/><br/><br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nested_entity_dict</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nested_entity_dict</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;inner_entity&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
             <span class="s2">&quot;date_field_str&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-10&quot;</span><span class="p">,</span>
@@ -923,10 +905,7 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-
-
-<span></span><span class="n">nested_entity1</span> <span class="o">=</span> <span class="n">NestedEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nested_entity_dict</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><br/><span></span><span class="n">nested_entity1</span> <span class="o">=</span> <span class="n">NestedEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nested_entity_dict</span><span class="p">)</span>
 
 <span class="n">nested_entity2</span> <span class="o">=</span> <span class="n">NestedEntity</span><span class="p">(</span>
     <span class="n">inner_entity</span><span class="o">=</span><span class="n">SampleEntity</span><span class="p">(</span>
@@ -945,8 +924,7 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The nested entities behave as any other entity e.g. translating&quot;</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">nested_entity1</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 </pre></div>
@@ -971,13 +949,12 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">TemplatedEntityBase</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">TemplatedEntityBase</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 
 <span class="k">class</span> <span class="nc">SampleTemplatedEntity</span><span class="p">(</span><span class="n">TemplatedEntityBase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A base class for creating templated entities</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A base class for creating templated entities</span>
 <span class="sd">    The two properties _TEMPLATE_NAME and _TEMPLATE_MAPPING should be set in the sub</span>
 <span class="sd">    class. The _TEMPLATE_MAPPING should be a list of tuples listing the class properties</span>
 <span class="sd">    that are part of the content section and the mapping between the model and the</span>
@@ -1004,16 +981,14 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
     <span class="nd">@class_prop_name</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">class_prop_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_prop_name</span> <span class="o">=</span> <span class="n">value</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">entity_def</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entity_def</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">&quot;templateName&quot;</span><span class="p">:</span> <span class="s2">&quot;Some_Template&quot;</span><span class="p">,</span>
   <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Instance Name&quot;</span><span class="p">,</span>
@@ -1042,14 +1017,12 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">entity_def</span><span class="p">[</span><span class="s1">&#39;templateName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;A different template name&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entity_def</span><span class="p">[</span><span class="s1">&#39;templateName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;A different template name&quot;</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">entity2</span> <span class="o">=</span> <span class="n">SampleTemplatedEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">entity_def</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception:</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <p>For the scope of insturments the template type can be considered to be known via the user. In the case of view column stats an unknown collection of stat templates may be associated with the view. Therefore two distinct classes help create instances from dictionary. * A generic stat exists in which the template name and content properties are set at run time, it allows property access but no intellisense. * A StatFactory is used to create a relevant instance based on the template name in the
@@ -1073,8 +1046,7 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntitySequence</span><span class="p">,</span> <span class="n">EntityMapping</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntitySequence</span><span class="p">,</span> <span class="n">EntityMapping</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
 </pre></div>
 </div>
@@ -1083,30 +1055,20 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">SampleEntityList</span><span class="p">(</span><span class="n">EntitySequence</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleEntityList</span><span class="p">(</span><span class="n">EntitySequence</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entities</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]</span><span class="o">=</span><span class="p">[]):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="p">(</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">get_as_instance</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_as_iter</span><span class="p">(</span><span class="n">entities</span><span class="p">)),</span>
             <span class="n">SampleEntity</span><span class="p">,</span>
         <span class="p">)</span>
-
-
-
-
-
-
-
-
-</pre></div>
+<br/><br/><br/><br/><br/><br/><br/><br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">SampleEntityMapping</span><span class="p">(</span><span class="n">EntityMapping</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleEntityMapping</span><span class="p">(</span><span class="n">EntityMapping</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entities</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]</span><span class="o">=</span><span class="p">[]):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_make_key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">),</span>
@@ -1130,8 +1092,7 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sample_entities</span> <span class="o">=</span> <span class="p">[</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_entities</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
     <span class="s2">&quot;date_field_str&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-10&quot;</span><span class="p">,</span>
@@ -1162,13 +1123,19 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">list_of_entities</span> <span class="o">=</span> <span class="n">SampleEntityList</span><span class="p">(</span><span class="n">sample_entities</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_entities</span> <span class="o">=</span> <span class="n">SampleEntityList</span><span class="p">(</span><span class="n">sample_entities</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_entities</span><span class="p">)</span><span class="si">}</span><span class="s2"> in the sequence.&quot;</span><span class="p">)</span>
 
 <span class="n">map_of_entities</span> <span class="o">=</span> <span class="n">SampleEntityMapping</span><span class="p">(</span><span class="n">sample_entities</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">map_of_entities</span><span class="p">)</span><span class="si">}</span><span class="s2"> in the sequence.&quot;</span><span class="p">)</span>
-
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">map_of_entities</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1176,17 +1143,7 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pprint</span><span class="p">(</span><span class="n">map_of_entities</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>

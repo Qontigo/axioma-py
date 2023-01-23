@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Axiomasessions &mdash; axiomapy 0+untagged.52.g60b20ba.dirty documentation</title>
+  <title>Axiomasessions &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
   
 
   
@@ -300,10 +300,11 @@ div.nboutput.container div.prompt > div {
     }
 }
 
-/* disable scrollbars on prompts */
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
     overflow: hidden;
+    white-space: pre;
 }
 
 /* input/output area */
@@ -400,11 +401,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -413,10 +415,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -428,12 +434,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -480,8 +489,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
 </pre></div>
 </div>
 </div>
@@ -492,8 +500,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)-8s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
                     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
@@ -508,15 +515,12 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-
-<span></span><span class="c1"># Load credentials from file</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="c1"># Load credentials from file</span>
 <span class="kn">from</span> <span class="nn">load_credentials</span> <span class="kn">import</span> <span class="n">get_user</span>
 <span class="n">user1</span> <span class="o">=</span>  <span class="n">get_user</span><span class="p">(</span><span class="s1">&#39;user1&#39;</span><span class="p">)</span>
 <span class="n">user2</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="s1">&#39;user2&#39;</span><span class="p">)</span>
 <span class="n">user3</span> <span class="o">=</span> <span class="n">get_user</span><span class="p">(</span><span class="s1">&#39;user3&#39;</span><span class="p">)</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 </div>
@@ -527,8 +531,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Get and use a session.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get and use a session.</span>
 <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span> <span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">])</span>
 <span class="n">me</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
 
@@ -550,8 +553,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">user2_session</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span><span class="n">user2</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span> <span class="n">user2</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="n">user2</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">user2</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">])</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">user2_session</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span><span class="n">user2</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span> <span class="n">user2</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="n">user2</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">user2</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">])</span>
 <span class="c1"># initialise the session if it is to be used outside the context. Otherwise the session will be open (init) and closed for the context and will require</span>
 <span class="c1"># init to be called again</span>
 <span class="n">user2_session</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
@@ -582,8 +584,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Set the session to user 2 (will also need to init again as it was closed by the with block)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set the session to user 2 (will also need to init again as it was closed by the with block)</span>
 <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">user2_session</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running test - should be connection 2&quot;</span><span class="p">)</span>
 <span class="n">me2_check</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
@@ -594,16 +595,14 @@ div.rendered_html tbody tr:hover {
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Running test - should be connection 1&quot;</span><span class="p">)</span>
 <span class="n">me1_check</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
 <span class="k">assert</span> <span class="n">me1</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;userLogin&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="n">me1_check</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;userLogin&#39;</span><span class="p">)</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closing open sessions&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Closing open sessions&quot;</span><span class="p">)</span>
 <span class="n">user2_session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="n">user1_session</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Finished&quot;</span><span class="p">)</span>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.axiomaapi.portfoliogroups &mdash; axiomapy 1.47 documentation</title>
+  <title>axiomapy.axiomaapi.portfoliogroups &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
   
 
   
@@ -191,7 +191,7 @@
 
 
 <div class="viewcode-block" id="PortfolioGroupsAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfolioGroupsAPI">[docs]</a><span class="k">class</span> <span class="nc">PortfolioGroupsAPI</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Access api methods of portfolios using the active session</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Access api methods of portfolios using the active session</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -203,7 +203,7 @@
         <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method lists the portfolio groups</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method lists the portfolio groups</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter_results: user can filter the response to include only those meeting the criteria</span>
@@ -228,7 +228,7 @@
         <span class="n">portfolio_group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method fetches a particular portfolio group based on the id provided</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method fetches a particular portfolio group based on the id provided</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_group_id: id of the portfolio group</span>
@@ -248,7 +248,7 @@
     <span class="k">def</span> <span class="nf">post_portfolio_group</span><span class="p">(</span>
         <span class="n">portfolio</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method creates a new portfolio group</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates a new portfolio group</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio: the parameters that represent the portfolio group</span>
@@ -270,7 +270,7 @@
         <span class="n">portfolio</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method updates an existing portfolio group based on the portfolio group id provided</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method updates an existing portfolio group based on the portfolio group id provided</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_group_id: id of the portfolio group</span>
@@ -291,7 +291,7 @@
     <span class="k">def</span> <span class="nf">delete_portfolio_group</span><span class="p">(</span>
         <span class="n">portfolio_group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method deletes a portfolio group based on the id provided</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method deletes a portfolio group based on the id provided</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_group_id: portfolio group to be deleted</span>
@@ -303,6 +303,26 @@
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolio-groups/</span><span class="si">{</span><span class="n">portfolio_group_id</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Deleting at </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="PortfolioGroupsAPI.patch_portfolio_groups"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfolioGroupsAPI.patch_portfolio_groups">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">patch_portfolio_groups</span><span class="p">(</span><span class="n">portfolio_group_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+                               <span class="n">portfolios_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+                               <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method patches a portfolio group based on the json provided</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            portfolio_group_id: portfolio group to be deleted</span>
+<span class="sd">            portfolios_dict: portfolios to upsert or remove from the portfolio group</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Success message if the portfolio group is deleted successfully. Code 204</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolio-groups/</span><span class="si">{</span><span class="n">portfolio_group_id</span><span class="si">}</span><span class="s2">/portfolios&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patching portfolios at </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_patch</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">portfolios_dict</span><span class="p">,</span>
+                                                <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div></div>
 </pre></div>
 

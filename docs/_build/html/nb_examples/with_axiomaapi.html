@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>AxiomaPy Direct Access &mdash; axiomapy 0+untagged.52.g60b20ba.dirty documentation</title>
+  <title>AxiomaPy Direct Access &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
   
 
   
@@ -299,10 +299,11 @@ div.nboutput.container div.prompt > div {
     }
 }
 
-/* disable scrollbars on prompts */
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
     overflow: hidden;
+    white-space: pre;
 }
 
 /* input/output area */
@@ -399,11 +400,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -412,10 +414,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -427,12 +433,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -473,15 +482,13 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span><span class="p">,</span> <span class="n">AxiomaResponse</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span><span class="p">,</span> <span class="n">AxiomaResponse</span>
 <span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">PortfoliosAPI</span><span class="p">,</span>
     <span class="n">AnalysesPerformanceAPI</span><span class="p">,</span>
     <span class="n">AnalysesRiskAPI</span>
 <span class="p">)</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <p>Some other imports</p>
@@ -489,8 +496,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 </pre></div>
@@ -500,8 +506,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)-8s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
@@ -517,8 +522,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.examples.load_credentials</span> <span class="kn">import</span> <span class="n">get_user</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.examples.load_credentials</span> <span class="kn">import</span> <span class="n">get_user</span>
 <span class="n">user1</span> <span class="o">=</span>  <span class="n">get_user</span><span class="p">(</span><span class="s1">&#39;user1&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -527,8 +531,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># if the credentials json is not used enter credentials directly below:</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># if the credentials json is not used enter credentials directly below:</span>
 <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span> <span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span> <span class="n">application_name</span><span class="o">=</span><span class="s1">&#39;With analyses examples connection&#39;</span> <span class="p">)</span>
 <span class="c1"># test the connection</span>
 <span class="n">me</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
@@ -542,10 +545,8 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">portfolios_response</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolios</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
-
-</pre></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">portfolios_response</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolios</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <p>The response object contains subsets of the original response</p>
@@ -553,8 +554,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Returned type is </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">portfolios_response</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Returned type is </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">portfolios_response</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -562,8 +562,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pprint</span><span class="p">(</span><span class="n">portfolios_response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">portfolios_response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -572,8 +571,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">original_response</span> <span class="o">=</span> <span class="n">portfolios_response</span><span class="o">.</span><span class="n">response</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">original_response</span> <span class="o">=</span> <span class="n">portfolios_response</span><span class="o">.</span><span class="n">response</span>
 </pre></div>
 </div>
 </div>
@@ -582,8 +580,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">response</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolios</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">response</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolios</span><span class="p">(</span><span class="n">top</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The returned type is </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">response</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
@@ -600,8 +597,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">precompute_param</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">precompute_param</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;asOfDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
     <span class="s2">&quot;benchmark&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;useNoBenchmark&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
     <span class="s2">&quot;performanceAttributionSettingsId&quot;</span><span class="p">:</span> <span class="mi">2136463</span><span class="p">,</span>
@@ -614,8 +610,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">analyses_test</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">post_precompute</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="mi">123330</span><span class="p">,</span> <span class="n">precompute_parameters</span><span class="o">=</span><span class="n">precompute_param</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">analyses_test</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">post_precompute</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="mi">123330</span><span class="p">,</span> <span class="n">precompute_parameters</span><span class="o">=</span><span class="n">precompute_param</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -625,8 +620,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pa_params</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pa_params</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;startDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-30&quot;</span><span class="p">,</span>
     <span class="s2">&quot;endDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
     <span class="s2">&quot;benchmark&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;useNoBenchmark&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
@@ -641,8 +635,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pa_task</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">post_performance_analysis</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="mi">123330</span><span class="p">,</span> <span class="n">analyses_parameters</span><span class="o">=</span><span class="n">pa_params</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pa_task</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">post_performance_analysis</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="mi">123330</span><span class="p">,</span> <span class="n">analyses_parameters</span><span class="o">=</span><span class="n">pa_params</span><span class="p">)</span>
 <span class="n">requestId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">pa_task</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -652,8 +645,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">get_status</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
 <span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesPerformanceAPI</span><span class="o">.</span><span class="n">get_logs</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -667,8 +659,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">rms_parameters</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rms_parameters</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s1">&#39;portfolioId&#39;</span><span class="p">:</span> <span class="mi">123442</span><span class="p">,</span>
   <span class="s1">&#39;analysisDate&#39;</span><span class="p">:</span> <span class="s1">&#39;2020-09-15&#39;</span><span class="p">,</span>
   <span class="s1">&#39;riskModelDefinitionId&#39;</span><span class="p">:</span> <span class="mi">3707082</span>
@@ -681,8 +672,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">req</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">post_risk_model_request</span><span class="p">(</span><span class="n">risk_model_parameters</span><span class="o">=</span><span class="n">rms_parameters</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">req</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">post_risk_model_request</span><span class="p">(</span><span class="n">risk_model_parameters</span><span class="o">=</span><span class="n">rms_parameters</span><span class="p">)</span>
 <span class="n">requestId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">req</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -692,8 +682,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_risk_model_request_status</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_risk_model_request_status</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
 
 <span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_risk_model_logs</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
 </pre></div>
@@ -704,8 +693,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_risk_model_results</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">,</span> <span class="n">show_raw_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_risk_model_results</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">,</span> <span class="n">show_raw_results</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -714,8 +702,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Accept&quot;</span><span class="p">:</span><span class="s2">&quot;multipart/x-zip&quot;</span><span class="p">}</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Accept&quot;</span><span class="p">:</span><span class="s2">&quot;multipart/x-zip&quot;</span><span class="p">}</span>
 <span class="n">raw_results</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_risk_model_results</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -725,8 +712,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">zipfile</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">zipfile</span>
 <span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
 <span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">raw_results</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>

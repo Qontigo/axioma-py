@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.52.g60b20ba.dirty documentation</title>
+  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
   
 
   
@@ -302,10 +302,11 @@ div.nboutput.container div.prompt > div {
     }
 }
 
-/* disable scrollbars on prompts */
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
     overflow: hidden;
+    white-space: pre;
 }
 
 /* input/output area */
@@ -402,11 +403,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -415,10 +417,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -430,12 +436,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -474,8 +483,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
@@ -493,8 +501,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 </pre></div>
 </div>
 </div>
@@ -511,8 +518,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
 </pre></div>
 </div>
 </div>
@@ -521,8 +527,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">PortfolioGroupsAPI</span><span class="p">,</span> <span class="n">PortfoliosAPI</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">PortfolioGroupsAPI</span><span class="p">,</span> <span class="n">PortfoliosAPI</span>
 </pre></div>
 </div>
 </div>
@@ -531,8 +536,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">AnalysisDefinitionAPI</span><span class="p">,</span> <span class="n">RiskModelDefinitionsAPI</span><span class="p">,</span> <span class="n">AnalysesRiskAPI</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">AnalysisDefinitionAPI</span><span class="p">,</span> <span class="n">RiskModelDefinitionsAPI</span><span class="p">,</span> <span class="n">AnalysesRiskAPI</span>
 </pre></div>
 </div>
 </div>
@@ -541,8 +545,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">MetaDataAPI</span><span class="p">,</span> <span class="n">TemplatesAPI</span><span class="p">,</span> <span class="n">EntitiesAPI</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">MetaDataAPI</span><span class="p">,</span> <span class="n">TemplatesAPI</span><span class="p">,</span> <span class="n">EntitiesAPI</span>
 <span class="kn">from</span> <span class="nn">axiomapy.odatahelpers</span> <span class="kn">import</span> <span class="n">oDataFilterHelper</span> <span class="k">as</span> <span class="n">od</span>
 <span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">enums</span>
 </pre></div>
@@ -558,8 +561,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># For testing load up some credentials</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For testing load up some credentials</span>
 <span class="kn">from</span> <span class="nn">load_credentials</span> <span class="kn">import</span> <span class="n">get_user</span>
 <span class="n">user1</span> <span class="o">=</span>  <span class="n">get_user</span><span class="p">(</span><span class="s1">&#39;user1&#39;</span><span class="p">)</span>
 </pre></div>
@@ -569,8 +571,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># replace the user1[&#39;xx&#39;] with your credentials</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace the user1[&#39;xx&#39;] with your credentials</span>
 <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
     <span class="n">client_id</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span>
     <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
@@ -585,8 +586,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
     <span class="n">client_id</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span>
     <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
     <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
@@ -606,8 +606,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># Create a set of filters using the helpers to</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a set of filters using the helpers to</span>
 <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;US&quot;</span><span class="p">),</span>
     <span class="s1">&#39;and not&#39;</span><span class="p">,</span>
@@ -640,8 +639,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">test_portfolio</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_portfolio</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test_Portfolio_Name&quot;</span><span class="p">,</span>
     <span class="s2">&quot;longName&quot;</span><span class="p">:</span> <span class="s2">&quot;My Test Portfolio&quot;</span><span class="p">,</span>
     <span class="s2">&quot;defaultCurrency&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span><span class="p">,</span>
@@ -657,8 +655,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">my_ptf</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolio</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_ptf</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolio</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -672,8 +669,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">patch_position</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;514431&quot;</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch_position</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;514431&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Ticker&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">}],</span>
                    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">6288458702.57133</span><span class="p">,</span>
                                 <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="s2">&quot;MarketValue&quot;</span><span class="p">}},</span>
@@ -692,8 +688,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">date_to_load_positions</span> <span class="o">=</span> <span class="s2">&quot;2020-12-01&quot;</span> <span class="c1"># or can use the datetime type</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_to_load_positions</span> <span class="o">=</span> <span class="s2">&quot;2020-12-01&quot;</span> <span class="c1"># or can use the datetime type</span>
 
 <span class="c1"># returns a list of PositionAsOfDate</span>
 <span class="n">position_dates_resp</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_position_dates</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
@@ -701,17 +696,15 @@ you prefer to work with a list if the items.</p>
 <span class="n">position_dates</span> <span class="o">=</span> <span class="n">position_dates_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 <span class="c1"># the position dates returns a list of AsOfDates instances allows direct comparison with a date string or datetime</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The portfolio has positions on the date to load: </span><span class="si">{</span><span class="n">date_to_load_positions</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-</pre></div>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The portfolio has positions on the date to load: </span><span class="si">{</span><span class="n">date_to_load_positions</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">patch</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">patch_positions</span><span class="p">(</span><span class="n">as_of_date</span><span class="o">=</span><span class="n">date_to_load_positions</span><span class="p">,</span> <span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span> <span class="n">positions_upsert</span><span class="o">=</span><span class="n">patch_position</span><span class="p">,</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">patch_positions</span><span class="p">(</span><span class="n">as_of_date</span><span class="o">=</span><span class="n">date_to_load_positions</span><span class="p">,</span> <span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span> <span class="n">positions_upsert</span><span class="o">=</span><span class="n">patch_position</span><span class="p">,</span>
                               <span class="n">positions_remove</span><span class="o">=</span><span class="p">[])</span>
 </pre></div>
 </div>
@@ -721,8 +714,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The patch request response: </span><span class="si">{</span><span class="n">patch</span><span class="o">.</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The patch request response: </span><span class="si">{</span><span class="n">patch</span><span class="o">.</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -731,8 +723,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">position_dates</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_position_dates</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">position_dates</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_position_dates</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
 <span class="n">position_dates</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -747,8 +738,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># All views in team Axioma Standard Views where name contains &#39;Exposure&#39;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># All views in team Axioma Standard Views where name contains &#39;Exposure&#39;</span>
 <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Exposures&quot;</span><span class="p">),</span>
     <span class="s1">&#39;and (&#39;</span><span class="p">,</span>
@@ -775,8 +765,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">risk_param</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">risk_param</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;analysisDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
     <span class="s2">&quot;positionDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
     <span class="s2">&quot;aggregationOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -798,8 +787,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">ra</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">post_portfolio_analyses</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span><span class="n">analyses_parameters</span><span class="o">=</span><span class="n">risk_param</span><span class="p">,</span><span class="n">return_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ra</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">post_portfolio_analyses</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span><span class="n">analyses_parameters</span><span class="o">=</span><span class="n">risk_param</span><span class="p">,</span><span class="n">return_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">requestId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
@@ -810,8 +798,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_status</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_status</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -820,8 +807,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">status</span><span class="o">.</span><span class="n">status_code</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="o">.</span><span class="n">status_code</span>
 <span class="n">status</span><span class="o">.</span><span class="n">content</span>
 </pre></div>
 </div>
@@ -832,8 +818,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_log</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_log</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -841,8 +826,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesAPI</span><span class="o">.</span><span class="n">get_analyses</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesAPI</span><span class="o">.</span><span class="n">get_analyses</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -855,8 +839,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;PA-MAC-Global-USD&quot;</span><span class="p">)</span>
 <span class="p">]</span>
 
@@ -879,8 +862,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">delete_portfolio</span><span class="p">(</span><span class="n">pId</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">delete_portfolio</span><span class="p">(</span><span class="n">pId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -889,8 +871,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
