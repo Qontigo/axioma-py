@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>AxiomaPy Direct Access &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
+  <title>AxiomaPy Direct Access &mdash; axiomapy 0+untagged.60.g51edae5.dirty documentation</title>
   
 
   
@@ -94,17 +94,48 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples2.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../examples2.html#instructions-for-running-examples">Instructions for running examples</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Sessions</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">AxiomaAPI</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Imports">Imports</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Credentials-and-Creating-an-Active-Sesssion">Credentials and Creating an Active Sesssion</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Get-a-list-of-portfolios">Get a list of portfolios</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Performance-Attribution-Request">Performance Attribution Request</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Risk-Model-Service">Risk Model Service</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html">Developer Base Class Guide</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting Started with axiomapy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Other-common-imports">Other common imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Importing-from-axiomapy">Importing from axiomapy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Logging-in">Logging in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Find-portfolios-using-oData-filters">Find portfolios using oData filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Create-a-portfolio-and-check-for-a-portfolio">Create a portfolio and check for a portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Create-some-positions">Create some positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Add-them-to-the-portfolio">Add them to the portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Search-for-views">Search for views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Run-a-risk-analysis">Run a risk analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Run-a-portfolio-analysis">Run a portfolio analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Access-the-logs-and-results">Access the logs and results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Search-for-Entities">Search for Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Clean-up">Clean up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Axiomasessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Optional-logging">Optional logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Credentials">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Activating-a-session">Activating a session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Contexts">Contexts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Switching-sessions-in-the-context-manually">Switching sessions in the context manually</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">AxiomaPy Direct Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Credentials-and-Creating-an-Active-Sesssion">Credentials and Creating an Active Sesssion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Get-a-list-of-portfolios">Get a list of portfolios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Performance-Attribution-Request">Performance Attribution Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Risk-Model-Service">Risk Model Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html">CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#EnumBase">EnumBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#EntityBase">EntityBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Using-the-samples">Using the samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#How-the-accessors-works">How the accessors works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Clone,-Update-and-Replace">Clone, Update and Replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Update">Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Replace">Replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Serialization">Serialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#How-Serialization-works">How Serialization works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Nested-Entities">Nested Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#TemplatedEntityBase">TemplatedEntityBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Generic-Collections---Mapping-and-List">Generic Collections - Mapping and List</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Populating-the-collections">Populating the collections</a></li>
 </ul>
 </li>
 </ul>
@@ -475,8 +506,9 @@ div.rendered_html tbody tr:hover {
 <div class="line">In some cases direct API access may be preferred or necessary.</div>
 <div class="line">The following examples show how to access the api classes and perform some actions on portfolios.</div>
 </div>
+</div>
 <div class="section" id="Imports">
-<h2>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h2>
+<h1>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h1>
 <p>The axiomapy imports. Each ‘section’ of the API is available to import from the axiomaapi package.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -516,7 +548,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="Credentials-and-Creating-an-Active-Sesssion">
-<h2>Credentials and Creating an Active Sesssion<a class="headerlink" href="#Credentials-and-Creating-an-Active-Sesssion" title="Permalink to this headline">¶</a></h2>
+<h1>Credentials and Creating an Active Sesssion<a class="headerlink" href="#Credentials-and-Creating-an-Active-Sesssion" title="Permalink to this headline">¶</a></h1>
 <p>Load up some credentials to work with (there is a sample.credentials.json in the ./examples/credentials folder, copy this file to credentials.json and update. Alternatively skip the next set of code and set the credentials directly when creating the session):</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -540,7 +572,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="Get-a-list-of-portfolios">
-<h2>Get a list of portfolios<a class="headerlink" href="#Get-a-list-of-portfolios" title="Permalink to this headline">¶</a></h2>
+<h1>Get a list of portfolios<a class="headerlink" href="#Get-a-list-of-portfolios" title="Permalink to this headline">¶</a></h1>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -590,7 +622,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="Performance-Attribution-Request">
-<h2>Performance Attribution Request<a class="headerlink" href="#Performance-Attribution-Request" title="Permalink to this headline">¶</a></h2>
+<h1>Performance Attribution Request<a class="headerlink" href="#Performance-Attribution-Request" title="Permalink to this headline">¶</a></h1>
 <p>A Performance attribution request is to analyse the performance of a portfolio during given dates</p>
 <p>A pre-step to main PA task is to starts a job to pre-calculate the analytics results that form the inputs to performance attribution.</p>
 <div class="nbinput nblast docutils container">
@@ -652,7 +684,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="Risk-Model-Service">
-<h2>Risk Model Service<a class="headerlink" href="#Risk-Model-Service" title="Permalink to this headline">¶</a></h2>
+<h1>Risk Model Service<a class="headerlink" href="#Risk-Model-Service" title="Permalink to this headline">¶</a></h1>
 <p>The Risk Model Service is helpful in generating Risk Model based on the exposures of a portfolio or list of instruments. It can also be used to output factor returns for a given portfolio or list of instruments.</p>
 <p>Create a request with the desired parameters: portfolio or instruments; risk model definition and statistic definition</p>
 <div class="nbinput nblast docutils container">
@@ -718,7 +750,6 @@ div.rendered_html tbody tr:hover {
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
     <span class="n">z</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
 </pre></div>
-</div>
 </div>
 </div>
 </div>

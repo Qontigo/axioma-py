@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>AxiomaAPI Package &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
+  <title>AxiomaAPI Package &mdash; axiomapy 0+untagged.60.g51edae5.dirty documentation</title>
   
 
   
@@ -282,14 +282,13 @@
 
 <dl class="py method">
 <dt id="axiomapy.axiomaapi.AnalysisDefinitionAPI.post_share_analysis_definition">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">post_share_analysis_definition</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_def_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">team</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/axiomapy/axiomaapi/analysisdefinitions.html#AnalysisDefinitionAPI.post_share_analysis_definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#axiomapy.axiomaapi.AnalysisDefinitionAPI.post_share_analysis_definition" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">post_share_analysis_definition</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">analysis_def_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">share_def</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/axiomapy/axiomaapi/analysisdefinitions.html#AnalysisDefinitionAPI.post_share_analysis_definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#axiomapy.axiomaapi.AnalysisDefinitionAPI.post_share_analysis_definition" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method shares a view with a specific team</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>analysis_def_id</strong> – id of analysis definition to share</p></li>
-<li><p><strong>name</strong> – name for the new analysis definition</p></li>
-<li><p><strong>team</strong> – team with which analysis definition is to be shared</p></li>
+<li><p><strong>share_def</strong> – request body that includes name, team and overwrite flag</p></li>
 <li><p><strong>return_response</strong> – If set to true, the response will be returned</p></li>
 </ul>
 </dd>
@@ -1465,24 +1464,6 @@ It searches the ServicesCache for RiskModelAnalysisLogs, CovarianceComputationsL
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Single batch definition</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="axiomapy.axiomaapi.BatchDefinitionsAPI.post_batch_definition">
-<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">post_batch_definition</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_definition</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">headers</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a><span class="p"><span class="pre">]</span></span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/axiomapy/axiomaapi/batchdefinitions.html#BatchDefinitionsAPI.post_batch_definition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#axiomapy.axiomaapi.BatchDefinitionsAPI.post_batch_definition" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method creates a new batch definition</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>batch_definition</strong> – parameters for the new batch definition</p></li>
-<li><p><strong>headers</strong> – Optional headers if any needed (Correlation ID , Content-Encoding)</p></li>
-<li><p><strong>return_response</strong> – If set to true, the response will be returned</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Success message once created. Code 201</p>
 </dd>
 </dl>
 </dd></dl>

@@ -99,14 +99,13 @@ class AnalysisDefinitionAPI():
 
     @staticmethod
     def post_share_analysis_definition(
-        analysis_def_id: int, name: str, team: str, return_response: bool = False,
+        analysis_def_id: int, share_def: dict, return_response: bool = False,
     ):
         """This method shares a view with a specific team
 
         Args:
             analysis_def_id:id of analysis definition to share
-            name:name for the new analysis definition
-            team:team with which analysis definition is to be shared
+            share_def:request body that includes name, team and overwrite flag
             return_response: If set to true, the response will be returned
 
         Returns:
@@ -115,6 +114,6 @@ class AnalysisDefinitionAPI():
         url = f"analysis-definitions/{analysis_def_id}/share"
         _logger.info(f"Posting to {url}")
         response = AxiomaSession.current._post(
-            url, json={"team": team, "name": name}, return_response=return_response
+            url, json=share_def, return_response=return_response
         )
         return response

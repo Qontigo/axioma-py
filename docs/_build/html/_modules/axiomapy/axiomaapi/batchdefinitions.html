@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.axiomaapi.batchdefinitions &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
+  <title>axiomapy.axiomaapi.batchdefinitions &mdash; axiomapy 0+untagged.60.g51edae5.dirty documentation</title>
   
 
   
@@ -250,27 +250,6 @@
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
-        <span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span></div>
-
-<div class="viewcode-block" id="BatchDefinitionsAPI.post_batch_definition"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BatchDefinitionsAPI.post_batch_definition">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">post_batch_definition</span><span class="p">(</span>
-        <span class="n">batch_definition</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates a new batch definition</span>
-
-<span class="sd">        Args:</span>
-<span class="sd">            batch_definition: parameters for the new batch definition</span>
-<span class="sd">            headers: Optional headers if any needed (Correlation ID , Content-Encoding)</span>
-<span class="sd">            return_response: If set to true, the response will be returned</span>
-
-<span class="sd">        Returns:</span>
-<span class="sd">            Success message once created. Code 201</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/batch-definitions&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
-            <span class="n">url</span><span class="p">,</span> <span class="n">batch_definition</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div></div>
 </pre></div>

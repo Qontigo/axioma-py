@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
+  <title>CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections &mdash; axiomapy 0+untagged.60.g51edae5.dirty documentation</title>
   
 
   
@@ -94,18 +94,59 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples2.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../examples2.html#instructions-for-running-examples">Instructions for running examples</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Sessions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html">AxiomaAPI</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Developer Base Class Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting Started with axiomapy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Other-common-imports">Other common imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Importing-from-axiomapy">Importing from axiomapy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Logging-in">Logging in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Find-portfolios-using-oData-filters">Find portfolios using oData filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Create-a-portfolio-and-check-for-a-portfolio">Create a portfolio and check for a portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Create-some-positions">Create some positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Add-them-to-the-portfolio">Add them to the portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Search-for-views">Search for views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Run-a-risk-analysis">Run a risk analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Run-a-portfolio-analysis">Run a portfolio analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Access-the-logs-and-results">Access the logs and results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Search-for-Entities">Search for Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Clean-up">Clean up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Axiomasessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Optional-logging">Optional logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Credentials">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Activating-a-session">Activating a session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Contexts">Contexts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Switching-sessions-in-the-context-manually">Switching sessions in the context manually</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html">AxiomaPy Direct Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Credentials-and-Creating-an-Active-Sesssion">Credentials and Creating an Active Sesssion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Get-a-list-of-portfolios">Get a list of portfolios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Performance-Attribution-Request">Performance Attribution Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Risk-Model-Service">Risk Model Service</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Architecture/Design">Architecture/Design</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#EnumBase">EnumBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#EntityBase">EntityBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#TemplatedEntityBase">TemplatedEntityBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Generic-Collections---Mapping-and-List">Generic Collections - Mapping and List</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#EnumBase">EnumBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#EntityBase">EntityBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Using-the-samples">Using the samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#How-the-accessors-works">How the accessors works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Clone,-Update-and-Replace">Clone, Update and Replace</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Cloning">Cloning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Update">Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Replace">Replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Serialization">Serialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#How-Serialization-works">How Serialization works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Nested-Entities">Nested Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#TemplatedEntityBase">TemplatedEntityBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Generic-Collections---Mapping-and-List">Generic Collections - Mapping and List</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#MutableSequence">MutableSequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#MutableMapping">MutableMapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Populating-the-collections">Populating the collections</a></li>
 </ul>
 </li>
 </ul>
@@ -490,7 +531,7 @@ div.rendered_html tbody tr:hover {
 <div class="line">* supported nested models</div>
 <div class="line">* move from the class instances to the dict representations passed or returned by the API and vice versa seamlessly.</div>
 <div class="line">* support core user requirements; cloning, updating etc</div>
-<div class="line">* provide a developer experience consistent with the language requirements - e.g. snake casing/PEP8 etc</div>
+<div class="line">* provide a developer experience consistent with the language requirements - e.g. snake casing/PEP8 etc</div>
 </div>
 <p>A series of ‘abstract’ base classes are used to provide this core functionality and should be sub-classed when creating an API model class.</p>
 </div>
@@ -499,7 +540,7 @@ div.rendered_html tbody tr:hover {
 <div class="line-block">
 <div class="line">The sdk design has 4 distinct elements:</div>
 <div class="line">1. Session: Manages all http requests to the remote app and triggers serialisation/deserialisation. Leverages requests Session and so can use existing connection pools etc.</div>
-<div class="line">2. Context Manager: manages switching sessions between contexts (i.e. with blocks)</div>
+<div class="line">2. Context Manager: manages switching sessions between contexts (i.e. with blocks)</div>
 <div class="line">3. Axiomaapi: Interface to the RESTful API via the current Session</div>
 <div class="line">4. Entities: All the data models and methods associated with working with the remote resources. Any actions on resource resources are handled by the axioma api classes</div>
 </div>
@@ -535,13 +576,14 @@ div.rendered_html tbody tr:hover {
 </ul>
 </li>
 <li><p>EntityCollectionBase - a common base class for collections of entities arguably redundant</p></li>
-<li><p>EntitySequence(MutableSequence[T], EntityCollectionBase) - Represents a non-keyed/mapped set of entities e.g. Identifiers</p></li>
-<li><p>EntityMapping(MutableMapping[str, T], EntityCollectionBase) - Represents a dict like mapping of entities e.g. Portfolios</p></li>
+<li><p>EntitySequence(MutableSequence[T], EntityCollectionBase) - Represents a non-keyed/mapped set of entities e.g. Identifiers</p></li>
+<li><p>EntityMapping(MutableMapping[str, T], EntityCollectionBase) - Represents a dict like mapping of entities e.g. Portfolios</p></li>
 </ul>
 <p>Collections of entities could be managed reasonable easily with a simple list/dict but this would not support class methods However, since there value is not as great as other base classes they attempt to work interchangeably with list/tuple etc.</p>
 </div>
+</div>
 <div class="section" id="EnumBase">
-<h2>EnumBase<a class="headerlink" href="#EnumBase" title="Permalink to this headline">¶</a></h2>
+<h1>EnumBase<a class="headerlink" href="#EnumBase" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Provides a common base for defining enumerations. Create a sample here for following examples.</div>
 <div class="line">The EnumBase class allows case insensitive intitialisation and will serialise to json (required for sending to requests) though this should not be required</div>
@@ -586,7 +628,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="EntityBase">
-<h2>EntityBase<a class="headerlink" href="#EntityBase" title="Permalink to this headline">¶</a></h2>
+<h1>EntityBase<a class="headerlink" href="#EntityBase" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Used in the representation of an API model.</div>
 <div class="line">Rules for subclassing: * The model is reflected by the properties.</div>
@@ -685,8 +727,9 @@ div.rendered_html tbody tr:hover {
 <br/><br/><br/><br/></pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="Using-the-samples">
-<h3>Using the samples<a class="headerlink" href="#Using-the-samples" title="Permalink to this headline">¶</a></h3>
+<h1>Using the samples<a class="headerlink" href="#Using-the-samples" title="Permalink to this headline">¶</a></h1>
 <p>Create an instance directly. Translation of args to the <strong>init</strong> method is performed by the camel_case_translate wrapper</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -727,8 +770,9 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="How-the-accessors-works">
-<h4>How the accessors works<a class="headerlink" href="#How-the-accessors-works" title="Permalink to this headline">¶</a></h4>
+<h1>How the accessors works<a class="headerlink" href="#How-the-accessors-works" title="Permalink to this headline">¶</a></h1>
 <p>When getting or setting a property the class property is resolved using the _translate_to_class_prop() method. The translation is automatic so the logic for translation exists on the base class. In the templatedEntity example the translation is class specific.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -740,11 +784,10 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="Clone,-Update-and-Replace">
-<h3>Clone, Update and Replace<a class="headerlink" href="#Clone,-Update-and-Replace" title="Permalink to this headline">¶</a></h3>
+<h1>Clone, Update and Replace<a class="headerlink" href="#Clone,-Update-and-Replace" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Cloning">
-<h4>Cloning<a class="headerlink" href="#Cloning" title="Permalink to this headline">¶</a></h4>
+<h2>Cloning<a class="headerlink" href="#Cloning" title="Permalink to this headline">¶</a></h2>
 <p>Cloning creates a new instance based on the object being cloned. A clone is performed by converting to and from a dict representation and updating from the source instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -758,8 +801,9 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Update">
-<h4>Update<a class="headerlink" href="#Update" title="Permalink to this headline">¶</a></h4>
+<h1>Update<a class="headerlink" href="#Update" title="Permalink to this headline">¶</a></h1>
 <p>Can update from a dict or from an instance. Works as for the dict method update</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -776,7 +820,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="Replace">
-<h4>Replace<a class="headerlink" href="#Replace" title="Permalink to this headline">¶</a></h4>
+<h1>Replace<a class="headerlink" href="#Replace" title="Permalink to this headline">¶</a></h1>
 <p>The replace method makes the calling instance the same as the argument entity</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -789,12 +833,11 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="Serialization">
-<h3>Serialization<a class="headerlink" href="#Serialization" title="Permalink to this headline">¶</a></h3>
-<p>Objects are serialised to a dict object which is valid to serialize to json (e.g. by requests)</p>
+<h1>Serialization<a class="headerlink" href="#Serialization" title="Permalink to this headline">¶</a></h1>
+<p>Objects are serialised to a dict object which is valid to serialize to json (e.g. by requests)</p>
 <p>Fields marked as do_not_serialize are ignored.</p>
-<p>The to_dict() method has the following args translate - output camelCase (otherwise snake_case) cloning - action performed as part of cloning will check for do_not_clone decorator ignore_none - do not serialise properties with a value of None (i.e. those not set)</p>
+<p>The to_dict() method has the following args translate - output camelCase (otherwise snake_case) cloning - action performed as part of cloning will check for do_not_clone decorator ignore_none - do not serialise properties with a value of None (i.e. those not set)</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -807,8 +850,9 @@ div.rendered_html tbody tr:hover {
 <br/></pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="How-Serialization-works">
-<h4>How Serialization works<a class="headerlink" href="#How-Serialization-works" title="Permalink to this headline">¶</a></h4>
+<h1>How Serialization works<a class="headerlink" href="#How-Serialization-works" title="Permalink to this headline">¶</a></h1>
 <p>Only class properties are serialized. Specific ways to treat properties are indicated by their return type hints on the getter. Additional decorators add control</p>
 <p>There are a number of methods on the base class the show how the process works:</p>
 <div class="nbinput nblast docutils container">
@@ -832,12 +876,11 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
-<p>The following prop types are identified: * EnumType - will be converted as value.value * IterableEnumType - for each item converted as value.value * CommonBaseType - will call the to_dict() method * IterableCommonBaseType - for each item will call the to_dict() method * DictOfCommonBase - for each item in values() will call the to_dict() method * Date - will format to a str as yyyy-mm-dd using date_arg_fmt(value, format=“%Y-%m-%d”) * DateTime - will format to a str as yyyy-mm-ddT00:00:00
-using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will return value unchanged.</p>
-</div>
+<p>The following prop types are identified: * EnumType - will be converted as value.value * IterableEnumType - for each item converted as value.value * CommonBaseType - will call the to_dict() method * IterableCommonBaseType - for each item will call the to_dict() method * DictOfCommonBase - for each item in values() will call the to_dict() method * Date - will format to a str as yyyy-mm-dd using date_arg_fmt(value, format=”%Y-%m-%d”) * DateTime - will format to a str as
+yyyy-mm-ddT00:00:00 using date_arg_fmt(value, format=”%Y-%m-%dT00:00:00”) * OtherType - will return value unchanged.</p>
 </div>
 <div class="section" id="Nested-Entities">
-<h3>Nested Entities<a class="headerlink" href="#Nested-Entities" title="Permalink to this headline">¶</a></h3>
+<h1>Nested Entities<a class="headerlink" href="#Nested-Entities" title="Permalink to this headline">¶</a></h1>
 <p>When the prop type is associated with a common base the entity of the property will itself be serialised</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
@@ -931,9 +974,8 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="TemplatedEntityBase">
-<h2>TemplatedEntityBase<a class="headerlink" href="#TemplatedEntityBase" title="Permalink to this headline">¶</a></h2>
+<h1>TemplatedEntityBase<a class="headerlink" href="#TemplatedEntityBase" title="Permalink to this headline">¶</a></h1>
 <p>Entities that are accessible via templates need extra logic to work as a classed based instances. Instruments and Stats (View column/levels) use this base class.</p>
 <div class="line-block">
 <div class="line">The key challenges are:</div>
@@ -1029,19 +1071,19 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 dict definition and will return a generic stat if required.</p>
 </div>
 <div class="section" id="Generic-Collections---Mapping-and-List">
-<h2>Generic Collections - Mapping and List<a class="headerlink" href="#Generic-Collections---Mapping-and-List" title="Permalink to this headline">¶</a></h2>
+<h1>Generic Collections - Mapping and List<a class="headerlink" href="#Generic-Collections---Mapping-and-List" title="Permalink to this headline">¶</a></h1>
 <p>Some of the models define collections of entities - Portfolios, Positions, StatisticDefintions, Identifiers etc.</p>
 <p>While Lists of entities are equally supported having collection type base classes offers the opportunity to add some contextual methods. The primary benefit is to provide a to_dict and clone method directly (rather than iterating and applying on each entity) subclasses of CommonBase. A secondary benefit is specifically for mapping type collections to offer the ability to reflect the applications mapping logic. As an example AnalysisDefinitions are keys on a tuple of name, owner and team.
 Portfolios on Name.</p>
 <p>(see also [<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html">https://docs.python.org/3/library/collections.abc.html</a>])</p>
 <p>Collections can receive dictionary or classes of the member instances.</p>
 <div class="section" id="MutableSequence">
-<h3>MutableSequence<a class="headerlink" href="#MutableSequence" title="Permalink to this headline">¶</a></h3>
+<h2>MutableSequence<a class="headerlink" href="#MutableSequence" title="Permalink to this headline">¶</a></h2>
 <p>Lists of entites that do not map to an identifier or a ‘key’. Examples of these are Identifers, Qualifiers.</p>
 </div>
 <div class="section" id="MutableMapping">
-<h3>MutableMapping<a class="headerlink" href="#MutableMapping" title="Permalink to this headline">¶</a></h3>
-<p>A mapping (dict) type for entities that can be uniquely identified by some key e.g. Portfolios (name), Positions (clientId), AnalsysisDefinitions(name, owner, team) The subclass defines how to create a unique key from the entity instance</p>
+<h2>MutableMapping<a class="headerlink" href="#MutableMapping" title="Permalink to this headline">¶</a></h2>
+<p>A mapping (dict) type for entities that can be uniquely identified by some key e.g. Portfolios (name), Positions (clientId), AnalsysisDefinitions(name, owner, team) The subclass defines how to create a unique key from the entity instance</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -1082,8 +1124,9 @@ Portfolios on Name.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Populating-the-collections">
-<h3>Populating the collections<a class="headerlink" href="#Populating-the-collections" title="Permalink to this headline">¶</a></h3>
+<h1>Populating the collections<a class="headerlink" href="#Populating-the-collections" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">The collections are populated from iterables of instances or dictionary representations.</div>
 <div class="line">In the example below the mapping contains only two entries as it is keyed on the id and two entities have an id of 0.</div>
@@ -1145,8 +1188,6 @@ Portfolios on Name.</p>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>

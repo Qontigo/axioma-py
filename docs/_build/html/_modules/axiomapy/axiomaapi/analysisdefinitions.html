@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.axiomaapi.analysisdefinitions &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
+  <title>axiomapy.axiomaapi.analysisdefinitions &mdash; axiomapy 0+untagged.60.g51edae5.dirty documentation</title>
   
 
   
@@ -267,14 +267,13 @@
 
 <div class="viewcode-block" id="AnalysisDefinitionAPI.post_share_analysis_definition"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.AnalysisDefinitionAPI.post_share_analysis_definition">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">post_share_analysis_definition</span><span class="p">(</span>
-        <span class="n">analysis_def_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">team</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">analysis_def_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">share_def</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method shares a view with a specific team</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            analysis_def_id:id of analysis definition to share</span>
-<span class="sd">            name:name for the new analysis definition</span>
-<span class="sd">            team:team with which analysis definition is to be shared</span>
+<span class="sd">            share_def:request body that includes name, team and overwrite flag</span>
 <span class="sd">            return_response: If set to true, the response will be returned</span>
 
 <span class="sd">        Returns:</span>
@@ -283,7 +282,7 @@
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;analysis-definitions/</span><span class="si">{</span><span class="n">analysis_def_id</span><span class="si">}</span><span class="s2">/share&quot;</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_post</span><span class="p">(</span>
-            <span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;team&quot;</span><span class="p">:</span> <span class="n">team</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">},</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">json</span><span class="o">=</span><span class="n">share_def</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div></div>
 </pre></div>
