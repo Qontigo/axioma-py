@@ -52,7 +52,7 @@ class EntitiesAPI:
         """
         url = "/entities"
         params = odata_params(filter_results, top, skip, orderby)
-        _logger.info(f"Getting from {url}")
+        _logger.info(f"Getting entity links from {url}")
         response = AxiomaSession.current._get(
             url, params=params, headers=headers, return_response=return_response
         )
@@ -139,7 +139,7 @@ class EntitiesAPI:
             Success message once the entity is deleted. Code 204
         """
         url = f"/entities/{typeName1}/{typeName2}/{id_}"
-        _logger.info(f"Putting to {url}")
+        _logger.info(f"Delete request to {url}")
         response = AxiomaSession.current._delete(
             url, headers=headers, return_response=return_response
         )

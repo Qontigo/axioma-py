@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections &mdash; axiomapy 0+untagged.52.g60b20ba.dirty documentation</title>
+  <title>CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections &mdash; axiomapy 0+untagged.61.g3c2e58c.dirty documentation</title>
   
 
   
@@ -94,18 +94,59 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples2.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../examples2.html#instructions-for-running-examples">Instructions for running examples</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Sessions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html">AxiomaAPI</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Developer Base Class Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html">Getting Started with axiomapy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Other-common-imports">Other common imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Importing-from-axiomapy">Importing from axiomapy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Logging-in">Logging in</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Find-portfolios-using-oData-filters">Find portfolios using oData filters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Create-a-portfolio-and-check-for-a-portfolio">Create a portfolio and check for a portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Create-some-positions">Create some positions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Add-them-to-the-portfolio">Add them to the portfolio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Search-for-views">Search for views</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Run-a-risk-analysis">Run a risk analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Run-a-portfolio-analysis">Run a portfolio analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Access-the-logs-and-results">Access the logs and results</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Search-for-Entities">Search for Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="getting_started.html#Clean-up">Clean up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Axiomasessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Optional-logging">Optional logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Credentials">Credentials</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Activating-a-session">Activating a session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Contexts">Contexts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Switching-sessions-in-the-context-manually">Switching sessions in the context manually</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html">AxiomaPy Direct Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Imports">Imports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Credentials-and-Creating-an-Active-Sesssion">Credentials and Creating an Active Sesssion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Get-a-list-of-portfolios">Get a list of portfolios</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Performance-Attribution-Request">Performance Attribution Request</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Risk-Model-Service">Risk Model Service</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#Overview">Overview</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Architecture/Design">Architecture/Design</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#EnumBase">EnumBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#EntityBase">EntityBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#TemplatedEntityBase">TemplatedEntityBase</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#Generic-Collections---Mapping-and-List">Generic Collections - Mapping and List</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#EnumBase">EnumBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#EntityBase">EntityBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Using-the-samples">Using the samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#How-the-accessors-works">How the accessors works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Clone,-Update-and-Replace">Clone, Update and Replace</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Cloning">Cloning</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Update">Update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Replace">Replace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Serialization">Serialization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#How-Serialization-works">How Serialization works</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Nested-Entities">Nested Entities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#TemplatedEntityBase">TemplatedEntityBase</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Generic-Collections---Mapping-and-List">Generic Collections - Mapping and List</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#MutableSequence">MutableSequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#MutableMapping">MutableMapping</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#Populating-the-collections">Populating the collections</a></li>
 </ul>
 </li>
 </ul>
@@ -300,10 +341,11 @@ div.nboutput.container div.prompt > div {
     }
 }
 
-/* disable scrollbars on prompts */
+/* disable scrollbars and line breaks on prompts */
 div.nbinput.container div.prompt pre,
 div.nboutput.container div.prompt pre {
     overflow: hidden;
+    white-space: pre;
 }
 
 /* input/output area */
@@ -400,11 +442,12 @@ div.nboutput.container div.output_area > div[class^='highlight']{
 }
 
 /* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
-.prompt a.copybtn {
+.prompt .copybtn {
     display: none;
 }
 
 /* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
 div.rendered_html table {
   border: none;
   border-collapse: collapse;
@@ -413,10 +456,14 @@ div.rendered_html table {
   font-size: 12px;
   table-layout: fixed;
 }
+.jp-RenderedHTMLCommon thead,
 div.rendered_html thead {
   border-bottom: 1px solid black;
   vertical-align: bottom;
 }
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
 div.rendered_html tr,
 div.rendered_html th,
 div.rendered_html td {
@@ -428,12 +475,15 @@ div.rendered_html td {
   max-width: none;
   border: none;
 }
+.jp-RenderedHTMLCommon th,
 div.rendered_html th {
   font-weight: bold;
 }
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
 div.rendered_html tbody tr:nth-child(odd) {
   background: #f5f5f5;
 }
+.jp-RenderedHTMLCommon tbody tr:hover,
 div.rendered_html tbody tr:hover {
   background: rgba(66, 165, 245, 0.2);
 }
@@ -481,7 +531,7 @@ div.rendered_html tbody tr:hover {
 <div class="line">* supported nested models</div>
 <div class="line">* move from the class instances to the dict representations passed or returned by the API and vice versa seamlessly.</div>
 <div class="line">* support core user requirements; cloning, updating etc</div>
-<div class="line">* provide a developer experience consistent with the language requirements - e.g. snake casing/PEP8 etc</div>
+<div class="line">* provide a developer experience consistent with the language requirements - e.g. snake casing/PEP8 etc</div>
 </div>
 <p>A series of ‘abstract’ base classes are used to provide this core functionality and should be sub-classed when creating an API model class.</p>
 </div>
@@ -490,7 +540,7 @@ div.rendered_html tbody tr:hover {
 <div class="line-block">
 <div class="line">The sdk design has 4 distinct elements:</div>
 <div class="line">1. Session: Manages all http requests to the remote app and triggers serialisation/deserialisation. Leverages requests Session and so can use existing connection pools etc.</div>
-<div class="line">2. Context Manager: manages switching sessions between contexts (i.e. with blocks)</div>
+<div class="line">2. Context Manager: manages switching sessions between contexts (i.e. with blocks)</div>
 <div class="line">3. Axiomaapi: Interface to the RESTful API via the current Session</div>
 <div class="line">4. Entities: All the data models and methods associated with working with the remote resources. Any actions on resource resources are handled by the axioma api classes</div>
 </div>
@@ -526,13 +576,14 @@ div.rendered_html tbody tr:hover {
 </ul>
 </li>
 <li><p>EntityCollectionBase - a common base class for collections of entities arguably redundant</p></li>
-<li><p>EntitySequence(MutableSequence[T], EntityCollectionBase) - Represents a non-keyed/mapped set of entities e.g. Identifiers</p></li>
-<li><p>EntityMapping(MutableMapping[str, T], EntityCollectionBase) - Represents a dict like mapping of entities e.g. Portfolios</p></li>
+<li><p>EntitySequence(MutableSequence[T], EntityCollectionBase) - Represents a non-keyed/mapped set of entities e.g. Identifiers</p></li>
+<li><p>EntityMapping(MutableMapping[str, T], EntityCollectionBase) - Represents a dict like mapping of entities e.g. Portfolios</p></li>
 </ul>
 <p>Collections of entities could be managed reasonable easily with a simple list/dict but this would not support class methods However, since there value is not as great as other base classes they attempt to work interchangeably with list/tuple etc.</p>
 </div>
+</div>
 <div class="section" id="EnumBase">
-<h2>EnumBase<a class="headerlink" href="#EnumBase" title="Permalink to this headline">¶</a></h2>
+<h1>EnumBase<a class="headerlink" href="#EnumBase" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Provides a common base for defining enumerations. Create a sample here for following examples.</div>
 <div class="line">The EnumBase class allows case insensitive intitialisation and will serialise to json (required for sending to requests) though this should not be required</div>
@@ -541,38 +592,32 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EnumBase</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EnumBase</span>
 
 <span class="k">class</span> <span class="nc">SampleEnum</span><span class="p">(</span><span class="n">EnumBase</span><span class="p">):</span>
     <span class="n">Value1</span> <span class="o">=</span> <span class="s2">&quot;Value1&quot;</span>
     <span class="n">Value2</span> <span class="o">=</span> <span class="s2">&quot;Value2&quot;</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;Value1&#39;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;Value1&#39;</span><span class="p">)</span>
 <span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;value1&#39;</span><span class="p">)</span>
 <span class="n">enum</span> <span class="o">=</span> <span class="n">SampleEnum</span><span class="p">(</span><span class="s1">&#39;VALUE1&#39;</span><span class="p">)</span>
 
 <span class="c1"># access the value</span>
 <span class="n">enum</span><span class="o">.</span><span class="n">value</span>
-
-
-</pre></div>
+<br/><br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># The enum class does not serialise to json. The Enumbase subclasses str so it will.</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The enum class does not serialise to json. The Enumbase subclasses str so it will.</span>
 <span class="c1"># Since the enum will be identified and converted explicitly this should be unnecessary.</span>
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="n">test</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">enum</span><span class="p">}</span>
@@ -583,7 +628,7 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="EntityBase">
-<h2>EntityBase<a class="headerlink" href="#EntityBase" title="Permalink to this headline">¶</a></h2>
+<h1>EntityBase<a class="headerlink" href="#EntityBase" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">Used in the representation of an API model.</div>
 <div class="line">Rules for subclassing: * The model is reflected by the properties.</div>
@@ -594,8 +639,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntityBase</span><span class="p">,</span> <span class="n">camel_case_translate</span><span class="p">,</span> <span class="n">do_not_clone</span><span class="p">,</span> <span class="n">do_not_serialise</span><span class="p">,</span> <span class="n">get_enum_value</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntityBase</span><span class="p">,</span> <span class="n">camel_case_translate</span><span class="p">,</span> <span class="n">do_not_clone</span><span class="p">,</span> <span class="n">do_not_serialise</span><span class="p">,</span> <span class="n">get_enum_value</span>
 <span class="kn">from</span> <span class="nn">axiomapy.utils</span> <span class="kn">import</span> <span class="n">date_arg_fmt</span><span class="p">,</span> <span class="n">date_arg_parse</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">date</span>
@@ -680,22 +724,18 @@ div.rendered_html tbody tr:hover {
     <span class="nd">@not_serialize_field</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">not_serialize_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_not_serialize_field</span> <span class="o">=</span> <span class="n">value</span>
-
-
-
-
-</pre></div>
+<br/><br/><br/><br/></pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="Using-the-samples">
-<h3>Using the samples<a class="headerlink" href="#Using-the-samples" title="Permalink to this headline">¶</a></h3>
+<h1>Using the samples<a class="headerlink" href="#Using-the-samples" title="Permalink to this headline">¶</a></h1>
 <p>Create an instance directly. Translation of args to the <strong>init</strong> method is performed by the camel_case_translate wrapper</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># only required args</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># only required args</span>
 <span class="n">new_sample</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
 <span class="c1"># some optional args</span>
 <span class="n">another_sample</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="n">date_field_str</span><span class="o">=</span><span class="s2">&quot;2020-05-10&quot;</span><span class="p">,</span> <span class="n">enum_field</span><span class="o">=</span><span class="n">SampleEnum</span><span class="o">.</span><span class="n">Value2</span><span class="p">)</span>
@@ -709,8 +749,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sample_from_dict</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_from_dict</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -723,8 +762,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;new_sample has id: </span><span class="si">{</span><span class="n">new_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;new_sample has id: </span><span class="si">{</span><span class="n">new_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;another_sample has date: </span><span class="si">{</span><span class="n">another_sample</span><span class="o">.</span><span class="n">date_field_str</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;another_sample date_field_str can also be accessed via dateFieldStr </span><span class="si">{</span><span class="n">another_sample</span><span class="o">.</span><span class="n">dateFieldStr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;entities can be accessed in snakecase or camel case like a dict </span><span class="si">{</span><span class="n">another_sample</span><span class="p">[</span><span class="s1">&#39;dateFieldStr&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -732,32 +770,30 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="How-the-accessors-works">
-<h4>How the accessors works<a class="headerlink" href="#How-the-accessors-works" title="Permalink to this headline">¶</a></h4>
+<h1>How the accessors works<a class="headerlink" href="#How-the-accessors-works" title="Permalink to this headline">¶</a></h1>
 <p>When getting or setting a property the class property is resolved using the _translate_to_class_prop() method. The translation is automatic so the logic for translation exists on the base class. In the templatedEntity example the translation is class specific.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date_field_datetime maps to prop: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_translate_to_class_prop</span><span class="p">(</span><span class="s1">&#39;date_field_datetime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;date_field_datetime maps to prop: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_translate_to_class_prop</span><span class="p">(</span><span class="s1">&#39;date_field_datetime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dateFieldDatetime maps to prop: </span><span class="si">{</span><span class="n">EntityBase</span><span class="o">.</span><span class="n">_translate_to_class_prop</span><span class="p">(</span><span class="s1">&#39;dateFieldDatetime&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="Clone,-Update-and-Replace">
-<h3>Clone, Update and Replace<a class="headerlink" href="#Clone,-Update-and-Replace" title="Permalink to this headline">¶</a></h3>
+<h1>Clone, Update and Replace<a class="headerlink" href="#Clone,-Update-and-Replace" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="Cloning">
-<h4>Cloning<a class="headerlink" href="#Cloning" title="Permalink to this headline">¶</a></h4>
+<h2>Cloning<a class="headerlink" href="#Cloning" title="Permalink to this headline">¶</a></h2>
 <p>Cloning creates a new instance based on the object being cloned. A clone is performed by converting to and from a dict representation and updating from the source instance.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">cloned_sample</span> <span class="o">=</span> <span class="n">sample_from_dict</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cloned_sample</span> <span class="o">=</span> <span class="n">sample_from_dict</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The do_not_clone decorator on the id property means cloned_sample has an id of </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">cloned_sample_2</span> <span class="o">=</span> <span class="n">sample_from_dict</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">enum_field</span><span class="o">=</span><span class="s2">&quot;value2&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;overrides can be applied when cloning, cloned_sample_2 has enum_field of </span><span class="si">{</span><span class="n">cloned_sample_2</span><span class="o">.</span><span class="n">enum_field</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -765,15 +801,15 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Update">
-<h4>Update<a class="headerlink" href="#Update" title="Permalink to this headline">¶</a></h4>
+<h1>Update<a class="headerlink" href="#Update" title="Permalink to this headline">¶</a></h1>
 <p>Can update from a dict or from an instance. Works as for the dict method update</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cloned_sample.id before update </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cloned_sample.id before update </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">cloned_sample</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;cloned_sample.id before update </span><span class="si">{</span><span class="n">cloned_sample</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The full cloned_sample after update is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cloned_sample_2</span><span class="p">)</span>
@@ -784,50 +820,46 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 <div class="section" id="Replace">
-<h4>Replace<a class="headerlink" href="#Replace" title="Permalink to this headline">¶</a></h4>
+<h1>Replace<a class="headerlink" href="#Replace" title="Permalink to this headline">¶</a></h1>
 <p>The replace method makes the calling instance the same as the argument entity</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">cloned_sample_2</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">cloned_sample_2</span><span class="o">.</span><span class="n">replace</span><span class="p">({</span><span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">})</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;After replacing the sample is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">cloned_sample_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="Serialization">
-<h3>Serialization<a class="headerlink" href="#Serialization" title="Permalink to this headline">¶</a></h3>
-<p>Objects are serialised to a dict object which is valid to serialize to json (e.g. by requests)</p>
+<h1>Serialization<a class="headerlink" href="#Serialization" title="Permalink to this headline">¶</a></h1>
+<p>Objects are serialised to a dict object which is valid to serialize to json (e.g. by requests)</p>
 <p>Fields marked as do_not_serialize are ignored.</p>
-<p>The to_dict() method has the following args translate - output camelCase (otherwise snake_case) cloning - action performed as part of cloning will check for do_not_clone decorator ignore_none - do not serialise properties with a value of None (i.e. those not set)</p>
+<p>The to_dict() method has the following args translate - output camelCase (otherwise snake_case) cloning - action performed as part of cloning will check for do_not_clone decorator ignore_none - do not serialise properties with a value of None (i.e. those not set)</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sample_to_serialize</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_to_serialize</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">sample_entity_dict</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">sample_to_serialize</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 <span class="c1"># for example without translating</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sample_to_serialize</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">translate</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-
-</pre></div>
+<br/></pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="How-Serialization-works">
-<h4>How Serialization works<a class="headerlink" href="#How-Serialization-works" title="Permalink to this headline">¶</a></h4>
+<h1>How Serialization works<a class="headerlink" href="#How-Serialization-works" title="Permalink to this headline">¶</a></h1>
 <p>Only class properties are serialized. Specific ways to treat properties are indicated by their return type hints on the getter. Additional decorators add control</p>
 <p>There are a number of methods on the base class the show how the process works:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="c1"># show the properties that can be considered for serialization</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># show the properties that can be considered for serialization</span>
 <span class="n">class_props</span> <span class="o">=</span> <span class="n">SampleEntity</span><span class="o">.</span><span class="n">class_properties</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The set of properties are: </span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">class_props</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -838,26 +870,23 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">prop_type_enums</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;prop: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> has type: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_get_prop_type</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">class_props</span><span class="p">]</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prop_type_enums</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;prop: </span><span class="si">{</span><span class="n">prop</span><span class="si">}</span><span class="s2"> has type: </span><span class="si">{</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">_get_prop_type</span><span class="p">(</span><span class="n">prop</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">class_props</span><span class="p">]</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">prop_type_enums</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<p>The following prop types are identified: * EnumType - will be converted as value.value * IterableEnumType - for each item converted as value.value * CommonBaseType - will call the to_dict() method * IterableCommonBaseType - for each item will call the to_dict() method * DictOfCommonBase - for each item in values() will call the to_dict() method * Date - will format to a str as yyyy-mm-dd using date_arg_fmt(value, format=“%Y-%m-%d”) * DateTime - will format to a str as yyyy-mm-ddT00:00:00
-using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will return value unchanged.</p>
-</div>
+<p>The following prop types are identified: * EnumType - will be converted as value.value * IterableEnumType - for each item converted as value.value * CommonBaseType - will call the to_dict() method * IterableCommonBaseType - for each item will call the to_dict() method * DictOfCommonBase - for each item in values() will call the to_dict() method * Date - will format to a str as yyyy-mm-dd using date_arg_fmt(value, format=”%Y-%m-%d”) * DateTime - will format to a str as
+yyyy-mm-ddT00:00:00 using date_arg_fmt(value, format=”%Y-%m-%dT00:00:00”) * OtherType - will return value unchanged.</p>
 </div>
 <div class="section" id="Nested-Entities">
-<h3>Nested Entities<a class="headerlink" href="#Nested-Entities" title="Permalink to this headline">¶</a></h3>
+<h1>Nested Entities<a class="headerlink" href="#Nested-Entities" title="Permalink to this headline">¶</a></h1>
 <p>When the prop type is associated with a common base the entity of the property will itself be serialised</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">NestedEntity</span><span class="p">(</span><span class="n">EntityBase</span><span class="p">):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">NestedEntity</span><span class="p">(</span><span class="n">EntityBase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__init</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">inner_entity</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -884,18 +913,14 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
             <span class="bp">self</span><span class="o">.</span><span class="n">_list_of_entities</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_list_of_entities</span> <span class="o">=</span> <span class="p">[</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">get_as_instance</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">values</span><span class="p">]</span>
-
-
-
-</pre></div>
+<br/><br/><br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">nested_entity_dict</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nested_entity_dict</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;inner_entity&quot;</span><span class="p">:</span> <span class="p">{</span>
             <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
             <span class="s2">&quot;date_field_str&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-10&quot;</span><span class="p">,</span>
@@ -923,10 +948,7 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-
-
-<span></span><span class="n">nested_entity1</span> <span class="o">=</span> <span class="n">NestedEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nested_entity_dict</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><br/><span></span><span class="n">nested_entity1</span> <span class="o">=</span> <span class="n">NestedEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">nested_entity_dict</span><span class="p">)</span>
 
 <span class="n">nested_entity2</span> <span class="o">=</span> <span class="n">NestedEntity</span><span class="p">(</span>
     <span class="n">inner_entity</span><span class="o">=</span><span class="n">SampleEntity</span><span class="p">(</span>
@@ -945,17 +967,15 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The nested entities behave as any other entity e.g. translating&quot;</span><span class="p">)</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">nested_entity1</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="TemplatedEntityBase">
-<h2>TemplatedEntityBase<a class="headerlink" href="#TemplatedEntityBase" title="Permalink to this headline">¶</a></h2>
+<h1>TemplatedEntityBase<a class="headerlink" href="#TemplatedEntityBase" title="Permalink to this headline">¶</a></h1>
 <p>Entities that are accessible via templates need extra logic to work as a classed based instances. Instruments and Stats (View column/levels) use this base class.</p>
 <div class="line-block">
 <div class="line">The key challenges are:</div>
@@ -971,13 +991,12 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">TemplatedEntityBase</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">TemplatedEntityBase</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
 
 
 <span class="k">class</span> <span class="nc">SampleTemplatedEntity</span><span class="p">(</span><span class="n">TemplatedEntityBase</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;A base class for creating templated entities</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A base class for creating templated entities</span>
 <span class="sd">    The two properties _TEMPLATE_NAME and _TEMPLATE_MAPPING should be set in the sub</span>
 <span class="sd">    class. The _TEMPLATE_MAPPING should be a list of tuples listing the class properties</span>
 <span class="sd">    that are part of the content section and the mapping between the model and the</span>
@@ -1004,16 +1023,14 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
     <span class="nd">@class_prop_name</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span> <span class="nf">class_prop_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_class_prop_name</span> <span class="o">=</span> <span class="n">value</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">entity_def</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entity_def</span> <span class="o">=</span> <span class="p">{</span>
   <span class="s2">&quot;templateName&quot;</span><span class="p">:</span> <span class="s2">&quot;Some_Template&quot;</span><span class="p">,</span>
   <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;Name&quot;</span><span class="p">:</span> <span class="s2">&quot;Instance Name&quot;</span><span class="p">,</span>
@@ -1042,39 +1059,36 @@ using date_arg_fmt(value, format=“%Y-%m-%dT00:00:00”) * OtherType - will ret
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">entity_def</span><span class="p">[</span><span class="s1">&#39;templateName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;A different template name&quot;</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">entity_def</span><span class="p">[</span><span class="s1">&#39;templateName&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;A different template name&quot;</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">entity2</span> <span class="o">=</span> <span class="n">SampleTemplatedEntity</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">entity_def</span><span class="p">)</span>
 <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exception:</span><span class="se">\n</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-</pre></div>
+<br/></pre></div>
 </div>
 </div>
 <p>For the scope of insturments the template type can be considered to be known via the user. In the case of view column stats an unknown collection of stat templates may be associated with the view. Therefore two distinct classes help create instances from dictionary. * A generic stat exists in which the template name and content properties are set at run time, it allows property access but no intellisense. * A StatFactory is used to create a relevant instance based on the template name in the
 dict definition and will return a generic stat if required.</p>
 </div>
 <div class="section" id="Generic-Collections---Mapping-and-List">
-<h2>Generic Collections - Mapping and List<a class="headerlink" href="#Generic-Collections---Mapping-and-List" title="Permalink to this headline">¶</a></h2>
+<h1>Generic Collections - Mapping and List<a class="headerlink" href="#Generic-Collections---Mapping-and-List" title="Permalink to this headline">¶</a></h1>
 <p>Some of the models define collections of entities - Portfolios, Positions, StatisticDefintions, Identifiers etc.</p>
 <p>While Lists of entities are equally supported having collection type base classes offers the opportunity to add some contextual methods. The primary benefit is to provide a to_dict and clone method directly (rather than iterating and applying on each entity) subclasses of CommonBase. A secondary benefit is specifically for mapping type collections to offer the ability to reflect the applications mapping logic. As an example AnalysisDefinitions are keys on a tuple of name, owner and team.
 Portfolios on Name.</p>
 <p>(see also [<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html">https://docs.python.org/3/library/collections.abc.html</a>])</p>
 <p>Collections can receive dictionary or classes of the member instances.</p>
 <div class="section" id="MutableSequence">
-<h3>MutableSequence<a class="headerlink" href="#MutableSequence" title="Permalink to this headline">¶</a></h3>
+<h2>MutableSequence<a class="headerlink" href="#MutableSequence" title="Permalink to this headline">¶</a></h2>
 <p>Lists of entites that do not map to an identifier or a ‘key’. Examples of these are Identifers, Qualifiers.</p>
 </div>
 <div class="section" id="MutableMapping">
-<h3>MutableMapping<a class="headerlink" href="#MutableMapping" title="Permalink to this headline">¶</a></h3>
-<p>A mapping (dict) type for entities that can be uniquely identified by some key e.g. Portfolios (name), Positions (clientId), AnalsysisDefinitions(name, owner, team) The subclass defines how to create a unique key from the entity instance</p>
+<h2>MutableMapping<a class="headerlink" href="#MutableMapping" title="Permalink to this headline">¶</a></h2>
+<p>A mapping (dict) type for entities that can be uniquely identified by some key e.g. Portfolios (name), Positions (clientId), AnalsysisDefinitions(name, owner, team) The subclass defines how to create a unique key from the entity instance</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntitySequence</span><span class="p">,</span> <span class="n">EntityMapping</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EntitySequence</span><span class="p">,</span> <span class="n">EntityMapping</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Iterable</span>
 </pre></div>
 </div>
@@ -1083,30 +1097,20 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">SampleEntityList</span><span class="p">(</span><span class="n">EntitySequence</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleEntityList</span><span class="p">(</span><span class="n">EntitySequence</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entities</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]</span><span class="o">=</span><span class="p">[]):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="p">(</span><span class="n">SampleEntity</span><span class="o">.</span><span class="n">get_as_instance</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_as_iter</span><span class="p">(</span><span class="n">entities</span><span class="p">)),</span>
             <span class="n">SampleEntity</span><span class="p">,</span>
         <span class="p">)</span>
-
-
-
-
-
-
-
-
-</pre></div>
+<br/><br/><br/><br/><br/><br/><br/><br/></pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="k">class</span> <span class="nc">SampleEntityMapping</span><span class="p">(</span><span class="n">EntityMapping</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SampleEntityMapping</span><span class="p">(</span><span class="n">EntityMapping</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">]):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">entities</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">SampleEntity</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]</span><span class="o">=</span><span class="p">[]):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_make_key</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">entities</span><span class="p">),</span>
@@ -1120,8 +1124,9 @@ Portfolios on Name.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Populating-the-collections">
-<h3>Populating the collections<a class="headerlink" href="#Populating-the-collections" title="Permalink to this headline">¶</a></h3>
+<h1>Populating the collections<a class="headerlink" href="#Populating-the-collections" title="Permalink to this headline">¶</a></h1>
 <div class="line-block">
 <div class="line">The collections are populated from iterables of instances or dictionary representations.</div>
 <div class="line">In the example below the mapping contains only two entries as it is keyed on the id and two entities have an id of 0.</div>
@@ -1130,8 +1135,7 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">sample_entities</span> <span class="o">=</span> <span class="p">[</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sample_entities</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">{</span>
     <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
     <span class="s2">&quot;date_field_str&quot;</span><span class="p">:</span> <span class="s2">&quot;2020-05-10&quot;</span><span class="p">,</span>
@@ -1162,13 +1166,19 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">list_of_entities</span> <span class="o">=</span> <span class="n">SampleEntityList</span><span class="p">(</span><span class="n">sample_entities</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_of_entities</span> <span class="o">=</span> <span class="n">SampleEntityList</span><span class="p">(</span><span class="n">sample_entities</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">list_of_entities</span><span class="p">)</span><span class="si">}</span><span class="s2"> in the sequence.&quot;</span><span class="p">)</span>
 
 <span class="n">map_of_entities</span> <span class="o">=</span> <span class="n">SampleEntityMapping</span><span class="p">(</span><span class="n">sample_entities</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;There are </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">map_of_entities</span><span class="p">)</span><span class="si">}</span><span class="s2"> in the sequence.&quot;</span><span class="p">)</span>
-
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">map_of_entities</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
@@ -1176,20 +1186,8 @@ Portfolios on Name.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span><span class="n">pprint</span><span class="p">(</span><span class="n">map_of_entities</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>
