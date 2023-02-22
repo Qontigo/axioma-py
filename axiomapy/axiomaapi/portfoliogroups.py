@@ -144,12 +144,12 @@ class PortfolioGroupsAPI:
         """This method patches a portfolio group based on the json provided
 
         Args:
-            portfolio_group_id: portfolio group to be deleted
+            portfolio_group_id: portfolio group to be updated
             portfolios_dict: portfolios to upsert or remove from the portfolio group
             return_response: If set to true, the response will be returned
 
         Returns:
-            Success message if the portfolio group is deleted successfully. Code 204
+            Success message if the portfolio group is updated successfully. Code 204
         """
         url = f"/portfolio-groups/{portfolio_group_id}/portfolios"
         _logger.info(f"Patching portfolios at {url}")

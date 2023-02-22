@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.axiomaapi.entities &mdash; axiomapy 1.47 documentation</title>
+  <title>axiomapy.axiomaapi.entities &mdash; axiomapy 0+untagged.61.g3c2e58c.dirty documentation</title>
   
 
   
@@ -192,7 +192,7 @@
 
 
 <div class="viewcode-block" id="EntitiesAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.EntitiesAPI">[docs]</a><span class="k">class</span> <span class="nc">EntitiesAPI</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Access api methods of entities using the active session</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Access api methods of entities using the active session</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -205,7 +205,7 @@
         <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method gets links to all the entities</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method gets links to all the entities</span>
 <span class="sd">        </span>
 <span class="sd">        Args:</span>
 <span class="sd">            filter_results: user can apply filters to the list</span>
@@ -220,7 +220,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/entities&quot;</span>
         <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting entity links from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
@@ -237,7 +237,7 @@
         <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method gets all the entities for the given type</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method gets all the entities for the given type</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            typeName1: type name for entity</span>
@@ -268,7 +268,7 @@
         <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method gets the entity with the given id</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method gets the entity with the given id</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            id_: id of entity</span>
@@ -295,7 +295,7 @@
         <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method deletes an entity. Underliers are not currently deleted</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method deletes an entity. Underliers are not currently deleted</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            typeName1: type of entity</span>
@@ -307,7 +307,7 @@
 <span class="sd">            Success message once the entity is deleted. Code 204</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/entities/</span><span class="si">{</span><span class="n">typeName1</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">typeName2</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">id_</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Putting to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Delete request to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_delete</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>

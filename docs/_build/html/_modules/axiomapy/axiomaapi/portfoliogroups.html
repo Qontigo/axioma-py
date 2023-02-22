@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.axiomaapi.portfoliogroups &mdash; axiomapy 0+untagged.59.gde9b9c2.dirty documentation</title>
+  <title>axiomapy.axiomaapi.portfoliogroups &mdash; axiomapy 0+untagged.61.g3c2e58c.dirty documentation</title>
   
 
   
@@ -312,12 +312,12 @@
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;This method patches a portfolio group based on the json provided</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            portfolio_group_id: portfolio group to be deleted</span>
+<span class="sd">            portfolio_group_id: portfolio group to be updated</span>
 <span class="sd">            portfolios_dict: portfolios to upsert or remove from the portfolio group</span>
 <span class="sd">            return_response: If set to true, the response will be returned</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Success message if the portfolio group is deleted successfully. Code 204</span>
+<span class="sd">            Success message if the portfolio group is updated successfully. Code 204</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolio-groups/</span><span class="si">{</span><span class="n">portfolio_group_id</span><span class="si">}</span><span class="s2">/portfolios&quot;</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patching portfolios at </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>

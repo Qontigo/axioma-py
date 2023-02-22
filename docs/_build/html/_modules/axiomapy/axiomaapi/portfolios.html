@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>axiomapy.axiomaapi.portfolios &mdash; axiomapy 1.47 documentation</title>
+  <title>axiomapy.axiomaapi.portfolios &mdash; axiomapy 0+untagged.61.g3c2e58c.dirty documentation</title>
   
 
   
@@ -193,7 +193,7 @@
 
 
 <div class="viewcode-block" id="PortfoliosAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.PortfoliosAPI">[docs]</a><span class="k">class</span> <span class="nc">PortfoliosAPI</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Access api methods of portfolios using the active session</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Access api methods of portfolios using the active session</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -205,7 +205,7 @@
         <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method is used to get the list of portfolios</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method is used to get the list of portfolios</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter_results:user can apply filters to the list</span>
@@ -229,7 +229,7 @@
     <span class="k">def</span> <span class="nf">get_portfolio</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method retrieves a portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method retrieves a portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The id of the portfolio that needs to be fetched</span>
@@ -247,7 +247,7 @@
     <span class="k">def</span> <span class="nf">post_portfolio</span><span class="p">(</span>
         <span class="n">portfolio</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method creates a new portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates a new portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio: portfolio json with the details of portfolio to be created</span>
@@ -267,7 +267,7 @@
     <span class="k">def</span> <span class="nf">put_portfolio</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">portfolio</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method updates an existing portfolio with the provided data</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method updates an existing portfolio with the provided data</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:id of the portfolio</span>
@@ -288,7 +288,7 @@
     <span class="k">def</span> <span class="nf">delete_portfolio</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method deletes an existing portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method deletes an existing portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The id of the portfolio that you would like to delete</span>
@@ -308,7 +308,7 @@
         <span class="n">portfolios_remove</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method is used to update, create, delete positions of a portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method is used to update, create, delete positions of a portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolios_upsert: The positions that needs to be added to the portfolio</span>
@@ -334,7 +334,7 @@
     <span class="k">def</span> <span class="nf">get_position_dates</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method is used to list dates for which there are positions for the portfolio, latest first</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method is used to list dates for which there are positions for the portfolio, latest first</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: Id of the portfolio</span>
@@ -358,7 +358,7 @@
         <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method is used to list the positions of portfolio on a particular date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method is used to list the positions of portfolio on a particular date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The id of the portfolio for which composition is requested</span>
@@ -384,7 +384,7 @@
     <span class="k">def</span> <span class="nf">delete_positions</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method is used to delete the portfolio entry on a particular date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method is used to delete the portfolio entry on a particular date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The identity of the portfolio</span>
@@ -406,7 +406,7 @@
         <span class="n">position</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The method is used to create a new position in the portfolio on the given date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method is used to create a new position in the portfolio on the given date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:The id of the portfolio</span>
@@ -432,7 +432,7 @@
         <span class="n">positions_remove</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method is used to patch the existing positions according to the supplied operations</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method is used to patch the existing positions according to the supplied operations</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:the id of the portfolio to update positions in</span>
@@ -464,7 +464,7 @@
         <span class="n">attributes</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot; This method rolls over the positions from the as Of Date to the rollover date provided.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot; This method rolls over the positions from the as Of Date to the rollover date provided.</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The id of the portfolio</span>
@@ -488,7 +488,7 @@
     <span class="k">def</span> <span class="nf">get_portfolio_benchmark</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method returns the benchmark for the portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method returns the benchmark for the portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:The id of the portfolio</span>
@@ -506,7 +506,7 @@
     <span class="k">def</span> <span class="nf">put_portfolio_benchmark</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method sets the benchmark for the given portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method sets the benchmark for the given portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The id of the portfolio</span>
@@ -527,7 +527,7 @@
     <span class="k">def</span> <span class="nf">delete_portfolio_benchmark</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method deletes the benchmark from the portfolio</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method deletes the benchmark from the portfolio</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:The id of the portfolio</span>
@@ -545,7 +545,7 @@
     <span class="k">def</span> <span class="nf">get_valuation_dates</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method lists the dates there are Valuations for the portfolio, latest first</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method lists the dates there are Valuations for the portfolio, latest first</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: The id of the portfolio</span>
@@ -569,7 +569,7 @@
         <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method retrieves the portfolio valuation for a given date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method retrieves the portfolio valuation for a given date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id: id of the portfolio</span>
@@ -595,7 +595,7 @@
     <span class="k">def</span> <span class="nf">delete_valuation</span><span class="p">(</span>
         <span class="n">portfolio_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The method deletes the specified valuation from the portfolio for a given date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method deletes the specified valuation from the portfolio for a given date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:id of the portfolio</span>
@@ -617,7 +617,7 @@
         <span class="n">valuation</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The method creates or updates the portfolio valuation for the portfolio on the given date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method creates or updates the portfolio valuation for the portfolio on the given date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:id of the portfolio</span>
@@ -642,7 +642,7 @@
         <span class="n">valuation</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The method replaces or creates the portfolio valuation for the given date</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method replaces or creates the portfolio valuation for the given date</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:id of the portfolio</span>
@@ -654,7 +654,7 @@
 <span class="sd">            Success message if the valuation is updated. Code 204</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/portfolios/</span><span class="si">{</span><span class="n">portfolio_id</span><span class="si">}</span><span class="s2">/valuations/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Posting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Put request at </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_put</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span> <span class="n">valuation</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
@@ -668,7 +668,7 @@
         <span class="n">valuations_remove</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method patches the existing collection of portfolio valuations according to the inputs</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method patches the existing collection of portfolio valuations according to the inputs</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            portfolio_id:id of the portfolio</span>

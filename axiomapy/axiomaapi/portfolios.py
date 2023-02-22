@@ -486,7 +486,7 @@ class PortfoliosAPI:
             Success message if the valuation is updated. Code 204
         """
         url = f"/portfolios/{portfolio_id}/valuations/{as_of_date}"
-        _logger.info(f"Posting from {url}")
+        _logger.info(f"Put request at {url}")
         response = AxiomaSession.current._put(
             url, valuation, return_response=return_response
         )
