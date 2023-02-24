@@ -1,3 +1,5 @@
+# This file is maintained in the Qontigo/devops-gh-actions repo (CODEOWNERS-generic) and that copy will overwrite any changes made in any repo using the file
+
 # DEVOPS-6466 - DEVOPS must review changes to these files/folders
 .github/**/core-* @Qontigo/qontigo-devops
 .github/CODEOWNERS @Qontigo/qontigo-devops
