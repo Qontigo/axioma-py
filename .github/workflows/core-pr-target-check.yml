@@ -1,6 +1,10 @@
 # This file is maintained in the Qontigo/devops-gh-actions repo and that copy will overwrite any changes made in any repo using the file
+
 # Checks that the target for a PR is correct based on the name of the source branch.
-# e.g. a relfix can only be merged into a release, a hotfix only into prod etc
+# e.g.
+# feature/XXX PRs can be only be merged to master
+# relfix/XXX PRs can only be merged to release/NNN branches
+# prod can be merged into master or a release/NNN branch
 
 name: PR Target Check
 
