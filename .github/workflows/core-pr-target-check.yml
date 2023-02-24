@@ -1,0 +1,11 @@
+# This file is maintained in the Qontigo/devops-gh-actions repo and that copy will overwrite any changes made in any repo using the file
+
+name: PR Target Check
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize, ready_for_review]
+
+jobs:
+  check_target:
+    uses: Qontigo/devops-gh-actions/.github/workflows/core-pr-target-check.yml@main

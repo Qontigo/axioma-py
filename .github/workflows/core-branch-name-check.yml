@@ -1,0 +1,11 @@
+# This file is maintained in the Qontigo/devops-gh-actions repo and that copy will overwrite any changes made in any repo using the file
+
+name: Branch Name Check
+
+on:
+  pull_request:
+    types: [assigned, opened, synchronize, reopened]
+
+jobs:
+  check_branchname:
+    uses: Qontigo/devops-gh-actions/.github/workflows/core-branch-name-check.yml@main
