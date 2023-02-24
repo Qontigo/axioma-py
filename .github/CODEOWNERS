@@ -1,2 +1,3 @@
-# DEVOPS-3111 - DEVOPS must review changes to anything in the .github folder
-/.github/ @Qontigo/qontigo-devops
+# DEVOPS-6466 - DEVOPS must review changes to these files/folders
+.github/**/core-* @Qontigo/qontigo-devops
+.github/CODEOWNERS @Qontigo/qontigo-devops
