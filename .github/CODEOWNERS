@@ -3,3 +3,7 @@
 # DEVOPS-6466 - DEVOPS must review changes to these files/folders
 .github/**/core-* @Qontigo/qontigo-devops
 .github/CODEOWNERS @Qontigo/qontigo-devops
+
+# DEVOPS-6480 - DEVOPS must review changes to these files
+.terraform-docs.yml @Qontigo/qontigo-devops
+.tflint.ci.* @Qontigo/qontigo-devops
