@@ -11,8 +11,6 @@ on:
     paths:
       - '.github/**/*.y*ml'
       - '.github/**/*.sh'
-      - '!.github/**/core*.*'
-      - '.github/**/core*-local.*'
       - '.cicd/**/*.y*ml'
       - '.cicd/**/*.sh'
 
