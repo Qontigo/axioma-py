@@ -2,9 +2,9 @@ name: Automatically Add Approver Individuals and Groups - master branch
 
 on:
   workflow_dispatch:
-    branches: [ feature\DEVOPS-6231 ]
+    branches: [ feature/DEVOPS-6231 ]
   pull_request:
-    branches: [ feature\DEVOPS-6231 ]
+    branches: [ feature/DEVOPS-6231 ]
     types: [opened, edited, reopened, synchronize, ready_for_review]
           
 jobs:
