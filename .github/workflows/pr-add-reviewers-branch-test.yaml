@@ -17,8 +17,9 @@ jobs:
           token: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
           path: ./.github/actions/
       - name: Run Private Action - Add Reviewers
-        uses: ./.github/actions/
+        uses: actions/github-script@v6
         with:
+          repository: Qontigo/gh-action-github-script-v2
           github-token: ${{secrets.QONTIGO_GH_ACTION_PAT}}
           script: |
             github.pulls.requestReviewers({
