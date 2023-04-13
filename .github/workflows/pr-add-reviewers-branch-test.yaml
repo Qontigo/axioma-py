@@ -11,7 +11,7 @@ jobs:
   add_reviewer:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v
+      - uses: actions/checkout@v2
         with:
           repository: Qontigo/gh-action-github-script-v2           # based on public actions/github-script
           ref: refs/tags/v3
