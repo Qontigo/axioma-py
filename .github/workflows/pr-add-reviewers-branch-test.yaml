@@ -2,9 +2,9 @@ name: Automatically Add Approver Individuals and Groups - master branch
 
 on:
   workflow_dispatch:
-    branches: [ feature\DEVOPS-6231 ]
+    branches: [ feature/DEVOPS-6231 ]
   pull_request:
-    branches: [ feature\DEVOPS-6231 ]
+    branches: [ feature/DEVOPS-6231 ]
     types: [opened, edited, reopened, synchronize, ready_for_review]
           
 jobs:
@@ -13,8 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          repository: Qontigo/gh-action-github-script-v2           # based on public actions/github-script
-          ref: refs/tags/v3
+          repository: Qontigo/gh-action-github-script           # based on public actions/github-script
+          #ref: refs/tags/v3
           token: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
           path: ./.github/actions/
       - name: Run Private Action - Add Reviewers
