@@ -10,10 +10,11 @@ on:
 jobs:
   add_reviewer:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
         with:
-          repository: Qontigo/gh-action-github-script-v2           # based on public actions/github-script
+          repository: Qontigo/gh-action-github-script           # based on public actions/github-script
           token: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
           path: ./.github/actions/
       - name: Run Private Action - Add Reviewers
