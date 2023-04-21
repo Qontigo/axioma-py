@@ -289,10 +289,10 @@ class AxiomaSession(BaseContext):
     @classmethod
     def get_session(
         cls,
-        client_id: str,
         username: str,
         password: str,
         domain: str,
+        client_id: str = "5ABB5D0748DF4E8EA733606B9268C3E5",
         proxy=None,
         certificates=None,
         api_type: str = API_TYPE,
@@ -359,10 +359,10 @@ class AxiomaSession(BaseContext):
     @classmethod
     def use_session(
         cls,
-        client_id: str,
         username: str,
         password: str,
         domain: str,
+        client_id: str = "5ABB5D0748DF4E8EA733606B9268C3E5",
         proxy=None,
         certificates=None,
         api_type: str = API_TYPE,
@@ -813,7 +813,7 @@ class SimpleAuthSession(AxiomaSession):
         self.grant_type = env_config["GRANT_TYPE"]
         self.auth_timeout = int(env_config["AUTH_TIMEOUT"])
         self.timeout = int(env_config["TIMEOUT"])
-        self.client_id = client_id
+        self.__client_id = client_id
         self.username = username
         self.password = password
         self.proxy = proxy
@@ -822,7 +822,7 @@ class SimpleAuthSession(AxiomaSession):
     def _authenticate(self):
         credentials = {
             "grant_type": self.grant_type,
-            "client_id": self.client_id,
+            "client_id": self.__client_id,
             "username": self.username,
             "password": self.password,
         }
