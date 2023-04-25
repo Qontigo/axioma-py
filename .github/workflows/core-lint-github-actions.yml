@@ -5,7 +5,7 @@
 # * Github workflow YAML files (Except core-* files which are synced from templates)
 # * Shell scripts *.sh) for either of the above
 
-name: Lint Github Actions
+name: Lint Github Actions and Workflows
 on:
   pull_request:
     paths:
@@ -16,6 +16,7 @@ on:
 
 jobs:
   run:
+    name: .github linting
     uses: Qontigo/devops-gh-actions/.github/workflows/core-lint-github-actions.yml@main
     secrets:
       ghtoken: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
