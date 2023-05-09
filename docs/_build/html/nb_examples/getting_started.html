@@ -1,35 +1,15 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.61.g3c2e58c.dirty documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
-
-  
+  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.81.g193db2c.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
@@ -38,110 +18,50 @@
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
         <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Axiomasessions" href="with_sessions.html" />
     <link rel="prev" title="Examples" href="../examples2.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../index.html" class="icon icon-home"> axiomapy
           
-
-          
+          <a href="../index.html" class="icon icon-home">
+            axiomapy
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption"><span class="caption-text">Examples and Use Cases:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../examples2.html">Examples</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../examples2.html#instructions-for-running-examples">Instructions for running examples</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting Started with axiomapy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Imports">Imports</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Logging">Logging</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Imports">Imports</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Logging-in">Logging in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Find-portfolios-using-oData-filters">Find portfolios using oData filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Create-a-portfolio-and-check-for-a-portfolio">Create a portfolio and check for a portfolio</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Create-some-positions">Create some positions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Search-for-views">Search for views</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Run-a-risk-analysis">Run a risk analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Clean-up">Clean up</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Other-common-imports">Other common imports</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Importing-from-axiomapy">Importing from axiomapy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Logging-in">Logging in</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Find-portfolios-using-oData-filters">Find portfolios using oData filters</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Create-a-portfolio-and-check-for-a-portfolio">Create a portfolio and check for a portfolio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Create-some-positions">Create some positions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Define-the-positions">Define the positions</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#Add-them-to-the-portfolio">Add them to the portfolio</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Search-for-views">Search for views</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Run-a-risk-analysis">Run a risk analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Run-a-portfolio-analysis">Run a portfolio analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Access-the-logs-and-results">Access the logs and results</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Search-for-Entities">Search for Entities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#Clean-up">Clean up</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Axiomasessions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Imports">Imports</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Optional-logging">Optional logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Credentials">Credentials</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Activating-a-session">Activating a session</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Contexts">Contexts</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_sessions.html#Switching-sessions-in-the-context-manually">Switching sessions in the context manually</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html">AxiomaPy Direct Access</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Imports">Imports</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Credentials-and-Creating-an-Active-Sesssion">Credentials and Creating an Active Sesssion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Get-a-list-of-portfolios">Get a list of portfolios</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Performance-Attribution-Request">Performance Attribution Request</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html#Risk-Model-Service">Risk Model Service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html">CommonBase, EntityBase, TemplatedEntityBase, Enumbase and Collections</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#EnumBase">EnumBase</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#EntityBase">EntityBase</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Using-the-samples">Using the samples</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#How-the-accessors-works">How the accessors works</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Clone,-Update-and-Replace">Clone, Update and Replace</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Update">Update</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Replace">Replace</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Serialization">Serialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#How-Serialization-works">How Serialization works</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Nested-Entities">Nested Entities</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#TemplatedEntityBase">TemplatedEntityBase</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Generic-Collections---Mapping-and-List">Generic Collections - Mapping and List</a></li>
-<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html#Populating-the-collections">Populating the collections</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_axiomaapi.html">AxiomaAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="with_entitybase.html">Developer Base Class Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -153,79 +73,41 @@
 <li class="toctree-l1"><a class="reference internal" href="../axiomapyapi.html">AxiomaAPI Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../odatafilterhelpers.html">oDataFilterHelpers</a></li>
 </ul>
+<p class="caption"><span class="caption-text">Endpoints:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../endpoints.html">Axiomarisk endpoints covered by axioma-py</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Other:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../index.html">axiomapy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../examples2.html">Examples</a> &raquo;</li>
-        
-      <li>Getting Started with axiomapy</li>
-    
-    
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../examples2.html">Examples</a></li>
+      <li class="breadcrumb-item active">Getting Started with axiomapy</li>
       <li class="wy-breadcrumbs-aside">
-        
-          
             <a href="../_sources/nb_examples/getting_started.ipynb" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   
 <style>
 /* CSS for nbsphinx extension */
@@ -508,17 +390,16 @@ div.rendered_html tbody tr:hover {
 <div class="section" id="Getting-Started-with-axiomapy">
 <h1>Getting Started with axiomapy<a class="headerlink" href="#Getting-Started-with-axiomapy" title="Permalink to this headline">¶</a></h1>
 <p>While there are various samples that go into further details on specific topics the following guide is intended as a starting point to explore a few basic operations and gain some familiarity with the package.</p>
-</div>
 <div class="section" id="Imports">
-<h1>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h1>
+<h2>Imports<a class="headerlink" href="#Imports" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="Logging">
-<h2>Logging<a class="headerlink" href="#Logging" title="Permalink to this headline">¶</a></h2>
+<h3>Logging<a class="headerlink" href="#Logging" title="Permalink to this headline">¶</a></h3>
 <p>The standard logging library is used to log from within the package. In order to see the logging statements you must add at least one handler. In this case we will just log to the stdout. The level will be info. The following statement sets the default config for the logging.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
     <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
@@ -529,32 +410,31 @@ div.rendered_html tbody tr:hover {
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="Other-common-imports">
-<h1>Other common imports<a class="headerlink" href="#Other-common-imports" title="Permalink to this headline">¶</a></h1>
+<h3>Other common imports<a class="headerlink" href="#Other-common-imports" title="Permalink to this headline">¶</a></h3>
 <p>While you may leverage many packages in your projects the following are used here and in the examples.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="Importing-from-axiomapy">
-<h1>Importing from axiomapy<a class="headerlink" href="#Importing-from-axiomapy" title="Permalink to this headline">¶</a></h1>
+<h3>Importing from axiomapy<a class="headerlink" href="#Importing-from-axiomapy" title="Permalink to this headline">¶</a></h3>
 <p>The following shows some of the most common imports from axiomapy, however, not all will be explicitly needed.</p>
 <p>At the root of the package there are some core class but always required is the Session manager AxiomaSession. The AxiomaSession will handle connecting to the Axioma API and any http requests.</p>
 <p>The package is organised much like the rest api.</p>
-<p>In general the necessary enumerations and associated datamodel classes are accessed from the ‘parent’ package (e.g. Enums can be accessed from axiomapy.axiomaapi.enums)</p>
+<p>In general the necessary enumerations and associated datamodel classes are accessed from the ‘parent’ package (e.g. Enums can be accessed from axiomapy.axiomaapi.enums)</p>
 <p>A side note on collections: Most server resources are returned as a set of items based on the oData filters. Mapping (when their is a unique key) or Sequence classes are available to represent these sets. As an example there is Portfolio and Portfolios. A list can be passed instead of a mapping/sequence class and a mapping/sequence where relevant. The advantage of the mapping classes is that they have methods to help manage the set of underlying instances. However, they all offer a to_list() if
 you prefer to work with a list if the items.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
 </pre></div>
 </div>
 </div>
@@ -563,7 +443,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">PortfolioGroupsAPI</span><span class="p">,</span> <span class="n">PortfoliosAPI</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">PortfolioGroupsAPI</span><span class="p">,</span> <span class="n">PortfoliosAPI</span>
 </pre></div>
 </div>
 </div>
@@ -572,7 +452,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">AnalysisDefinitionAPI</span><span class="p">,</span> <span class="n">RiskModelDefinitionsAPI</span><span class="p">,</span> <span class="n">AnalysesRiskAPI</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">AnalysisDefinitionAPI</span><span class="p">,</span> <span class="n">RiskModelDefinitionsAPI</span><span class="p">,</span> <span class="n">AnalysesRiskAPI</span>
 </pre></div>
 </div>
 </div>
@@ -581,22 +461,23 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">MetaDataAPI</span><span class="p">,</span> <span class="n">TemplatesAPI</span><span class="p">,</span> <span class="n">EntitiesAPI</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">MetaDataAPI</span><span class="p">,</span> <span class="n">TemplatesAPI</span><span class="p">,</span> <span class="n">EntitiesAPI</span>
 <span class="kn">from</span> <span class="nn">axiomapy.odatahelpers</span> <span class="kn">import</span> <span class="n">oDataFilterHelper</span> <span class="k">as</span> <span class="n">od</span>
 <span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">enums</span>
 </pre></div>
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Logging-in">
-<h1>Logging in<a class="headerlink" href="#Logging-in" title="Permalink to this headline">¶</a></h1>
+<h2>Logging in<a class="headerlink" href="#Logging-in" title="Permalink to this headline">¶</a></h2>
 <p>A session is created, authenticated and set as the current session used for any http requests made via the package.</p>
 <p>Update the credentials and run the command below:</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># For testing load up some credentials</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># For testing load up some credentials</span>
 <span class="kn">from</span> <span class="nn">load_credentials</span> <span class="kn">import</span> <span class="n">get_user</span>
 <span class="n">user1</span> <span class="o">=</span>  <span class="n">get_user</span><span class="p">(</span><span class="s1">&#39;user1&#39;</span><span class="p">)</span>
 </pre></div>
@@ -606,9 +487,8 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace the user1[&#39;xx&#39;] with your credentials</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace the user1[&#39;xx&#39;] with your credentials</span>
 <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span>
     <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
     <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
     <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span>
@@ -621,8 +501,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
-    <span class="n">client_id</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">],</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
     <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
     <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
     <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
@@ -633,15 +512,15 @@ you prefer to work with a list if the items.</p>
 </div>
 </div>
 <div class="section" id="Find-portfolios-using-oData-filters">
-<h1>Find portfolios using oData filters<a class="headerlink" href="#Find-portfolios-using-oData-filters" title="Permalink to this headline">¶</a></h1>
+<h2>Find portfolios using oData filters<a class="headerlink" href="#Find-portfolios-using-oData-filters" title="Permalink to this headline">¶</a></h2>
 <p>Return the set of portfolios into a mapping collection (keyed on portfolio name). OData parameters can be used to control the set of portfolios returned. There are some helpers to assist with basic filter syntax.</p>
-<p>Here the first 5 portfolios are returned that have: * long_name contains “US” and does not start with “Test” and, * the latest position date field is null (i.e. no positions are loaded) and, * default currency in the set “USD”, “GBP” or default data partition is AxiomaUS</p>
+<p>Here the first 5 portfolios are returned that have: * long_name contains “US” and does not start with “Test” and, * the latest position date field is null (i.e. no positions are loaded) and, * default currency in the set “USD”, “GBP” or default data partition is AxiomaUS</p>
 <p>The helper will also camelize field names by default.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a set of filters using the helpers to</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a set of filters using the helpers to</span>
 <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;long_name&quot;</span><span class="p">,</span> <span class="s2">&quot;US&quot;</span><span class="p">),</span>
     <span class="s1">&#39;and not&#39;</span><span class="p">,</span>
@@ -668,13 +547,13 @@ you prefer to work with a list if the items.</p>
 </div>
 </div>
 <div class="section" id="Create-a-portfolio-and-check-for-a-portfolio">
-<h1>Create a portfolio and check for a portfolio<a class="headerlink" href="#Create-a-portfolio-and-check-for-a-portfolio" title="Permalink to this headline">¶</a></h1>
+<h2>Create a portfolio and check for a portfolio<a class="headerlink" href="#Create-a-portfolio-and-check-for-a-portfolio" title="Permalink to this headline">¶</a></h2>
 <p>Create a portfolio if it doesnt exist already</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_portfolio</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_portfolio</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test_Portfolio_Name&quot;</span><span class="p">,</span>
     <span class="s2">&quot;longName&quot;</span><span class="p">:</span> <span class="s2">&quot;My Test Portfolio&quot;</span><span class="p">,</span>
     <span class="s2">&quot;defaultCurrency&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span><span class="p">,</span>
@@ -690,21 +569,21 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">my_ptf</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolio</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">my_ptf</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolio</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="Create-some-positions">
-<h1>Create some positions<a class="headerlink" href="#Create-some-positions" title="Permalink to this headline">¶</a></h1>
+<h2>Create some positions<a class="headerlink" href="#Create-some-positions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="Define-the-positions">
-<h2>Define the positions<a class="headerlink" href="#Define-the-positions" title="Permalink to this headline">¶</a></h2>
-<p>In this case we will use a list of positions to update the portfolio. As can be seen below any api defaults can be leveraged to avoid specifying all arguments (e.g. the default quantity type is Units).</p>
+<h3>Define the positions<a class="headerlink" href="#Define-the-positions" title="Permalink to this headline">¶</a></h3>
+<p>In this case we will use a list of positions to update the portfolio. As can be seen below any api defaults can be leveraged to avoid specifying all arguments (e.g. the default quantity type is Units).</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch_position</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;514431&quot;</span><span class="p">,</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patch_position</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;514431&quot;</span><span class="p">,</span>
                    <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Ticker&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">}],</span>
                    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">6288458702.57133</span><span class="p">,</span>
                                 <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="s2">&quot;MarketValue&quot;</span><span class="p">}},</span>
@@ -716,15 +595,14 @@ you prefer to work with a list if the items.</p>
 </div>
 </div>
 </div>
-</div>
 <div class="section" id="Add-them-to-the-portfolio">
-<h1>Add them to the portfolio<a class="headerlink" href="#Add-them-to-the-portfolio" title="Permalink to this headline">¶</a></h1>
+<h3>Add them to the portfolio<a class="headerlink" href="#Add-them-to-the-portfolio" title="Permalink to this headline">¶</a></h3>
 <p>First check if there are positions. This is not necessary but illustrates use of the AsOfDate type which can be compared with a data directly</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">date_to_load_positions</span> <span class="o">=</span> <span class="s2">&quot;2020-12-01&quot;</span> <span class="c1"># or can use the datetime type</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">date_to_load_positions</span> <span class="o">=</span> <span class="s2">&quot;2020-12-01&quot;</span> <span class="c1"># or can use the datetime type</span>
 
 <span class="c1"># returns a list of PositionAsOfDate</span>
 <span class="n">position_dates_resp</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_position_dates</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
@@ -740,7 +618,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">patch</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">patch_positions</span><span class="p">(</span><span class="n">as_of_date</span><span class="o">=</span><span class="n">date_to_load_positions</span><span class="p">,</span> <span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span> <span class="n">positions_upsert</span><span class="o">=</span><span class="n">patch_position</span><span class="p">,</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patch</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">patch_positions</span><span class="p">(</span><span class="n">as_of_date</span><span class="o">=</span><span class="n">date_to_load_positions</span><span class="p">,</span> <span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span> <span class="n">positions_upsert</span><span class="o">=</span><span class="n">patch_position</span><span class="p">,</span>
                               <span class="n">positions_remove</span><span class="o">=</span><span class="p">[])</span>
 </pre></div>
 </div>
@@ -750,7 +628,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The patch request response: </span><span class="si">{</span><span class="n">patch</span><span class="o">.</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The patch request response: </span><span class="si">{</span><span class="n">patch</span><span class="o">.</span><span class="n">response</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -759,21 +637,22 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">position_dates</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_position_dates</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">position_dates</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_position_dates</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">)</span>
 <span class="n">position_dates</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Search-for-views">
-<h1>Search for views<a class="headerlink" href="#Search-for-views" title="Permalink to this headline">¶</a></h1>
+<h2>Search for views<a class="headerlink" href="#Search-for-views" title="Permalink to this headline">¶</a></h2>
 <p>A view can exist in a shared folder or be private so will have a team or owner property but not both.</p>
 <p>In order to help find views there is a filter helper that can be used to help build the filter string correctly. Clearly the filter can be constructed without the helper if prefered.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># All views in team Axioma Standard Views where name contains &#39;Exposure&#39;</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All views in team Axioma Standard Views where name contains &#39;Exposure&#39;</span>
 <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Exposures&quot;</span><span class="p">),</span>
     <span class="s1">&#39;and (&#39;</span><span class="p">,</span>
@@ -793,14 +672,14 @@ you prefer to work with a list if the items.</p>
 </div>
 </div>
 <div class="section" id="Run-a-risk-analysis">
-<h1>Run a risk analysis<a class="headerlink" href="#Run-a-risk-analysis" title="Permalink to this headline">¶</a></h1>
+<h2>Run a risk analysis<a class="headerlink" href="#Run-a-risk-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Risk parameters are set to define the risk analysis task settings.</p>
-<p>Any arguments not set will take the defaults of the API (i.e. no value will be passed in the request)</p>
+<p>Any arguments not set will take the defaults of the API (i.e. no value will be passed in the request)</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">risk_param</span> <span class="o">=</span> <span class="p">{</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">risk_param</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">&quot;analysisDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
     <span class="s2">&quot;positionDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
     <span class="s2">&quot;aggregationOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -814,16 +693,15 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="Run-a-portfolio-analysis">
-<h1>Run a portfolio analysis<a class="headerlink" href="#Run-a-portfolio-analysis" title="Permalink to this headline">¶</a></h1>
+<h3>Run a portfolio analysis<a class="headerlink" href="#Run-a-portfolio-analysis" title="Permalink to this headline">¶</a></h3>
 <p>The request can be submitted using AnalysesRiskAPI.</p>
 <p>The response header will include the request id which can be used for further requests.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ra</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">post_portfolio_analyses</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span><span class="n">analyses_parameters</span><span class="o">=</span><span class="n">risk_param</span><span class="p">,</span><span class="n">return_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ra</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">post_portfolio_analyses</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span><span class="n">analyses_parameters</span><span class="o">=</span><span class="n">risk_param</span><span class="p">,</span><span class="n">return_response</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">requestId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
 </pre></div>
@@ -834,7 +712,7 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_status</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">status</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_status</span><span class="p">(</span><span class="n">request_id</span><span class="o">=</span><span class="n">requestId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -843,19 +721,18 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="o">.</span><span class="n">status_code</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">status</span><span class="o">.</span><span class="n">status_code</span>
 <span class="n">status</span><span class="o">.</span><span class="n">content</span>
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="Access-the-logs-and-results">
-<h1>Access the logs and results<a class="headerlink" href="#Access-the-logs-and-results" title="Permalink to this headline">¶</a></h1>
+<h4>Access the logs and results<a class="headerlink" href="#Access-the-logs-and-results" title="Permalink to this headline">¶</a></h4>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_log</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_log</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -863,19 +740,20 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesAPI</span><span class="o">.</span><span class="n">get_analyses</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
 <div class="section" id="Search-for-Entities">
-<h1>Search for Entities<a class="headerlink" href="#Search-for-Entities" title="Permalink to this headline">¶</a></h1>
+<h3>Search for Entities<a class="headerlink" href="#Search-for-Entities" title="Permalink to this headline">¶</a></h3>
 <p>To look for a particular entity, search using either the type of entity or using the odata filters.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
     <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;PA-MAC-Global-USD&quot;</span><span class="p">)</span>
 <span class="p">]</span>
 
@@ -890,14 +768,15 @@ you prefer to work with a list if the items.</p>
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="Clean-up">
-<h1>Clean up<a class="headerlink" href="#Clean-up" title="Permalink to this headline">¶</a></h1>
+<h2>Clean up<a class="headerlink" href="#Clean-up" title="Permalink to this headline">¶</a></h2>
 <p>If required the user can delete the portfolio by passing the portfolio id as param to the request</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">delete_portfolio</span><span class="p">(</span><span class="n">pId</span><span class="p">)</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">delete_portfolio</span><span class="p">(</span><span class="n">pId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -906,58 +785,42 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>
 
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="with_sessions.html" class="btn btn-neutral float-right" title="Axiomasessions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../examples2.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="with_sessions.html" class="btn btn-neutral float-right" title="Axiomasessions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2022 Qontigo GmbH.
-
-    </p>
+    <p>&#169; Copyright 2022 Qontigo GmbH.</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
