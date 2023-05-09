@@ -1,21 +1,20 @@
 # This file is maintained in the Qontigo/devops-gh-actions repo and that copy will overwrite any changes made in any repo using the file
 
-# Lints Github action files in well known locations - .github and .cicd
+# Lints Github action files in well known location - .github
 # * Github action YAML files (action.yml)
 # * Github workflow YAML files (Except core-* files which are synced from templates)
 # * Shell scripts *.sh) for either of the above
 
-name: Lint Github Actions
+name: Lint Github Actions and Workflows
 on:
   pull_request:
     paths:
       - '.github/**/*.y*ml'
       - '.github/**/*.sh'
-      - '.cicd/**/*.y*ml'
-      - '.cicd/**/*.sh'
 
 jobs:
   run:
+    name: .github linting
     uses: Qontigo/devops-gh-actions/.github/workflows/core-lint-github-actions.yml@main
     secrets:
       ghtoken: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
