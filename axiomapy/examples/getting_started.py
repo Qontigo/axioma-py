@@ -117,7 +117,6 @@ user1 =  get_user('user1')
 
 # Replace the user1['xx'] with your credentials
 AxiomaSession.use_session(
-    client_id=user1['client_id'],
     username=user1['username'],
     password=user1['password'],
     domain=user1['domain']
@@ -125,7 +124,6 @@ AxiomaSession.use_session(
 
 #In order to create a session for bulk flows, the user needs to pass BULK in the api type.
 AxiomaSession.use_session(
-    client_id=user1['client_id'],
     username=user1['username'],
     password=user1['password'],
     domain=user1['domain'],

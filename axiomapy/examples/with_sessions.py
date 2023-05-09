@@ -68,7 +68,7 @@ user3 = get_user('user3')
 
 
 # Get and use a session:
-AxiomaSession.use_session(user1['client_id'], user1['username'], user1['password'], user1['domain'])
+AxiomaSession.use_session(user1['username'], user1['password'], user1['domain'])
 me = AxiomaSession.current.test()
 
 # Access the context's current session:
@@ -85,7 +85,7 @@ me1 = user1_session.test()
 
 
 
-user2_session = AxiomaSession.get_session(user2['client_id'], user2['username'], user2['password'], user2['domain'])
+user2_session = AxiomaSession.get_session(user2['username'], user2['password'], user2['domain'])
 # Initialize the session if it is to be used outside the context. Otherwise, the session  
 # will be open (init) and closed for the context and will require init to be called again.
 user2_session.init()
@@ -93,7 +93,7 @@ user2_session.init()
 with user2_session:
     print("Running test - should be connection 2")
     me2 = AxiomaSession.current.test()
-    with AxiomaSession.get_session(user3['client_id'], user3['username'], user3['password'], user3['domain']):
+    with AxiomaSession.get_session(user3['username'], user3['password'], user3['domain']):
         print("Running test - should be connection 3")
         me3 = AxiomaSession.current.test()
     print("Running test - should be connection 2")
