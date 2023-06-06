@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.81.g193db2c.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.86.g4101ae5.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -57,6 +57,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Search-for-views">Search for views</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Run-a-risk-analysis">Run a risk analysis</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Clean-up">Clean up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Logging-in-for-Bulk-Session">Logging in for Bulk Session</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="with_sessions.html">Sessions</a></li>
@@ -418,6 +419,8 @@ div.rendered_html tbody tr:hover {
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">StringIO</span>
 </pre></div>
 </div>
 </div>
@@ -464,6 +467,7 @@ you prefer to work with a list if the items.</p>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">MetaDataAPI</span><span class="p">,</span> <span class="n">TemplatesAPI</span><span class="p">,</span> <span class="n">EntitiesAPI</span>
 <span class="kn">from</span> <span class="nn">axiomapy.odatahelpers</span> <span class="kn">import</span> <span class="n">oDataFilterHelper</span> <span class="k">as</span> <span class="n">od</span>
 <span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">enums</span>
+<span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">axiomaexceptions</span>
 </pre></div>
 </div>
 </div>
@@ -492,20 +496,6 @@ you prefer to work with a list if the items.</p>
     <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
     <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
     <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">]</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<p>In order to create a session for Bulk flows, the user needs to pass BULK in the api type.</p>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
-</pre></div>
-</div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
-    <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
-    <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
-    <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
-    <span class="n">api_type</span><span class="o">=</span><span class="s2">&quot;BULK&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -554,13 +544,23 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test_portfolio</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test_Portfolio_Name&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Test_Portfolio&quot;</span><span class="p">,</span>
     <span class="s2">&quot;longName&quot;</span><span class="p">:</span> <span class="s2">&quot;My Test Portfolio&quot;</span><span class="p">,</span>
     <span class="s2">&quot;defaultCurrency&quot;</span><span class="p">:</span> <span class="s2">&quot;USD&quot;</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="n">r</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">post_portfolio</span><span class="p">(</span><span class="n">portfolio</span><span class="o">=</span><span class="n">test_portfolio</span><span class="p">)</span>
-<span class="n">pId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">post_portfolio</span><span class="p">(</span><span class="n">portfolio</span><span class="o">=</span><span class="n">test_portfolio</span><span class="p">)</span>
+    <span class="n">pId</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">headers</span><span class="p">[</span><span class="s2">&quot;location&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">except</span> <span class="p">(</span><span class="n">axiomaexceptions</span><span class="o">.</span><span class="n">AxiomaRequestError</span><span class="p">,</span> <span class="n">axiomaexceptions</span><span class="o">.</span><span class="n">AxiomaRequestValidationError</span><span class="p">,</span> <span class="n">axiomaexceptions</span><span class="o">.</span><span class="n">AxiomaRequestStatusError</span><span class="p">):</span>
+    <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">od</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Test_Portfolio&quot;</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">filter_</span> <span class="o">=</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">filters</span><span class="p">)</span>
+    <span class="n">ptfs</span> <span class="o">=</span> <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">get_portfolios</span><span class="p">(</span><span class="n">filter_results</span><span class="o">=</span><span class="n">filter_</span><span class="p">)</span>
+    <span class="n">pId</span> <span class="o">=</span> <span class="n">ptfs</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;items&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+
+    <span class="nb">print</span> <span class="p">(</span><span class="n">pId</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -584,13 +584,15 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">patch_position</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;514431&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Ticker&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;MSFT&quot;</span><span class="p">}],</span>
+                   <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ISIN&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;US5949181045&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Ticker&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;MSFT UN EQUITY&quot;</span><span class="p">}],</span>
                    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">6288458702.57133</span><span class="p">,</span>
-                                <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="s2">&quot;MarketValue&quot;</span><span class="p">}},</span>
+                                <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="s2">&quot;MarketValue&quot;</span><span class="p">},</span>
+                   <span class="s2">&quot;instrumentMapping&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span><span class="p">},</span>
                   <span class="p">{</span><span class="s2">&quot;clientId&quot;</span><span class="p">:</span> <span class="s2">&quot;514453&quot;</span><span class="p">,</span>
-                   <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Ticker&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;AAPL&quot;</span><span class="p">}],</span>
+                   <span class="s2">&quot;identifiers&quot;</span><span class="p">:</span> <span class="p">[{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;ISIN&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;US0378331005&quot;</span><span class="p">},</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;Ticker&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;AAPL UN EQUITY&quot;</span><span class="p">}],</span>
                    <span class="s2">&quot;quantity&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="mf">32440128549.5337</span><span class="p">,</span>
-                                <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="s2">&quot;MarketValue&quot;</span><span class="p">}}]</span>
+                                <span class="s2">&quot;scale&quot;</span><span class="p">:</span> <span class="s2">&quot;MarketValue&quot;</span><span class="p">},</span>
+                   <span class="s2">&quot;instrumentMapping&quot;</span><span class="p">:</span> <span class="s2">&quot;Default&quot;</span><span class="p">}]</span>
 </pre></div>
 </div>
 </div>
@@ -611,7 +613,10 @@ you prefer to work with a list if the items.</p>
 
 <span class="c1"># the position dates returns a list of AsOfDates instances allows direct comparison with a date string or datetime</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The portfolio has positions on the date to load: </span><span class="si">{</span><span class="n">date_to_load_positions</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<br/></pre></div>
+
+<span class="k">if</span> <span class="n">date_to_load_positions</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]:</span>
+    <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">delete_positions</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span> <span class="n">as_of_date</span><span class="o">=</span><span class="n">date_to_load_positions</span><span class="p">)</span>
+</pre></div>
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -652,9 +657,9 @@ you prefer to work with a list if the items.</p>
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All views in team Axioma Standard Views where name contains &#39;Exposure&#39;</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># All views in team Axioma Standard Views where name contains &#39;Coverage&#39;</span>
 <span class="n">filters</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Exposures&quot;</span><span class="p">),</span>
+    <span class="n">od</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Coverage&quot;</span><span class="p">),</span>
     <span class="s1">&#39;and (&#39;</span><span class="p">,</span>
     <span class="n">od</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="s2">&quot;team&quot;</span><span class="p">,</span> <span class="s2">&quot;Axioma Standard Views&quot;</span><span class="p">),</span>
     <span class="s2">&quot;)&quot;</span>
@@ -667,7 +672,9 @@ you prefer to work with a list if the items.</p>
 <span class="n">defs</span> <span class="o">=</span> <span class="n">AnalysisDefinitionAPI</span><span class="o">.</span><span class="n">get_analysis_definitions</span><span class="p">(</span><span class="n">filter_results</span><span class="o">=</span><span class="n">filter_</span><span class="p">,</span> <span class="n">top</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 
 <span class="n">defs</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
-</pre></div>
+
+<span class="n">analysis_id</span> <span class="o">=</span> <span class="n">defs</span><span class="o">.</span><span class="n">json</span><span class="p">()[</span><span class="s1">&#39;items&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+<br/></pre></div>
 </div>
 </div>
 </div>
@@ -680,8 +687,8 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">risk_param</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;analysisDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;positionDate&quot;</span><span class="p">:</span> <span class="s2">&quot;2021-03-31&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;analysisDate&quot;</span><span class="p">:</span> <span class="n">date_to_load_positions</span><span class="p">,</span>
+    <span class="s2">&quot;positionDate&quot;</span><span class="p">:</span> <span class="n">date_to_load_positions</span><span class="p">,</span>
     <span class="s2">&quot;aggregationOptions&quot;</span><span class="p">:</span> <span class="p">{</span>
     <span class="s2">&quot;aggregate&quot;</span><span class="p">:</span> <span class="s2">&quot;OnCompletion&quot;</span><span class="p">,</span>
     <span class="s2">&quot;compute&quot;</span><span class="p">:</span> <span class="n">enums</span><span class="o">.</span><span class="n">ComputeOption</span><span class="o">.</span><span class="n">MissingOnly</span>
@@ -733,14 +740,30 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logs</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses_log</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">logs</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>
+<p>The results can be accessed in the json format</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses</span><span class="p">(</span><span class="n">requestId</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The results can also be fetched in a csv format</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">AnalysesRiskAPI</span><span class="o">.</span><span class="n">get_analyses</span><span class="p">(</span><span class="n">requestId</span><span class="p">,</span> <span class="n">as_csv</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">StringIO</span><span class="p">(</span><span class="n">results</span><span class="p">),</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
 </div>
@@ -786,6 +809,23 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Logging-in-for-Bulk-Session">
+<h2>Logging in for Bulk Session<a class="headerlink" href="#Logging-in-for-Bulk-Session" title="Permalink to this headline">¶</a></h2>
+<p>In order to create a session for Bulk flows, the user needs to pass BULK in the api type.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
+    <span class="n">api_type</span><span class="o">=</span><span class="s2">&quot;BULK&quot;</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
