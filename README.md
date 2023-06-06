@@ -61,4 +61,4 @@ You are welcome to submit an issue, if your question is complex or bug-related. 
 
 ## What were the changes made in last release?
 
-Please find the changes made in previous releases [here] (CHANGELOG.rst).
+Please find the changes made in previous releases [here](CHANGELOG.rst).
