@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.86.g4101ae5.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.88.g24c18b8.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -500,6 +500,21 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 </div>
+<p>The users can still pass client id, if they wish to use a specific client id</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace the user1[&#39;xx&#39;] with your credentials</span>
+<span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
+    <span class="n">client_id</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;client_id&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="Find-portfolios-using-oData-filters">
 <h2>Find portfolios using oData filters<a class="headerlink" href="#Find-portfolios-using-oData-filters" title="Permalink to this headline">¶</a></h2>
@@ -735,6 +750,7 @@ you prefer to work with a list if the items.</p>
 </div>
 <div class="section" id="Access-the-logs-and-results">
 <h4>Access the logs and results<a class="headerlink" href="#Access-the-logs-and-results" title="Permalink to this headline">¶</a></h4>
+<p>The logs can be accessed in json format</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -745,7 +761,7 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 </div>
-<p>The results can be accessed in the json format</p>
+<p>The results can be accessed in json format</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
@@ -755,7 +771,7 @@ you prefer to work with a list if the items.</p>
 </pre></div>
 </div>
 </div>
-<p>The results can also be fetched in a csv format</p>
+<p>The results can also be fetched in csv format</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
