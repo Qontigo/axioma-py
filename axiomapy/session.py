@@ -849,7 +849,7 @@ class SimpleAuthSession(AxiomaSession):
             )
 
             raise AxiomaAuthenticationError(
-                message="Response error from request",
+                message="Response error from request. Note: The order of parameters were changed as part of axiomapy 1.77 release. Please refer to examples or Change log for additional details.",
                 content=response.text,
                 reason=response.reason_phrase,
                 status_code=response.status_code,

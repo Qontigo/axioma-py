@@ -125,6 +125,15 @@ AxiomaSession.use_session(
     domain=user1['domain']
 )
 
+# The users can still pass client id, if they wish to use a specific client id
+# replace the user1['xx'] with your credentials
+AxiomaSession.use_session(
+    username=user1['username'],
+    password=user1['password'],
+    domain=user1['domain'],
+    client_id=user1['client_id']
+)
+
 # ## Find Portfolios Using oData Filters
 # 
 # Return the set of portfolios into a mapping collection (keyed on portfolio name).
@@ -331,19 +340,19 @@ status.content
 # #### Access the Logs and Results
 
 
-#The results can be accessed in the json format
+#The logs can be accessed in json format
 logs = AnalysesRiskAPI.get_analyses_log(requestId)
 print(logs.json())
 
 
-#The results can also be fetched in a csv format
+#The results can be fetched in json format
 results = AnalysesRiskAPI.get_analyses(requestId).json()
 print(results)
 
+#The results can also be fetched in csv format
 results = AnalysesRiskAPI.get_analyses(requestId, as_csv=True).text
 print(results)
 df = pd.read_csv(StringIO(results), delimiter=',')
-df
 
 
 ### Search for Entities

@@ -75,6 +75,10 @@ me = AxiomaSession.current.test()
 user1_session = AxiomaSession.current
 me1 = user1_session.test()
 
+# Activate session using speicifc client id
+AxiomaSession.use_session(user1['username'], user1['password'], user1['domain'], user1['client_id'])
+me = AxiomaSession.current.test()
+
 
 # ### Contexts
 #   
