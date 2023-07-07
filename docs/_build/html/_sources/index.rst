@@ -77,6 +77,11 @@ Table Of Contents
    axiomapyapi
    odatafilterhelpers
 
+.. toctree::
+   :maxdepth: 1
+   :caption: Endpoints:
+
+   endpoints
 
 .. toctree::
    :maxdepth: 2
@@ -86,11 +91,10 @@ Table Of Contents
    changelog
 
 
-
 Indices and tables
 ==================
 
 * :ref:`genindex`
 * :ref:`search`
 
-.. _venv_link https://docs.python.org/3/library/venv.html
+Read more about virtual environment : `<https://docs.python.org/3/library/venv.html>`__.

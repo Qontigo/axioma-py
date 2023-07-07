@@ -55,6 +55,8 @@ logging.basicConfig(
 
 from datetime import datetime, timedelta
 from pprint import pprint
+import pandas as pd
+from io import StringIO
 
 # ### Importing From axioma-py
 # 
@@ -101,6 +103,7 @@ from axiomapy.axiomaapi import AnalysisDefinitionAPI, RiskModelDefinitionsAPI, A
 from axiomapy.axiomaapi import MetaDataAPI, TemplatesAPI, EntitiesAPI
 from axiomapy.odatahelpers import oDataFilterHelper as od
 from axiomapy.axiomaapi import enums
+from axiomapy import axiomaexceptions
 
 # ## Logging In
 # 
@@ -112,24 +115,23 @@ from axiomapy.axiomaapi import enums
 
 # For testing, load up some credentials
 from axiomapy.examples.load_credentials import get_user
-user1 =  get_user('user1')
+user1 = get_user('user1')
 
 
 # Replace the user1['xx'] with your credentials
 AxiomaSession.use_session(
-    client_id=user1['client_id'],
     username=user1['username'],
     password=user1['password'],
     domain=user1['domain']
 )
 
-#In order to create a session for bulk flows, the user needs to pass BULK in the api type.
+# The users can still pass client id, if they wish to use a specific client id
+# replace the user1['xx'] with your credentials
 AxiomaSession.use_session(
-    client_id=user1['client_id'],
     username=user1['username'],
     password=user1['password'],
     domain=user1['domain'],
-    api_type="BULK"
+    client_id=user1['client_id']
 )
 
 # ## Find Portfolios Using oData Filters
@@ -176,13 +178,23 @@ pprint(ptfs.json()["items"])
 
 #Create a portfolio if it doesn't exist already:
 test_portfolio = {
-    "name": "Test_Portfolio_Name",
+    "name": "Test_Portfolio",
     "longName": "My Test Portfolio",
     "defaultCurrency": "USD",
 }
 
-r = PortfoliosAPI.post_portfolio(portfolio=test_portfolio)
-pId = int(r.headers["location"].split("/")[-1])
+try:
+    r = PortfoliosAPI.post_portfolio(portfolio=test_portfolio)
+    pId = int(r.headers["location"].split("/")[-1])
+except (axiomaexceptions.AxiomaRequestError, axiomaexceptions.AxiomaRequestValidationError, axiomaexceptions.AxiomaRequestStatusError):
+    filters = [
+        od.equals("name", "Test_Portfolio")
+    ]
+    filter_ = " ".join(filters)
+    ptfs = PortfoliosAPI.get_portfolios(filter_results=filter_)
+    pId = ptfs.json()['items'][0]['id']
+
+    print (pId)
 
 #Once the portfolio is created, check for the portfolio with portfolio id. If the portfolio already exists, you can directly query for it.
 
@@ -199,13 +211,15 @@ my_ptf = PortfoliosAPI.get_portfolio(portfolio_id=pId)
 
 
 patch_position = [{"clientId": "514431",
-                   "identifiers": [{"type": "Ticker", "value": "MSFT"}],
+                   "identifiers": [{"type": "ISIN", "value": "US5949181045"}, {"type": "Ticker", "value": "MSFT UN EQUITY"}],
                    "quantity": {"value": 6288458702.57133,
-                                "scale": "MarketValue"}},
+                                "scale": "MarketValue"},
+                   "instrumentMapping": "Default"},
                   {"clientId": "514453",
-                   "identifiers": [{"type": "Ticker", "value": "AAPL"}],
+                   "identifiers": [{"type": "ISIN", "value": "US0378331005"}, {"type": "Ticker", "value": "AAPL UN EQUITY"}],
                    "quantity": {"value": 32440128549.5337,
-                                "scale": "MarketValue"}}]
+                                "scale": "MarketValue"},
+                   "instrumentMapping": "Default"}]
 
 
 
@@ -228,6 +242,8 @@ print(
     f"The portfolio has positions on the date to load: {date_to_load_positions in [i['asOfDate'] for i in position_dates['items']]}"
 )
 
+if date_to_load_positions in [i['asOfDate'] for i in position_dates['items']]:
+    PortfoliosAPI.delete_positions(portfolio_id=pId, as_of_date=date_to_load_positions)
 
 patch = PortfoliosAPI.patch_positions(
     as_of_date=date_to_load_positions,
@@ -257,22 +273,24 @@ pprint(position_dates.json()["items"])
 # To find views, you can use a filter and a filter helper to assist with constructing the filter string.
 # Of course, you can also create the view filter without the helper.
 
-# All views in the team "Axioma Standard Views" where the name contains the term 'Exposure'
+# All views in team Axioma Standard Views where name contains 'Coverage'
 filters = [
-    od.contains("name", "Exposures"),
+    od.contains("name", "Coverage"),
     'and (',
     od.equals("team", "Axioma Standard Views"),
     ")"
 ]
 
 filter_ = " ".join(filters)
-definition_names = AnalysisDefinitionAPI.get_analysis_definitions(
-    filter_results=filter_)
+definition_names = AnalysisDefinitionAPI.get_analysis_definitions(filter_results=filter_)
 
-# Get the top 5 results from the above filter
+# Get top 5 results from the above filter
 defs = AnalysisDefinitionAPI.get_analysis_definitions(filter_results=filter_, top=5)
 
 defs.json()
+
+analysis_id = defs.json()['items'][0]['id']
+
 
 
 # ## Run a Risk Analysis
@@ -286,8 +304,8 @@ defs.json()
 
 
 risk_param = {
-    "analysisDate": "2021-03-31", 
-    "positionDate": "2021-03-31", 
+    "analysisDate": date_to_load_positions,
+    "positionDate": date_to_load_positions,
     "aggregationOptions": {
     "aggregate": "OnCompletion",
     "compute": enums.ComputeOption.MissingOnly
@@ -322,11 +340,19 @@ status.content
 # #### Access the Logs and Results
 
 
-
+#The logs can be accessed in json format
 logs = AnalysesRiskAPI.get_analyses_log(requestId)
+print(logs.json())
 
 
+#The results can be fetched in json format
 results = AnalysesRiskAPI.get_analyses(requestId).json()
+print(results)
+
+#The results can also be fetched in csv format
+results = AnalysesRiskAPI.get_analyses(requestId, as_csv=True).text
+print(results)
+df = pd.read_csv(StringIO(results), delimiter=',')
 
 
 ### Search for Entities
@@ -359,3 +385,13 @@ PortfoliosAPI.delete_portfolio(pId)
 
 AxiomaSession.current.close()
 
+
+## Logging in for Bulk Session
+
+#In order to create a session for bulk flows, the user needs to pass BULK in the api type.
+AxiomaSession.use_session(
+    username=user1['username'],
+    password=user1['password'],
+    domain=user1['domain'],
+    api_type="BULK"
+)

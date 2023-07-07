@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Axiomarisk endpoints covered by axioma-py &mdash; axiomapy 0+untagged.88.g24c18b8.dirty documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing" href="contributing.html" />
+    <link rel="prev" title="oDataFilterHelpers" href="odatafilterhelpers.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            axiomapy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Examples and Use Cases:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples2.html">Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Packages:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sessions.html">Sessions Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="axiomapyapi.html">AxiomaAPI Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="odatafilterhelpers.html">oDataFilterHelpers</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Endpoints:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Axiomarisk endpoints covered by axioma-py</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Other:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">axiomapy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Axiomarisk endpoints covered by axioma-py</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/endpoints.rst" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="axiomarisk-endpoints-covered-by-axioma-py">
+<h1>Axiomarisk endpoints covered by axioma-py<a class="headerlink" href="#axiomarisk-endpoints-covered-by-axioma-py" title="Permalink to this headline">¶</a></h1>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 43%" />
+<col style="width: 8%" />
+<col style="width: 49%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Endpoint in Axrisk</p></th>
+<th class="head"><p>HTTP Action</p></th>
+<th class="head"><p>Axioma-py function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>/analyses/{requestId}</p></td>
+<td><p>GET</p></td>
+<td><p>get_analyses(int, bool, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/{requestId}/logs</p></td>
+<td><p>GET</p></td>
+<td><p>get_analyses_log(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/{requestId}/status</p></td>
+<td><p>GET</p></td>
+<td><p>get_analyses_status(int, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/risk/portfolios/{id}</p></td>
+<td><p>POST</p></td>
+<td><p>post_portfolio_analyses(int, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/positions</p></td>
+<td><p>POST</p></td>
+<td><p>post_positions_analyses(dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/instruments</p></td>
+<td><p>POST</p></td>
+<td><p>post_instrument_analyses(dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/batches</p></td>
+<td><p>POST</p></td>
+<td><p>post_batch_analyses(dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/risk/portfolios/{requestId}/request</p></td>
+<td><p>GET</p></td>
+<td><p>get_portfolio_request(int, bool, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/positions/{requestId}/request</p></td>
+<td><p>GET</p></td>
+<td><p>get_positions_request(int, bool, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/instruments/{requestId}/request</p></td>
+<td><p>GET</p></td>
+<td><p>get_instruments_request(int, bool, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/batches/{requestId}/request</p></td>
+<td><p>GET</p></td>
+<td><p>get_batch_request(int, bool, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/risk/batches/{requestId}/status</p></td>
+<td><p>GET</p></td>
+<td><p>get_batch_request_status(int, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/risk-models</p></td>
+<td><p>POST</p></td>
+<td><p>post_risk_model_request(dict, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/risk/risk-models/{requestId}/request</p></td>
+<td><p>GET</p></td>
+<td><p>get_risk_model_request(int, bool, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/risk-models/{requestId}/logs</p></td>
+<td><p>GET</p></td>
+<td><p>get_risk_model_logs(int, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/risk/risk-models/{requestId}</p></td>
+<td><p>GET</p></td>
+<td><p>get_risk_model_results(int, bool, dict, bool, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/risk/risk-models/{requestId}/status</p></td>
+<td><p>GET</p></td>
+<td><p>get_risk_model_request_status(int, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/{requestId}/logs</p></td>
+<td><p>GET</p></td>
+<td><p>get_logs(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/{requestId}/request</p></td>
+<td><p>GET</p></td>
+<td><p>get_request(int, bool, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/{requestId}/results/asset-factor-contributions</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_asset_factor_contributions(int, bool, dict, str, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/{requestId}/results/asset-returns</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_asset_returns(int, bool, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/{requestId}/results/brinson-attribution</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_brinson_attribution(int, bool, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/{requestId}/results/brinson-attribution-time-series</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_brinson_attribution_time_series(int, bool, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/{requestId}/results/factor-attribution</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_factor_attribution(int, bool, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/{requestId}/results/factor-attribution-time-series</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_factor_attribution_time_series(int, bool, dict, str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/{requestId}/results/summary</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_summary(int, bool, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/{requestId}/results/warnings-and-errors</p></td>
+<td><p>GET</p></td>
+<td><p>get_results_warnings_errors(int, bool, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/{requestId}/status</p></td>
+<td><p>GET</p></td>
+<td><p>get_status(int, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/portfolios/{id}/report-status</p></td>
+<td><p>GET</p></td>
+<td><p>get_report_status(int, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/portfolios/{id}</p></td>
+<td><p>POST</p></td>
+<td><p>post_performance_analysis(int, dict, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analyses/performance/portfolios/{id}/missing-precomputed-analytics /</p></td>
+<td><p>POST</p></td>
+<td><p>post_missing_precomputed(int, dict, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analyses/performance/portfolios/{id}/precompute-analytics</p></td>
+<td><p>POST</p></td>
+<td><p>post_precompute(int, dict, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>/analysis-definitions</p></td>
+<td><p>GET</p></td>
+<td><p>get_analysis_definitions(str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>POST</p></td>
+<td><p>post_analysis_definition(dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/analysis-definitions/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_analysis_definition(str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/analysis-definitions/{id}/share</p></td>
+<td><p>POST</p></td>
+<td><p>post_share_analysis_definition(int, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/batch-definitions</p></td>
+<td><p>GET</p></td>
+<td><p>get_batch_definitions(str, int, int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/batch-definitions/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_batch_definition(str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/positions/{asOfDate}</p></td>
+<td><p>PATCH</p></td>
+<td><p>patch_portfolios_payload(str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/entities</p></td>
+<td><p>GET</p></td>
+<td><p>get_entity_links(str, int, int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/entities/{typeName1}/{typeName2}</p></td>
+<td><p>GET</p></td>
+<td><p>get_entities(str, str, str, int, int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>/entities/{typeName1}/{typeName2}/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_entity(int, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>DELETE</p></td>
+<td><p>delete_entity(int, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/market-data-sources</p></td>
+<td><p>GET</p></td>
+<td><p>get_market_data_sources(str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/market-data-sources/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_market_data_source(int, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/market-data-sources/{id}/instrument-attributes/{asOfDate}</p></td>
+<td><p>GET</p></td>
+<td><p>get_market_data_instrument_attributes_at_date(int, str, str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/market-data-sources/{id}/instrument-attributes</p></td>
+<td><p>PATCH</p></td>
+<td><p>patch_market_data_instrument_attributes(int, List, List, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/market-data-sources/{id}/instrument-scenarios</p></td>
+<td><p>GET</p></td>
+<td><p>get_market_data_instrument_scenarios_dates(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>/market-data-sources/{id}/instrument-scenarios/{asOfDate}</p></td>
+<td><p>GET</p></td>
+<td><p>get_market_data_instrument_scenarios_at_date(int, str, str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PATCH</p></td>
+<td><p>patch_market_data_instrument_scenarios_at_date(int, str, List, List, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/metadata/templates</p></td>
+<td><p>GET</p></td>
+<td><p>get_templates(dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/metadata/templates/{name}</p></td>
+<td><p>GET</p></td>
+<td><p>get_template(str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/metadata/templates/{name}/schema</p></td>
+<td><p>GET</p></td>
+<td><p>get_template_schema(str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="2"><p>/portfolio-groups</p></td>
+<td><p>GET</p></td>
+<td><p>get_portfolio_groups(str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>POST</p></td>
+<td><p>post_portfolio_group(dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p>/portfolio-groups/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_portfolio_group(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>PUT</p></td>
+<td><p>put_portfolio_group(int, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DELETE</p></td>
+<td><p>delete_portfolio_group(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/portfolio-groups/{id}/portfolios</p></td>
+<td><p>PATCH</p></td>
+<td><p>patch_portfolio_groups(int, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p>/portfolios</p></td>
+<td><p>GET</p></td>
+<td><p>get_portfolios(str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>POST</p></td>
+<td><p>post_portfolio(dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PATCH</p></td>
+<td><p>patch_portfolios(List, List, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p>/portfolios/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_portfolio(int, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PUT</p></td>
+<td><p>put_portfolio(int, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>DELETE</p></td>
+<td><p>delete_portfolio(int, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/portfolios/{id}/positions</p></td>
+<td><p>GET</p></td>
+<td><p>get_position_dates(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="4"><p>/portfolios/{id}/positions/{asOfDate}</p></td>
+<td><p>GET</p></td>
+<td><p>get_positions_at_date(int, str, str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DELETE</p></td>
+<td><p>delete_positions(int, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>POST</p></td>
+<td><p>post_position(int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PATCH</p></td>
+<td><p>patch_positions(int, str, List, List, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/portfolios/{id}/positions/{asOfDate}/rollover-requests</p></td>
+<td><p>POST</p></td>
+<td><p>rollover_request(int, str, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p>/portfolios/{id}/benchmark</p></td>
+<td><p>GET</p></td>
+<td><p>get_portfolio_benchmark(str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>PUT</p></td>
+<td><p>put_portfolio_benchmark(int, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DELETE</p></td>
+<td><p>delete_portfolio_benchmark(int, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p>/portfolios/{id}/valuations</p></td>
+<td><p>GET</p></td>
+<td><p>get_valuation_dates(int, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PATCH</p></td>
+<td><p>patch_valuations(int, str, List, List, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="4"><p>/portfolios/{id}/valuations/{asOfDate}</p></td>
+<td><p>GET</p></td>
+<td><p>get_valuation_at_date(int, str, str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>DELETE</p></td>
+<td><p>delete_valuation(int, str, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>POST</p></td>
+<td><p>post_valuation(int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PUT</p></td>
+<td><p>put_valuation(int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/risk-model-definitions</p></td>
+<td><p>GET</p></td>
+<td><p>get_risk_model_definitions(str, int, int, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/risk-model-definitions/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_risk_model_definition(str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/templates</p></td>
+<td><p>GET</p></td>
+<td><p>get_templates(str, int, int, str, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>/templates/{typeName1}</p></td>
+<td><p>GET</p></td>
+<td><p>get_templates_by_type(str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>/templates/{typeName1}/{typeName2}</p></td>
+<td><p>GET</p></td>
+<td><p>get_templates_by_type2(str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p>/templates/{typeName1}/{typeName2}/{templateName}</p></td>
+<td><p>GET</p></td>
+<td><p>get_entities(str, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>POST</p></td>
+<td><p>post_entity(dict, str, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PATCH</p></td>
+<td><p>patch_entities(str, List, List, str, str, dict, dict, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td rowspan="3"><p>/templates/{typeName1}/{typeName2}/{templateName}/{id}</p></td>
+<td><p>GET</p></td>
+<td><p>get_entity(int, str, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-odd"><td><p>PUT</p></td>
+<td><p>put_entity(dict, int, str, str, str, dict, bool)</p></td>
+</tr>
+<tr class="row-even"><td><p>DELETE</p></td>
+<td><p>delete_entity(int, str, str, str, dict, bool)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="odatafilterhelpers.html" class="btn btn-neutral float-left" title="oDataFilterHelpers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 Qontigo GmbH.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
