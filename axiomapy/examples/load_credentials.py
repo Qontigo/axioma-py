@@ -21,7 +21,7 @@ print(f"Current working directory: {Path.cwd()}")
 credentials_path = Path(__file__).parent.joinpath("credentials", "credentials.json")
 print(f"Looking for credentials.json at: {credentials_path}")
 
-required = set(("username", "client_id", "password"))
+required = set(("username", "password"))
 
 users = {}
 if Path(credentials_path).is_file():

@@ -70,7 +70,7 @@ def request_aggregation(data, portfolio_id, timelimit=500, polling_freq=5):
         status = AnalysesAPI.get_analyses_status(requestId)
         stat = status.json()["status"]
         print(stat)
-        if stat.lower() in [
+        if stat.title() in [
             enums.FinishedStatuses.Completed,
             enums.FinishedStatuses.Failed,
         ]:
