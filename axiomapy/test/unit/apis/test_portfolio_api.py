@@ -28,12 +28,12 @@ import httpx
 class TestPortfolioAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
-        AxiomaSession.use_session("client_id", "u_name", "pwd", "http://test")
+        AxiomaSession.use_session(username="u_name", password="pwd",
+                                  domain="http://test")
         self.domain = "http://test/REST"
 
     @patch.object(httpx.Client, "build_request")
     def test_get_portfolio(self, mock_Request):
-
         p_id = 1234
         mock_response = Mock(spec=Response)
         mock_response.json.return_value = {
@@ -49,7 +49,8 @@ class TestPortfolioAPIMocker(unittest.TestCase):
                 "identifiers": [{"type": "PortfolioId", "value": "4567"}],
                 "name": "Benchmark portfolio",
             },
-            "attributes": {"CurrencyRisk": "Regular", "OriginalCurrency": "USD"},
+            "attributes": {"CurrencyRisk": "Regular",
+                           "OriginalCurrency": "USD"},
             "createdDate": "2018-12-31T23:59:59",
             "lastUpdatedDate": "2019-01-02T03:04:05",
             "lastUpdatedBy": "bob",
@@ -91,11 +92,10 @@ class TestPortfolioAPIMocker(unittest.TestCase):
         mock_Request.return_value = Request("GET", "http://mock_url")
 
         with patch.object(
-            AxiomaSession.current._session,
-            "send",
-            return_value=Request(method="GET", url=self.domain),
+                AxiomaSession.current._session,
+                "send",
+                return_value=Request(method="GET", url=self.domain),
         ) as mock_session_send:
-
             mock_session_send.return_value = mock_response
 
             ptf = PortfoliosAPI.get_portfolio(1234)
@@ -107,6 +107,74 @@ class TestPortfolioAPIMocker(unittest.TestCase):
             self.assertEqual(ptf.response.status_code, 200)
             self.assertEqual(url, "http://test/REST/api/v1/portfolios/1234")
 
+    @patch.object(PortfoliosAPI, "get_portfolios")
+    def test_get_portfolios(self, get_portfolios_mock):
+        sample_response = {
+            "items": [
+                {
+                    "id": 123312,
+                    "name": "Test_portfolio_SH1",
+                    "description": "Test_portfolio_SH1",
+                    "defaultDataPartition": "AxiomaUS",
+                    "riskDataSource": "Default",
+                    "latestPositionDate": "2020-01-03",
+                }
+            ],
+            "count": 1,
+            "total": 1,
+            "_links": {
+                "self": {
+                    "href": "/api/v1/portfolios?$filter=contains(name, 'Test_portfolio_SH1')"
+                },
+                "item": {"href": "/api/v1/portfolios/{id}", "templated": True},
+                "benchmark": {
+                    "href": "/api/v1/portfolios/{id}/benchmark",
+                    "templated": True,
+                },
+                "positions": {
+                    "href": "/api/v1/portfolios/{id}/positions",
+                    "templated": True,
+                    "title": "List the dates for which the Portfolio has Positions",
+                },
+                "positions:latest": {
+                    "href": "/api/v1/portfolios/{id}/positions/{latestPositionDate}",
+                    "templated": True,
+                    "title": "The latest Positions for the Portfolio",
+                },
+                "valuations": {
+                    "href": "/api/v1/portfolios/{id}/valuations",
+                    "templated": True,
+                },
+                "analysis:aggregation": {
+                    "href": "/api/v1/analyses/risk/portfolios/{id}",
+                    "templated": True,
+                    "method": "POST",
+                    "title": "Portfolio-level Aggregation (single portfolio)",
+                },
+                "analysis:performance": {
+                    "href": "/api/v1/analyses/performance/portfolios/{id}",
+                    "templated": True,
+                    "method": "POST",
+                    "title": "Portfolio-level Performance Analysis (single portfolio)",
+                },
+                "analysis:precompute-analytics": {
+                    "href": "/api/v1/analyses/performance/portfolios/{id}/precompute-analytics",
+                    "templated": True,
+                    "method": "POST",
+                    "title": "Portfolio-level Performance Analysis (single portfolio precompute-analytics)",
+                },
+            },
+        }
+
+        get_portfolios_mock.return_value = sample_response
+
+        ptfs = PortfoliosAPI.get_portfolios(
+            filter_results="name eq Test_portfolio_SH1")
+
+        get_portfolios_mock.assert_called_with(
+            filter_results="name eq Test_portfolio_SH1")
+
+        self.assertEqual(ptfs, sample_response)
 
 
 if __name__ == "__main__":

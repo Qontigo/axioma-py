@@ -26,7 +26,7 @@ from configparser import ConfigParser
 from enum import unique
 from pathlib import Path
 from typing import Optional
-
+import posixpath
 import backoff
 import httpx
 
@@ -523,7 +523,7 @@ class AxiomaSession(BaseContext):
             full_url = full_url[1:] if full_url.startswith("/") else full_url
             if not full_url.startswith(f"api/{self.api_version}"):
                 full_url = f"api/{self.api_version}/{full_url}"
-            full_url = f"{self.domain}{self.api_type}/{full_url}" if self.api_type != "" else f"{self.domain}{full_url}" 
+            full_url = posixpath.join(self.domain, self.api_type, full_url)
         return full_url, kwargs
 
     def _prepare_response(
