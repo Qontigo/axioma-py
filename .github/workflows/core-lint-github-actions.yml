@@ -11,8 +11,7 @@ on:
     paths:
       - '.github/**/*.y*ml'
       - '.github/**/*.sh'
-  workflow_dispatch:
-  
+
 jobs:
   run:
     name: .github linting
