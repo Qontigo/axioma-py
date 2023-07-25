@@ -374,6 +374,82 @@ class PortfoliosAPI:
         return response
 
     @staticmethod
+    def get_portfolio_position(
+        portfolio_id: int,
+        as_of_date: str,
+        position_id: int,
+        return_response: bool = False,
+    ):
+        """The method is used to get a position in portfolio on a given date
+
+        Args:
+            portfolio_id:The id of the portfolio
+            as_of_date:The date for which position needs to be created
+            position_id:The position of the portfolio that needs to be fetched
+            return_response:If set to true, the response will be returned
+
+        Returns:
+            Position as per the id. Code 201.
+        """
+        url = f"/portfolios/{portfolio_id}/positions/{as_of_date}/{position_id}"
+        _logger.info(f"Get from {url}")
+        response = AxiomaSession.current._get(
+            url, return_response=return_response
+        )
+        return response
+    @staticmethod
+    def put_portfolio_position(
+        portfolio_id: int,
+        as_of_date: str,
+        position_id: int,
+        position: dict,
+        return_response: bool = False,
+    ):
+        """The method replaces the portfolio position for the given date
+
+        Args:
+            portfolio_id: The id of the portfolio
+            as_of_date: The date for which position needs to be updated
+            position_id: The id of the position
+            position: Updated position for the portfolio
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the position is updated. Code 204
+        """
+        url = f"/portfolios/{portfolio_id}/positions/{as_of_date}/{position_id}"
+        _logger.info(f"Put request at {url}")
+        response = AxiomaSession.current._put(
+            url, position, return_response=return_response
+        )
+        return response
+
+    @staticmethod
+    def delete_portfolio_position(
+            portfolio_id: int,
+            as_of_date: str,
+            position_id: int,
+            return_response: bool = False,
+    ):
+        """The method is used to delete a position in portfolio on a given date
+
+        Args:
+            portfolio_id: The id of the portfolio
+            as_of_date: The date for which position needs to be created
+            position_id: The position of the portfolio that needs to be deleted
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if position is deleted as per the id. Code 204.
+        """
+        url = f"/portfolios/{portfolio_id}/positions/{as_of_date}/{position_id}"
+        _logger.info(f"Delete from {url}")
+        response = AxiomaSession.current._delete(
+            url, return_response=return_response
+        )
+        return response
+
+    @staticmethod
     def get_valuation_dates(
         portfolio_id: int, return_response: bool = False,
     ):
