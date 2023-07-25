@@ -397,6 +397,7 @@ class PortfoliosAPI:
             url, return_response=return_response
         )
         return response
+
     @staticmethod
     def put_portfolio_position(
         portfolio_id: int,
