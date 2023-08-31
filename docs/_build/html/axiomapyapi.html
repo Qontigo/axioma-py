@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AxiomaAPI Package &mdash; axiomapy 0+untagged.88.g24c18b8.dirty documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>AxiomaAPI Package &mdash; axiomapy 0+untagged.95.g2b193e6.dirty documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -492,6 +492,64 @@
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>Success message when the benchmark is removed. Code 204</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="axiomapy.axiomaapi.PortfoliosAPI.get_portfolio_position">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">get_portfolio_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_of_date</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/axiomapy/axiomaapi/portfolios.html#PortfoliosAPI.get_portfolio_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#axiomapy.axiomaapi.PortfoliosAPI.get_portfolio_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method is used to get a position in portfolio on a given date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>portfolio_id</strong> – The id of the portfolio</p></li>
+<li><p><strong>as_of_date</strong> – The date for which position needs to be created</p></li>
+<li><p><strong>position_id</strong> – The position of the portfolio that needs to be fetched</p></li>
+<li><p><strong>return_response</strong> – If set to true, the response will be returned</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Position as per the id. Code 201.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="axiomapy.axiomaapi.PortfoliosAPI.put_portfolio_position">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">put_portfolio_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_of_date</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/axiomapy/axiomaapi/portfolios.html#PortfoliosAPI.put_portfolio_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#axiomapy.axiomaapi.PortfoliosAPI.put_portfolio_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method replaces the portfolio position for the given date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>portfolio_id</strong> – The id of the portfolio</p></li>
+<li><p><strong>as_of_date</strong> – The date for which position needs to be updated</p></li>
+<li><p><strong>position_id</strong> – The id of the position</p></li>
+<li><p><strong>position</strong> – Updated position for the portfolio</p></li>
+<li><p><strong>return_response</strong> – If set to true, the response will be returned</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Success message if the position is updated. Code 204</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="axiomapy.axiomaapi.PortfoliosAPI.delete_portfolio_position">
+<em class="property"><span class="pre">static</span> </em><code class="sig-name descname"><span class="pre">delete_portfolio_position</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">portfolio_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_of_date</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_id</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_response</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/axiomapy/axiomaapi/portfolios.html#PortfoliosAPI.delete_portfolio_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#axiomapy.axiomaapi.PortfoliosAPI.delete_portfolio_position" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method is used to delete a position in portfolio on a given date</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>portfolio_id</strong> – The id of the portfolio</p></li>
+<li><p><strong>as_of_date</strong> – The date for which position needs to be created</p></li>
+<li><p><strong>position_id</strong> – The position of the portfolio that needs to be deleted</p></li>
+<li><p><strong>return_response</strong> – If set to true, the response will be returned</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Success message if position is deleted as per the id. Code 204.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -28,7 +28,7 @@ import httpx
 class TestEntitiesAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
-        AxiomaSession.use_session("client_id", "u_name", "pwd", "http://test")
+        AxiomaSession.use_session(username="u_name", password="pwd", domain="http://test")
         self.domain = "http://test/REST"
 
     @patch.object(httpx.Client, "build_request")
