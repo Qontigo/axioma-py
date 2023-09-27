@@ -38,7 +38,6 @@ from axiomapy.axiomaexceptions import (
     AxiomaRequestValidationError,
 )
 
-# from requests.sessions import Request
 from axiomapy.context import BaseContext
 from axiomapy.entitybase import EnumBase
 
@@ -240,19 +239,6 @@ def get_event_hooks(event_hooks: dict, async_fns: bool = False):
     }
     return hooks
 
-
-def backoff_predicate(response: httpx.Response) -> bool:
-    """Condition for retry/backoff when making request
-
-    Args:
-        response (httpx.Response): [description]
-
-    Returns:
-        bool: [description]
-    """
-    return response.status_code == 500 and "/analyses/" in str(response.request.url)
-
-
 class AxiomaSession(BaseContext):
     """Session manager. Allows creation of a session, assignment of a session, and
     manages sessions through contexts. Wraps an httpx Client to manage aspects
@@ -275,6 +261,8 @@ class AxiomaSession(BaseContext):
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
+        max_retries: int = 0,
+        request_timeout: int = 300
     ):
         self.name = application_name
         self.event_hooks = event_hooks
@@ -285,6 +273,9 @@ class AxiomaSession(BaseContext):
         self._session = None
         self.proxy = proxy
         self.certificates = certificates
+        self.max_retries = max_retries
+        self.timeout = request_timeout
+
 
     @classmethod
     def get_session(
@@ -299,6 +290,8 @@ class AxiomaSession(BaseContext):
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
+        max_retries: int = 0,
+        request_timeout: int = 300
     ) -> "AxiomaSession":
         """Gets an uninitialised session - you must call init() before this session
         can be used
@@ -341,6 +334,8 @@ class AxiomaSession(BaseContext):
             application_name,
             api_version,
             event_hooks,
+            max_retries,
+            request_timeout
         )
 
     def init(self) -> None:
@@ -369,6 +364,8 @@ class AxiomaSession(BaseContext):
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
+        max_retries: int = 0,
+        request_timeout: int = 300
     ) -> None:
         """Gets a session, initializes it and uses as the current session ready to
         use sdk.
@@ -389,6 +386,8 @@ class AxiomaSession(BaseContext):
             event_hooks {dict}: An optional set of methods to set as event_hooks on
                             the httpx.Client. If none is passed a HttpxLogging hooks
                             instance is created and used to use no hooks pass {}
+            max_retries (int) : Number of times to retry if request fails
+            request_timeout (int) : Number of seconds till request is timed out
         """
 
         session = cls.get_session(
@@ -402,6 +401,8 @@ class AxiomaSession(BaseContext):
             application_name=application_name,
             api_version=api_version,
             event_hooks=event_hooks,
+            max_retries=max_retries,
+            request_timeout=request_timeout
         )
         session.init()
         cls.current = session
@@ -610,18 +611,23 @@ class AxiomaSession(BaseContext):
         )
         return self._authenticate()
 
-    @backoff.on_predicate(
-        wait_gen=backoff.expo,
-        predicate=backoff_predicate,
-        jitter=backoff.full_jitter,
-        max_tries=2,
-        logger=_logger,
-        max_time=60,
-    )
-    def __send_request(self, req, stream):
-        response = self._session.send(request=req, stream=stream)
-        return response
+    def retry_request(__make_request):
+        def inner_function(*args, **kwargs):
+            counter = 0
+            while counter <= AxiomaSession.current.max_retries:
+                response = __make_request(*args, **kwargs)
+                if (response.status_code == 500 and
+                        "/analyses/" not in args[2] and
+                        AxiomaSession.current.api_type != "BULK"):
+                    counter = counter + 1
+                    _logger.info(f"Will Retry request if {counter} <= {AxiomaSession.current.max_retries} as specified by user")
+                else:
+                    return response
+            return response
 
+        return inner_function
+
+    @retry_request
     def __make_request(
         self,
         method: HttpMethods,
@@ -632,7 +638,7 @@ class AxiomaSession(BaseContext):
         stream: bool = False,
         cls: type = None,
         try_auth: bool = True,
-        return_response: bool = False,
+        return_response: bool = False
     ):
         """
         Wraps the requests method to log the request and log the response
@@ -658,7 +664,6 @@ class AxiomaSession(BaseContext):
         try:
             req = self._session.build_request(method=method.value, url=url, **kwargs)
             response = self._session.send(request=req, stream=stream)
-            # response = self.__send_request(req, stream)
         except httpx.RequestError as e:
             _logger.error(f"Sending the request raised a request error: {e}")
             raise AxiomaRequestError(http_request_error=e) from e
@@ -796,6 +801,8 @@ class SimpleAuthSession(AxiomaSession):
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
+        max_retries: int = 0,
+        request_timeout: int = 300
     ):
         super().__init__(
             domain=domain,
@@ -812,12 +819,13 @@ class SimpleAuthSession(AxiomaSession):
         self.auth_url = f"{self.domain}{env_config['AUTH_PATH']}"
         self.grant_type = env_config["GRANT_TYPE"]
         self.auth_timeout = int(env_config["AUTH_TIMEOUT"])
-        self.timeout = int(env_config["TIMEOUT"])
+        self.timeout = request_timeout
         self.__client_id = client_id
         self.username = username
         self.password = password
         self.proxy = proxy
         self.certificates = certificates
+        self.max_retries = max_retries
 
     def _authenticate(self):
         credentials = {
@@ -833,10 +841,6 @@ class SimpleAuthSession(AxiomaSession):
         proxy = self.proxy
         certificates = self.certificates
         _logger.info("Preparing to authenticate:")
-
-        # drop prepared request workflow with httpx
-        # req = httpx.Request("POST", self.auth_url, data=credentials, headers=headers)
-        # response = self._session.send(req, timeout=self.auth_timeout)
 
         with httpx.Client(proxies=proxy, verify=certificates) as client:
             response = client.post(self.auth_url, data=credentials, headers=headers)
