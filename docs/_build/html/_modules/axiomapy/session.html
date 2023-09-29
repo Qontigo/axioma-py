@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>axiomapy.session &mdash; axiomapy 0+untagged.95.g2b193e6.dirty documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>axiomapy.session &mdash; axiomapy 0+untagged.101.gf5ca91a.dirty documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -125,7 +125,6 @@
     <span class="n">AxiomaRequestValidationError</span><span class="p">,</span>
 <span class="p">)</span>
 
-<span class="c1"># from requests.sessions import Request</span>
 <span class="kn">from</span> <span class="nn">axiomapy.context</span> <span class="kn">import</span> <span class="n">BaseContext</span>
 <span class="kn">from</span> <span class="nn">axiomapy.entitybase</span> <span class="kn">import</span> <span class="n">EnumBase</span>
 
@@ -327,19 +326,6 @@
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">hooks</span>
 
-
-<span class="k">def</span> <span class="nf">backoff_predicate</span><span class="p">(</span><span class="n">response</span><span class="p">:</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Response</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Condition for retry/backoff when making request</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        response (httpx.Response): [description]</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        bool: [description]</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">500</span> <span class="ow">and</span> <span class="s2">&quot;/analyses/&quot;</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
-
-
 <div class="viewcode-block" id="AxiomaSession"><a class="viewcode-back" href="../../sessions.html#axiomapy.AxiomaSession">[docs]</a><span class="k">class</span> <span class="nc">AxiomaSession</span><span class="p">(</span><span class="n">BaseContext</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Session manager. Allows creation of a session, assignment of a session, and</span>
 <span class="sd">    manages sessions through contexts. Wraps an httpx Client to manage aspects</span>
@@ -362,6 +348,8 @@
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
         <span class="n">event_hooks</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">request_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">application_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">event_hooks</span> <span class="o">=</span> <span class="n">event_hooks</span>
@@ -372,6 +360,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_session</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="n">proxy</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span> <span class="o">=</span> <span class="n">certificates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">request_timeout</span>
+
 
 <div class="viewcode-block" id="AxiomaSession.get_session"><a class="viewcode-back" href="../../sessions.html#axiomapy.AxiomaSession.get_session">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">get_session</span><span class="p">(</span>
@@ -386,6 +377,8 @@
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
         <span class="n">event_hooks</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">request_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;AxiomaSession&quot;</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets an uninitialised session - you must call init() before this session</span>
 <span class="sd">        can be used</span>
@@ -398,6 +391,8 @@
 <span class="sd">                            [domain][api_type][api_version][resources] or [domain][api_type]/connect/token</span>
 <span class="sd">            api_type (str): The type of API (default is REST)</span>
 <span class="sd">            proxy (dict|str): The proxy for the request (if required)</span>
+<span class="sd">            max_retries (int) : Number of times to retry if request fails</span>
+<span class="sd">            request_timeout (int) : Number of seconds till request is timed out</span>
 
 <span class="sd">        Keyword Arguments:</span>
 <span class="sd">            application_name (str): Optional label for this session</span>
@@ -428,6 +423,8 @@
             <span class="n">application_name</span><span class="p">,</span>
             <span class="n">api_version</span><span class="p">,</span>
             <span class="n">event_hooks</span><span class="p">,</span>
+            <span class="n">max_retries</span><span class="p">,</span>
+            <span class="n">request_timeout</span>
         <span class="p">)</span></div>
 
 <div class="viewcode-block" id="AxiomaSession.init"><a class="viewcode-back" href="../../sessions.html#axiomapy.AxiomaSession.init">[docs]</a>    <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -456,6 +453,8 @@
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
         <span class="n">event_hooks</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">request_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Gets a session, initializes it and uses as the current session ready to</span>
 <span class="sd">        use sdk.</span>
@@ -468,6 +467,8 @@
 <span class="sd">            domain (str): The domain of the api resources given an api url is</span>
 <span class="sd">            [domain][api_version][resources] or [domain]/connect/token.</span>
 <span class="sd">            proxy (dict|str): The proxy for the request (if required).</span>
+<span class="sd">            max_retries (int) : Number of times to retry if request fails</span>
+<span class="sd">            request_timeout (int) : Number of seconds till request is timed out</span>
 <span class="sd">        Keyword Arguments:</span>
 <span class="sd">            application_name (str): Optional label for this session.</span>
 <span class="sd">                        (default: {DEFAULT_APP})</span>
@@ -489,6 +490,8 @@
             <span class="n">application_name</span><span class="o">=</span><span class="n">application_name</span><span class="p">,</span>
             <span class="n">api_version</span><span class="o">=</span><span class="n">api_version</span><span class="p">,</span>
             <span class="n">event_hooks</span><span class="o">=</span><span class="n">event_hooks</span><span class="p">,</span>
+            <span class="n">max_retries</span><span class="o">=</span><span class="n">max_retries</span><span class="p">,</span>
+            <span class="n">request_timeout</span><span class="o">=</span><span class="n">request_timeout</span>
         <span class="p">)</span>
         <span class="n">session</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">session</span></div>
@@ -697,18 +700,23 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_authenticate</span><span class="p">()</span>
 
-    <span class="nd">@backoff</span><span class="o">.</span><span class="n">on_predicate</span><span class="p">(</span>
-        <span class="n">wait_gen</span><span class="o">=</span><span class="n">backoff</span><span class="o">.</span><span class="n">expo</span><span class="p">,</span>
-        <span class="n">predicate</span><span class="o">=</span><span class="n">backoff_predicate</span><span class="p">,</span>
-        <span class="n">jitter</span><span class="o">=</span><span class="n">backoff</span><span class="o">.</span><span class="n">full_jitter</span><span class="p">,</span>
-        <span class="n">max_tries</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
-        <span class="n">logger</span><span class="o">=</span><span class="n">_logger</span><span class="p">,</span>
-        <span class="n">max_time</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">__send_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">req</span><span class="p">,</span> <span class="n">stream</span><span class="p">):</span>
-        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">req</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">response</span>
+<div class="viewcode-block" id="AxiomaSession.retry_request"><a class="viewcode-back" href="../../sessions.html#axiomapy.AxiomaSession.retry_request">[docs]</a>    <span class="k">def</span> <span class="nf">retry_request</span><span class="p">(</span><span class="n">__make_request</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">inner_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+            <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span> <span class="n">counter</span> <span class="o">&lt;=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">max_retries</span><span class="p">:</span>
+                <span class="n">response</span> <span class="o">=</span> <span class="n">__make_request</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">500</span> <span class="ow">and</span>
+                        <span class="s2">&quot;/analyses/&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">and</span>
+                        <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">api_type</span> <span class="o">!=</span> <span class="s2">&quot;BULK&quot;</span><span class="p">):</span>
+                    <span class="n">counter</span> <span class="o">=</span> <span class="n">counter</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Will Retry request if </span><span class="si">{</span><span class="n">counter</span><span class="si">}</span><span class="s2"> &lt;= </span><span class="si">{</span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">max_retries</span><span class="si">}</span><span class="s2"> as specified by user&quot;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="n">response</span>
+            <span class="k">return</span> <span class="n">response</span>
 
+        <span class="k">return</span> <span class="n">inner_function</span></div>
+
+    <span class="nd">@retry_request</span>
     <span class="k">def</span> <span class="nf">__make_request</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">method</span><span class="p">:</span> <span class="n">HttpMethods</span><span class="p">,</span>
@@ -719,7 +727,7 @@
         <span class="n">stream</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="bp">cls</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">try_auth</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wraps the requests method to log the request and log the response</span>
@@ -745,7 +753,6 @@
         <span class="k">try</span><span class="p">:</span>
             <span class="n">req</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">build_request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_session</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="n">request</span><span class="o">=</span><span class="n">req</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="n">stream</span><span class="p">)</span>
-            <span class="c1"># response = self.__send_request(req, stream)</span>
         <span class="k">except</span> <span class="n">httpx</span><span class="o">.</span><span class="n">RequestError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sending the request raised a request error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">AxiomaRequestError</span><span class="p">(</span><span class="n">http_request_error</span><span class="o">=</span><span class="n">e</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
@@ -883,6 +890,8 @@
         <span class="n">application_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_APP</span><span class="p">,</span>
         <span class="n">api_version</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">API_VERSION</span><span class="p">,</span>
         <span class="n">event_hooks</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">max_retries</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+        <span class="n">request_timeout</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">300</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">domain</span><span class="o">=</span><span class="n">domain</span><span class="p">,</span>
@@ -899,12 +908,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">auth_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">domain</span><span class="si">}{</span><span class="n">env_config</span><span class="p">[</span><span class="s1">&#39;AUTH_PATH&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grant_type</span> <span class="o">=</span> <span class="n">env_config</span><span class="p">[</span><span class="s2">&quot;GRANT_TYPE&quot;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">auth_timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">env_config</span><span class="p">[</span><span class="s2">&quot;AUTH_TIMEOUT&quot;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">env_config</span><span class="p">[</span><span class="s2">&quot;TIMEOUT&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">request_timeout</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__client_id</span> <span class="o">=</span> <span class="n">client_id</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="n">username</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="n">password</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span> <span class="o">=</span> <span class="n">proxy</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span> <span class="o">=</span> <span class="n">certificates</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_retries</span> <span class="o">=</span> <span class="n">max_retries</span>
 
     <span class="k">def</span> <span class="nf">_authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">credentials</span> <span class="o">=</span> <span class="p">{</span>
@@ -920,10 +930,6 @@
         <span class="n">proxy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">proxy</span>
         <span class="n">certificates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">certificates</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Preparing to authenticate:&quot;</span><span class="p">)</span>
-
-        <span class="c1"># drop prepared request workflow with httpx</span>
-        <span class="c1"># req = httpx.Request(&quot;POST&quot;, self.auth_url, data=credentials, headers=headers)</span>
-        <span class="c1"># response = self._session.send(req, timeout=self.auth_timeout)</span>
 
         <span class="k">with</span> <span class="n">httpx</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">proxies</span><span class="o">=</span><span class="n">proxy</span><span class="p">,</span> <span class="n">verify</span><span class="o">=</span><span class="n">certificates</span><span class="p">)</span> <span class="k">as</span> <span class="n">client</span><span class="p">:</span>
             <span class="n">response</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">auth_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">credentials</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
