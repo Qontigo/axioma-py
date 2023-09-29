@@ -304,6 +304,8 @@ class AxiomaSession(BaseContext):
                             [domain][api_type][api_version][resources] or [domain][api_type]/connect/token
             api_type (str): The type of API (default is REST)
             proxy (dict|str): The proxy for the request (if required)
+            max_retries (int) : Number of times to retry if request fails
+            request_timeout (int) : Number of seconds till request is timed out
 
         Keyword Arguments:
             application_name (str): Optional label for this session
@@ -378,6 +380,8 @@ class AxiomaSession(BaseContext):
             domain (str): The domain of the api resources given an api url is
             [domain][api_version][resources] or [domain]/connect/token.
             proxy (dict|str): The proxy for the request (if required).
+            max_retries (int) : Number of times to retry if request fails
+            request_timeout (int) : Number of seconds till request is timed out
         Keyword Arguments:
             application_name (str): Optional label for this session.
                         (default: {DEFAULT_APP})
@@ -386,8 +390,6 @@ class AxiomaSession(BaseContext):
             event_hooks {dict}: An optional set of methods to set as event_hooks on
                             the httpx.Client. If none is passed a HttpxLogging hooks
                             instance is created and used to use no hooks pass {}
-            max_retries (int) : Number of times to retry if request fails
-            request_timeout (int) : Number of seconds till request is timed out
         """
 
         session = cls.get_session(
