@@ -40,12 +40,13 @@ setuptools.setup(
     python_requires=">=3.6",
     install_requires=[
         "pandas",
-        "httpx==0.16.*",
+        "httpx>=0.16.0",
         "typing;python_version<'3.7'",
         "typing-inspect",
         "inflection",
         "contextvars;python_version<'3.7'",
         "backoff",
+        "requests"
     ],
     extras_require={
         "notebook": ["jupyter"],
@@ -71,7 +72,7 @@ setuptools.setup(
             "flake8",
             "black",
             "sphinx_toolbox",
-            "enum_tools",
+            "enum_tools"
         ],
     },
 )
