@@ -15,8 +15,6 @@ under the License.
 
 """
 import logging
-from typing import List
-
 from axiomapy.session import AxiomaSession
 from axiomapy.utils import odata_params
 

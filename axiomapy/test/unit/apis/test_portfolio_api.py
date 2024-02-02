@@ -79,14 +79,11 @@ class TestPortfolioAPIMocker(unittest.TestCase):
             },
         }
         mock_response.status_code = 200
-        mock_response.text = "Mock Text"
-        mock_response.content = "Mock Content"
         mock_response.headers = {}
         mock_request = Mock(spec=Request)
         mock_request.url = "http://mock_url"
-        mock_request.method = "Mock method"
+        mock_request.method = "GET"
         mock_request.headers = {}
-        mock_response.elapsed = Mock(return_value=0)
         mock_response.request = mock_request
 
         mock_Request.return_value = Request("GET", "http://mock_url")
