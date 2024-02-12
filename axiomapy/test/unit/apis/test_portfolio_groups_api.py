@@ -28,19 +28,19 @@ from axiomapy.axiomaexceptions import AxiomaRequestValidationError
 class TestPortfolioGroupsAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
-        AxiomaSession.use_session(username="u_name", password="pwd", domain="http://test")
-        self.domain = "http://test/REST"
+        AxiomaSession.use_session(username="u_name", password="pwd", domain="https://test")
+        self.domain = "https://test/REST"
 
     @patch.object(httpx.Client, "build_request")
     def test_get_portfolio_groups(self, mock_Request):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -55,7 +55,7 @@ class TestPortfolioGroupsAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(pg_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/portfolio-groups")
+            self.assertEqual(url, "https://test/REST/api/v1/portfolio-groups")
 
     @patch.object(httpx.Client, "build_request")
     def test_get_portfolio_group(self, mock_Request):
@@ -63,11 +63,11 @@ class TestPortfolioGroupsAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -82,7 +82,7 @@ class TestPortfolioGroupsAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(pg_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/portfolio-groups/123")
+            self.assertEqual(url, "https://test/REST/api/v1/portfolio-groups/123")
 
     @patch.object(httpx.Client, "build_request")
     def test_put_portfolio_groups(self, mock_Request):
@@ -92,11 +92,11 @@ class TestPortfolioGroupsAPIMocker(unittest.TestCase):
         mock_response.status_code = 422
         mock_response.headers = {}
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "PUT"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("PUT", "http://mock_url")
+        mock_Request.return_value = Request("PUT", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -116,11 +116,11 @@ class TestPortfolioGroupsAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 204
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "DELETE"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("DELETE", "http://mock_url")
+        mock_Request.return_value = Request("DELETE", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -135,7 +135,7 @@ class TestPortfolioGroupsAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="DELETE", url=url, headers=ANY)
             self.assertEqual(pg_response.response.status_code, 204)
-            self.assertEqual(url, "http://test/REST/api/v1/portfolio-groups/123")
+            self.assertEqual(url, "https://test/REST/api/v1/portfolio-groups/123")
 
 
 if __name__ == "__main__":

@@ -27,8 +27,8 @@ import httpx
 class TestBulkAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
-        AxiomaSession.use_session(username="u_name", password="pwd", domain="http://test", api_type="BULK")
-        self.domain = "http://test/BULK"
+        AxiomaSession.use_session(username="u_name", password="pwd", domain="https://test", api_type="BULK")
+        self.domain = "https://test/BULK"
 
     @patch.object(httpx.Client, "build_request")
     def test_patch_portfolios(self, mock_Request):
@@ -91,11 +91,11 @@ class TestBulkAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "PATCH"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("PATCH", "http://mock_url")
+        mock_Request.return_value = Request("PATCH", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -110,7 +110,7 @@ class TestBulkAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="PATCH", url=url, headers=ANY, json=payload)
             self.assertEqual(bulk_response.status_code, 200)
-            self.assertEqual(url, "http://test/BULK/api/v1/positions/2023-01-13")
+            self.assertEqual(url, "https://test/BULK/api/v1/positions/2023-01-13")
 
 
 if __name__ == "__main__":

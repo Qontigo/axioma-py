@@ -27,19 +27,19 @@ import httpx
 class TestBatchDefinitionsAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
-        AxiomaSession.use_session(username="u_name", password="pwd", domain="http://test")
-        self.domain = "http://test/REST"
+        AxiomaSession.use_session(username="u_name", password="pwd", domain="https://test")
+        self.domain = "https://test/REST"
 
     @patch.object(httpx.Client, "build_request")
     def test_get_batch_definitions(self, mock_Request):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -54,7 +54,7 @@ class TestBatchDefinitionsAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(batch_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/batch-definitions")
+            self.assertEqual(url, "https://test/REST/api/v1/batch-definitions")
 
     @patch.object(httpx.Client, "build_request")
     def test_get_batch_definition(self, mock_Request):
@@ -62,11 +62,11 @@ class TestBatchDefinitionsAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -81,7 +81,7 @@ class TestBatchDefinitionsAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(batch_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/batch-definitions/123")
+            self.assertEqual(url, "https://test/REST/api/v1/batch-definitions/123")
 
 
 if __name__ == "__main__":

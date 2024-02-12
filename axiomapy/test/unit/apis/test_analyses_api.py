@@ -30,8 +30,8 @@ class TestAnalysesAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
         AxiomaSession.use_session(username="u_name", password="pwd",
-                                  domain="http://test")
-        self.domain = "http://test/REST"
+                                  domain="https://test")
+        self.domain = "https://test/REST"
 
     @patch.object(httpx.Client, "build_request")
     def test_post_performance_analyses(self, mock_Request):
@@ -61,12 +61,12 @@ class TestAnalysesAPIMocker(unittest.TestCase):
         mock_response.status_code = 202
         mock_response.headers = {}
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "POST"
         mock_request.headers = {}
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("POST", "http://mock_url")
+        mock_Request.return_value = Request("POST", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -82,7 +82,7 @@ class TestAnalysesAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="POST", url=url, headers=ANY, json=pa_dict)
             self.assertEqual(pa_response.response.status_code, 202)
-            self.assertEqual(url, "http://test/REST/api/v1/analyses/performance/portfolios/1234")
+            self.assertEqual(url, "https://test/REST/api/v1/analyses/performance/portfolios/1234")
             self.assertIsInstance(pa_dict, dict)
 
     @patch.object(httpx.Client, "build_request")
@@ -93,11 +93,11 @@ class TestAnalysesAPIMocker(unittest.TestCase):
         mock_response.status_code = 422
         mock_response.headers = {}
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "POST"
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("POST", "http://mock_url")
+        mock_Request.return_value = Request("POST", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -117,7 +117,7 @@ class TestAnalysesAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
         mock_response.json.return_value = {
@@ -139,7 +139,7 @@ class TestAnalysesAPIMocker(unittest.TestCase):
             }
         }
 
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -154,7 +154,7 @@ class TestAnalysesAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(status_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/analyses/performance/112/status")
+            self.assertEqual(url, "https://test/REST/api/v1/analyses/performance/112/status")
             self.assertIn(status_response.response.json.return_value['status'],
                           ["Unknown", "Created", "Submitted", "Running", "Completed", "Failed", "PostProcessingFailed"])
 
@@ -164,10 +164,10 @@ class TestAnalysesAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -182,7 +182,7 @@ class TestAnalysesAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY, params=ANY)
             self.assertEqual(status_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/analyses/risk/portfolios/112/request")
+            self.assertEqual(url, "https://test/REST/api/v1/analyses/risk/portfolios/112/request")
 
     @patch.object(httpx.Client, "build_request")
     def test_get_analyses(self, mock_Request):
@@ -190,10 +190,10 @@ class TestAnalysesAPIMocker(unittest.TestCase):
         mock_response = Mock(spec=Response)
         mock_response.status_code = 200
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
+        mock_request.url = "https://mock_url"
         mock_request.method = "GET"
         mock_response.request = mock_request
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
         mock_response.json.return_value = {
             "tableSchema": {
                 "columns": [
@@ -258,7 +258,7 @@ class TestAnalysesAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(status_response.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/analyses/112")
+            self.assertEqual(url, "https://test/REST/api/v1/analyses/112")
             self.assertIsInstance(status_response.response.json.return_value, dict)
 
 
