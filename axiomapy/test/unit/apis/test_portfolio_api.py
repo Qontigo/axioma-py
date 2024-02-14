@@ -29,8 +29,8 @@ class TestPortfolioAPIMocker(unittest.TestCase):
     @patch.object(SimpleAuthSession, "_authenticate", return_value=True)
     def setUp(self, mock_SimpleAuthSession):
         AxiomaSession.use_session(username="u_name", password="pwd",
-                                  domain="http://test")
-        self.domain = "http://test/REST"
+                                  domain="https://test")
+        self.domain = "https://test/REST"
 
     @patch.object(httpx.Client, "build_request")
     def test_get_portfolio(self, mock_Request):
@@ -79,17 +79,14 @@ class TestPortfolioAPIMocker(unittest.TestCase):
             },
         }
         mock_response.status_code = 200
-        mock_response.text = "Mock Text"
-        mock_response.content = "Mock Content"
         mock_response.headers = {}
         mock_request = Mock(spec=Request)
-        mock_request.url = "http://mock_url"
-        mock_request.method = "Mock method"
+        mock_request.url = "https://mock_url"
+        mock_request.method = "GET"
         mock_request.headers = {}
-        mock_response.elapsed = Mock(return_value=0)
         mock_response.request = mock_request
 
-        mock_Request.return_value = Request("GET", "http://mock_url")
+        mock_Request.return_value = Request("GET", "https://mock_url")
 
         with patch.object(
                 AxiomaSession.current._session,
@@ -105,7 +102,7 @@ class TestPortfolioAPIMocker(unittest.TestCase):
 
             mock_Request.assert_called_with(method="GET", url=url, headers=ANY)
             self.assertEqual(ptf.response.status_code, 200)
-            self.assertEqual(url, "http://test/REST/api/v1/portfolios/1234")
+            self.assertEqual(url, "https://test/REST/api/v1/portfolios/1234")
 
     @patch.object(PortfoliosAPI, "get_portfolios")
     def test_get_portfolios(self, get_portfolios_mock):

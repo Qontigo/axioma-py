@@ -80,6 +80,6 @@ class RiskModelDefinitionsAPI:
         url = f"/risk-model-definitions/{risk_model_definition_id}"
         _logger.info(f"Getting from {url}")
         response = AxiomaSession.current._get(
-            url, return_response=return_response
+            url, headers=headers, return_response=return_response
         )
         return response
