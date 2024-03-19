@@ -907,7 +907,7 @@ class AnalysesPerformanceAPI():
             request_id: Request id for the analysis request
             headers: Optional headers, if any required (Correlation ID , Accept-Encoding)
             return_response: If set to true, the response will be returned
-            report_frequency: Frequency of the report
+            report_frequency: Frequency of the report, Available values : Default, Daily, Monthly
 
         Returns:
             Summary Time Series Report in json
