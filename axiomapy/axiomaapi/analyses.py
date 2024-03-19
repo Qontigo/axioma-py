@@ -870,3 +870,87 @@ class AnalysesPerformanceAPI():
             return_response=return_response,
         )
         return response
+
+    @staticmethod
+    def get_brinson_asset_returns(
+        request_id: int,
+        headers: dict = None,
+        return_response: bool = False,
+    ):
+        """This method returns Brinson Asset Returns report from the attribution analysis with the given request id
+
+        Args:
+            request_id: Request id for the analysis request
+            headers: Optional headers, if any required (Correlation ID , Accept-Encoding)
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Brinson Asset Returns in json or csv format
+        """
+        url = f"/analyses/performance/{request_id}/results/brinson-asset-returns"
+        _logger.info(f"Getting from {url}")
+        response = AxiomaSession.current._get(
+            url, headers=headers, return_response=return_response,
+        )
+        return response
+
+    @staticmethod
+    def get_summary_time_series(
+            request_id: int,
+            headers: dict = None,
+            return_response: bool = False,
+            report_frequency: str = "Default"
+    ):
+        """This method returns Summary Time Series report from the attribution analysis with the given request id
+
+        Args:
+            request_id: Request id for the analysis request
+            headers: Optional headers, if any required (Correlation ID , Accept-Encoding)
+            return_response: If set to true, the response will be returned
+            report_frequency: Frequency of the report, Available values : Default, Daily, Monthly
+
+        Returns:
+            Summary Time Series Report in json
+        """
+        url = f"/analyses/performance/{request_id}/results/summary-time-series?reportFrequency={report_frequency}"
+        _logger.info(f"Getting from {url}")
+        response = AxiomaSession.current._get(
+            url, headers=headers, return_response=return_response,
+        )
+        return response
+
+    @staticmethod
+    def get_asset_details_time_series(
+            request_id: int,
+            headers: dict = None,
+            return_response: bool = False,
+            security_name:str = None,
+            security_code:str = None,
+            request_date:str = None
+    ):
+        """This method returns Asset Details Time Series report from the attribution analysis with the given request id. At least one of the following filters must be provided: securityName, securityCode, or date.
+
+        Args:
+            request_id: Request id for the analysis request
+            headers: Optional headers, if any required (Correlation ID , Accept-Encoding)
+            return_response: If set to true, the response will be returned
+            security_name: Retrieves results for specific security name
+            security_code: Retrieves results for specific security code
+            request_date: Retrieves results for specific date (yyyy-MM-dd)
+
+        Returns:
+            Summary Time Series Report in json
+        """
+        filter_string=""
+        if security_code is not None:
+            filter_string=f"{filter_string}securityCode={security_code}&"
+        if security_name is not None:
+            filter_string = f"{filter_string}securityName={security_name}&"
+        if request_date is not None:
+            filter_string = f"{filter_string}date={request_date}&"
+        url = f"/analyses/performance/{request_id}/results/asset-details-time-series?{filter_string}"[:-1]
+        _logger.info(f"Getting from {url}")
+        response = AxiomaSession.current._get(
+            url, headers=headers, return_response=return_response,
+        )
+        return response
