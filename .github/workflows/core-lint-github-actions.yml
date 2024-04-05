@@ -6,6 +6,8 @@
 # * Shell scripts *.sh) for either of the above
 
 name: Lint Github Actions and Workflows
+run-name: "${{ github.event_name == 'pull_request' && format('pull/{0} => {1} - {2}', github.event.pull_request.number, github.event.pull_request.base.ref, github.event.pull_request.title) || format('{0} - {1}', github.ref_name, github.event.head_commit.message) }}"
+
 on:
   pull_request:
     paths:
