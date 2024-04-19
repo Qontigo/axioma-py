@@ -844,7 +844,7 @@ class SimpleAuthSession(AxiomaSession):
         certificates = self.certificates
         _logger.info("Preparing to authenticate:")
 
-        with httpx.Client(proxies=proxy, verify=certificates) as client:
+        with httpx.Client(proxies=proxy, verify=certificates, timeout=self.timeout) as client:
             response = client.post(self.auth_url, data=credentials, headers=headers)
 
         _logger.info(f"Sending authentication request to {self.auth_url}")
