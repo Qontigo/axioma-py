@@ -65,8 +65,8 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
       return 2
     fi
 
-    log_info "sonarqube_response_code: ${sonarqube_response_code}"
-    log_info "sonarqube_response_body: ${sonarqube_response_body}"
+    log_debug "sonarqube_response_code: ${sonarqube_response_code}"
+    log_debug "sonarqube_response_body: ${sonarqube_response_body}"
 
     # Check if curl command was successful
     if [[ "${sonarqube_response_code}" == "000" || (${curl_exit_code} -ne 0 && ${curl_exit_code} -ne 22) ]]; then
