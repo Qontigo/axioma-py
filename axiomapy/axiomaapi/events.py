@@ -25,10 +25,7 @@ _logger.addHandler(logging.NullHandler())
 
 class EventsAPI:
     """Access to events endpoints using the active session
-
-        Returns:
-            [type]: [description]
-        """
+    """
 
     @staticmethod
     def get_events(return_response: bool = True):
