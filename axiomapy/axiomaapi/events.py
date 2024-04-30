@@ -44,6 +44,7 @@ class EventsAPI:
         )
         return response
 
+    @staticmethod
     def get_all_market_data(filter_results: str = None,
                             top: int = None,
                             skip: int = None,
@@ -70,6 +71,7 @@ class EventsAPI:
         )
         return response
 
+    @staticmethod
     def get_market_data(market_data_id: str,
                         return_response: bool = True):
         """
