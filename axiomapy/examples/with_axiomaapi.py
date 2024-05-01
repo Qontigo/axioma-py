@@ -38,7 +38,7 @@ from axiomapy.axiomaapi import (
     PortfoliosAPI,
     AnalysesPerformanceAPI,
     AnalysesRiskAPI,
-    EventsAPI
+    ClientEventBusAPI
 )
 
 # Some other imports
@@ -194,9 +194,9 @@ for name in z.namelist():
     
 ## Accessing Events Endpoints
 
-#The users can access the endpoints of Axioma Events Bus API using axioma-py. Below is an example to get a collection of market data events using the API
+#The users can access the endpoints of Axioma Event Bus API using axioma-py. Below is an example to get a collection of market data events using the API
 
-#Create a session with API_Type CEB
+#Create a session to access Client Event Bus endpoints
 
 AxiomaSession.use_session(
     username=user1['username'],
@@ -205,5 +205,5 @@ AxiomaSession.use_session(
     api_type=APIType.CEB
 )
 
-market_data = EventsAPI.get_all_market_data()
+market_data = ClientEventBusAPI.get_all_market_data()
 pprint(market_data.json())
