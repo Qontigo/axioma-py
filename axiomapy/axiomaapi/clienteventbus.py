@@ -23,8 +23,8 @@ _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
 
 
-class EventsAPI:
-    """Access to events endpoints using the active session
+class ClientEventBusAPI:
+    """Access to Axioma Client Event Bus endpoints using the active session
     """
 
     @staticmethod

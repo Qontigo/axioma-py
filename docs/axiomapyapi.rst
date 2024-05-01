@@ -67,9 +67,9 @@ BulkAPI
 .. autoclass:: axiomapy.axiomaapi.BulkAPI
 	:members:
 
-EventsAPI
+ClientEventBusAPI
 ------------------------
-.. autoclass:: axiomapy.axiomaapi.EventsAPI
+.. autoclass:: axiomapy.axiomaapi.ClientEventBusAPI
 	:members:
 
 Enumerations

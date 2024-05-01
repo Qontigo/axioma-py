@@ -34,7 +34,7 @@ from .portfoliogroups import PortfolioGroupsAPI
 from .portfolios import PortfoliosAPI
 from .riskmodeldefinitions import RiskModelDefinitionsAPI
 from .templates import TemplatesAPI
-from .events import EventsAPI
+from .clienteventbus import ClientEventBusAPI
 
 __all__ = [
     "AnalysisDefinitionAPI",
@@ -60,5 +60,5 @@ __all__ = [
     "AnalysesPerformanceAPI",
     "RiskModelDefinitionsAPI",
     "BulkAPI",
-    "EventsAPI"
+    "ClientEventBusAPI"
 ]
