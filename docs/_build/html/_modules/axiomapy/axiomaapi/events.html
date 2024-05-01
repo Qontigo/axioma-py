@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>axiomapy.axiomaapi.batchdefinitions &mdash; axiomapy 0+untagged.132.g24ff735.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>axiomapy.axiomaapi.events &mdash; axiomapy 0+untagged.129.gba368d4.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -75,7 +75,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
-      <li class="breadcrumb-item active">axiomapy.axiomaapi.batchdefinitions</li>
+      <li class="breadcrumb-item active">axiomapy.axiomaapi.events</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -84,7 +84,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <h1>Source code for axiomapy.axiomaapi.batchdefinitions</h1><div class="highlight"><pre>
+  <h1>Source code for axiomapy.axiomaapi.events</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Copyright © 2022 Qontigo GmbH.</span>
 <span class="sd">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
@@ -101,6 +101,7 @@
 <span class="sd">under the License.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
+
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
 <span class="kn">from</span> <span class="nn">axiomapy.utils</span> <span class="kn">import</span> <span class="n">odata_params</span>
@@ -109,64 +110,71 @@
 <span class="n">_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">())</span>
 
 
-<div class="viewcode-block" id="BatchDefinitionsAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BatchDefinitionsAPI">[docs]</a><span class="k">class</span> <span class="nc">BatchDefinitionsAPI</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Access api methods of batch definitions using the active session</span>
-
+<div class="viewcode-block" id="EventsAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.EventsAPI">[docs]</a><span class="k">class</span> <span class="nc">EventsAPI</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Access to events endpoints using the active session</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BatchDefinitionsAPI.get_batch_definitions"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BatchDefinitionsAPI.get_batch_definitions">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_batch_definitions</span><span class="p">(</span>
-        <span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method lists the batch definitions</span>
+<div class="viewcode-block" id="EventsAPI.get_events"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.EventsAPI.get_events">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_events</span><span class="p">(</span><span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The method is to get links to event resources</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter_results: user can apply filter to the list</span>
-<span class="sd">            top: returns top N number of elements</span>
-<span class="sd">            skip: skips first N elements</span>
-<span class="sd">            orderby: sorts in particular order</span>
-<span class="sd">            headers: Optional headers if any needed (Correlation ID , Accept-Encoding)</span>
-<span class="sd">            return_response: If set to true, the response will be returned</span>
+<span class="sd">            return_response: If set to true, the response will be returned.</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Collection of batch definitions</span>
+<span class="sd">            Collection of links. Status code 200</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/batch-definitions&quot;</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/events&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Get to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
-            <span class="n">url</span><span class="p">,</span>
-            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
-            <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">,</span>
-            <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="BatchDefinitionsAPI.get_batch_definition"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BatchDefinitionsAPI.get_batch_definition">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_batch_definition</span><span class="p">(</span>
-        <span class="n">batch_definition_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-        <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This method returns a single batch definition based on id</span>
+<div class="viewcode-block" id="EventsAPI.get_all_market_data"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.EventsAPI.get_all_market_data">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_all_market_data</span><span class="p">(</span><span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is used to fetch a collection of market data events</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            batch_definition_id: d for batch definition</span>
-<span class="sd">            headers: Optional headers if any needed</span>
+<span class="sd">            filter_results:user can apply filters to the list</span>
+<span class="sd">            top:returns top N number of elements</span>
+<span class="sd">            skip:skips first N elements</span>
+<span class="sd">            orderby:sorts in particular order</span>
 <span class="sd">            return_response: If set to true, the response will be returned</span>
 
 <span class="sd">        Returns:</span>
-<span class="sd">            Single batch definition</span>
+<span class="sd">            list of market data events</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/batch-definitions/</span><span class="si">{</span><span class="n">batch_definition_id</span><span class="si">}</span><span class="s2">&quot;</span>
-        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Getting from </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/events/market-data&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Get to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
-            <span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">response</span></div>
+
+<div class="viewcode-block" id="EventsAPI.get_market_data"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.EventsAPI.get_market_data">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_market_data</span><span class="p">(</span><span class="n">market_data_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                        <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This function is used to fetch a market data event</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            market_data_id: id of the market data event</span>
+<span class="sd">            return_response: If set to true, the response will be returned</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Market data event as per the event id</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/events/market-data/</span><span class="si">{</span><span class="n">market_data_id</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Get to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">response</span></div></div>
 </pre></div>
