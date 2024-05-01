@@ -192,9 +192,9 @@ for name in z.namelist():
     z.extract(name)
     
     
-## Accessing Events Endpoints
+## Accessing CEB Endpoints
 
-#The users can access the endpoints of Axioma Event Bus API using axioma-py. Below is an example to get a collection of market data events using the API
+#The users can access the endpoints of Axioma Client Event Bus API using axioma-py. Below is an example to get a collection of market data events using the API
 
 #Create a session to access Client Event Bus endpoints
 
