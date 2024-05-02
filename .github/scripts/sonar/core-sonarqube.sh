@@ -62,7 +62,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     sonarqube_response_body=$(echo "${response}" | head -n 1)
     if [[ ${curl_exit_code} -ne 0 ]]; then
       log_error "${sonarqube_response_body}"
-      return 2
+      exit 2
     fi
 
     log_debug "sonarqube_response_code: ${sonarqube_response_code}"
@@ -81,17 +81,17 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
       component_key=$(echo "${sonarqube_response_body}" | grep -oP "Component key '\\K[^']+")
       if [[ "${component_key}" == "${project_key}" ]]; then
         log_debug "SonarQube: Project key '${project_key}' does not exist in '${server_url}'"
-        exit 1
+        return 1
       else
         log_error "Failed to extract the component key '${project_key}' from the response from GET ${server_url}: ${sonarqube_response_code} - ${sonarqube_response_body}" true
-        exit 2
+        return 2
       fi
     elif [[ ${sonarqube_response_code} -ne 200 ]]; then
       log_error "Failed checking for the component key from the response from GET ${server_url}: ${sonarqube_response_code} - ${sonarqube_response_body}" true
-      exit 2
+      return 2
     fi
 
-    exit 0
+    return 0
   }
 
   # Given a settings JSON response from Sonar and a settings key, return the values from that key
