@@ -76,8 +76,18 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   }
 
   # Gets the name of the branch whether we are in a pull request or in a branch
+  # Inputs:
+  # - Optionally provide a branch name/github ref; otherwise detect from the environment variables
+  # Example Usage:
+  # branch="$(get_branch_name)"
+  # branch="$(get_branch_name "refs/heads/feature/JIRA-123")"
   get_branch_name() {
-    echo "${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
+    local ref="$1"
+    if [[ "" == "${ref}" ]]; then
+      echo "${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
+    else
+      echo "${ref#refs/heads/}"
+    fi
   }
 
 fi
