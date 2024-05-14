@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>axiomapy.axiomaapi.clienteventbus &mdash; axiomapy 0+untagged.132.g24ff735.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>axiomapy.axiomaapi.clienteventbus &mdash; axiomapy 0+untagged.135.g3bc18c3.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -105,6 +105,7 @@
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
 <span class="kn">from</span> <span class="nn">axiomapy.utils</span> <span class="kn">import</span> <span class="n">odata_params</span>
+<span class="kn">from</span> <span class="nn">axiomapy.odatahelpers</span> <span class="kn">import</span> <span class="n">oDataFilterHelper</span> <span class="k">as</span> <span class="n">od</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">())</span>
@@ -132,7 +133,9 @@
         <span class="k">return</span> <span class="n">response</span></div>
 
 <div class="viewcode-block" id="ClientEventBusAPI.get_all_market_data"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.ClientEventBusAPI.get_all_market_data">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">get_all_market_data</span><span class="p">(</span><span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">get_all_market_data</span><span class="p">(</span><span class="n">date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                            <span class="n">sort_order</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;desc&#39;</span><span class="p">,</span>
+                            <span class="n">filter_results</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                             <span class="n">top</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                             <span class="n">skip</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
                             <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -141,18 +144,28 @@
 <span class="sd">        This function is used to fetch a collection of market data events</span>
 
 <span class="sd">        Args:</span>
-<span class="sd">            filter_results:user can apply filters to the list</span>
-<span class="sd">            top:returns top N number of elements</span>
-<span class="sd">            skip:skips first N elements</span>
-<span class="sd">            orderby:sorts in particular order</span>
+<span class="sd">            date: market data only after this date would be fetched</span>
+<span class="sd">            sort_order: sorts the data as per eventTime and sort_order param, can be asc or desc</span>
+<span class="sd">            filter_results: user can apply additional filters to the data list</span>
+<span class="sd">            top: returns top N number of elements</span>
+<span class="sd">            skip: skips first N elements</span>
+<span class="sd">            orderby: sorts in particular order</span>
 <span class="sd">            return_response: If set to true, the response will be returned</span>
 
 <span class="sd">        Returns:</span>
 <span class="sd">            list of market data events</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;/events/market-data&quot;</span>
+        <span class="n">filter_query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;eventTime gt </span><span class="si">{</span><span class="n">date</span><span class="si">}</span><span class="s2">T00:00:00.0000z&quot;</span>
+        <span class="k">if</span> <span class="n">filter_results</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">filter_query</span><span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filter_query</span><span class="si">}</span><span class="s2">&amp;</span><span class="si">{</span><span class="n">filter_results</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">orderby</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">order_param</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;eventTime </span><span class="si">{</span><span class="n">sort_order</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">orderby</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">order_param</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;eventTime </span><span class="si">{</span><span class="n">sort_order</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/events/market-data?$filter=</span><span class="si">{</span><span class="n">filter_query</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Get to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">filter_results</span><span class="p">,</span> <span class="n">top</span><span class="p">,</span> <span class="n">skip</span><span class="p">,</span> <span class="n">orderby</span><span class="p">)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="n">odata_params</span><span class="p">(</span><span class="n">o_top</span><span class="o">=</span><span class="n">top</span><span class="p">,</span> <span class="n">o_skip</span><span class="o">=</span><span class="n">skip</span><span class="p">,</span> <span class="n">o_orderby</span><span class="o">=</span><span class="n">order_param</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_get</span><span class="p">(</span>
             <span class="n">url</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
