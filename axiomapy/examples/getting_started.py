@@ -389,7 +389,7 @@ AxiomaSession.current.close()
 
 ## Logging in for Bulk or CEB Session
 
-#In order to create a session for bulk flows, the user needs to pass BULK in the api type.
+#In order to create a session for Bulk flows, the user needs to pass BULK in the api type.
 AxiomaSession.use_session(
     username=user1['username'],
     password=user1['password'],

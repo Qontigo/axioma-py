@@ -18,6 +18,7 @@ under the License.
 import logging
 from axiomapy.session import AxiomaSession
 from axiomapy.utils import odata_params
+from axiomapy.odatahelpers import oDataFilterHelper as od
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
@@ -45,7 +46,9 @@ class ClientEventBusAPI:
         return response
 
     @staticmethod
-    def get_all_market_data(filter_results: str = None,
+    def get_all_market_data(date: str,
+                            sort_order: str = 'desc',
+                            filter_results: str = None,
                             top: int = None,
                             skip: int = None,
                             orderby: str = None,
@@ -54,18 +57,28 @@ class ClientEventBusAPI:
         This function is used to fetch a collection of market data events
 
         Args:
-            filter_results:user can apply filters to the list
-            top:returns top N number of elements
-            skip:skips first N elements
-            orderby:sorts in particular order
+            date: market data only after this date would be fetched
+            sort_order: sorts the data as per eventTime and sort_order param, can be asc or desc
+            filter_results: user can apply additional filters to the data list
+            top: returns top N number of elements
+            skip: skips first N elements
+            orderby: sorts in particular order
             return_response: If set to true, the response will be returned
 
         Returns:
             list of market data events
         """
-        url = "/events/market-data"
+        filter_query = f"eventTime gt {date}T00:00:00.0000z"
+        if filter_results is not None:
+            filter_query= f"{filter_query}&{filter_results}"
+        if orderby is not None:
+            order_param = f"eventTime {sort_order}, {orderby}"
+        else:
+            order_param = f"eventTime {sort_order}"
+
+        url = f"/events/market-data?$filter={filter_query}"
         _logger.info(f"Get to {url}")
-        params = odata_params(filter_results, top, skip, orderby)
+        params = odata_params(o_top=top, o_skip=skip, o_orderby=order_param)
         response = AxiomaSession.current._get(
             url, params=params, return_response=return_response
         )
