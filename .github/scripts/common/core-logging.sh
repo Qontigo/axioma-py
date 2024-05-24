@@ -35,6 +35,22 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
     fi
   }
 
+  # Logs a message to debug
+  log_debug() {
+    __log "::debug::" "" "${1}"
+  }
+
+  # Logs a message (usually a variable assignment) to GITHUB_ENV if running in an action, otherwise just logs it at debug level
+  # Inputs:
+  # - The message to log
+  #
+  log_env() {
+    log_debug "$*"
+    if [[ -n "${GITHUB_ACTIONS}" ]]; then
+      echo "$*" >> "${GITHUB_ENV}"
+    fi
+  }
+
   # Logs a message (usually a variable assignment) to GITHUB_OUTPUT if running in an action, otherwise just logs it at debug level
   # Inputs:
   # - The message to log
@@ -44,11 +60,6 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
     if [[ -n "${GITHUB_ACTIONS}" ]]; then
       echo "$*" >> "${GITHUB_OUTPUT}"
     fi
-  }
-
-  # Logs a message to debug
-  log_debug() {
-    __log "::debug::" "" "${1}"
   }
 
   # Logs a message

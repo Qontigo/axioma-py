@@ -30,4 +30,40 @@ if [[ -z "${JAVA_INCLUDED}" ]]; then
     echo "${version}"
   }
 
+  # Get the version number from the POM file
+  # Output:
+  # The version from the POM file if successful
+  # Note:
+  # Required maven to be installed, on the path, and this function to be called from the root build folder
+  #
+  # Returns:
+  # - 0 if successful
+  # - 1 if the pom.xml file cannot be found in the current folder
+  # - 2 if maven is not installed
+  # - 3 if fetching the version from the POM file failed
+  #
+  # Example Usage:
+  # pom_version="$(get_pom_version)"
+  #
+  get_pom_version() {
+    local pom_version=""
+
+    if [[ ! -f "pom.xml" ]]; then
+        log_error "pom.xml does not exist in the current folder."
+        return 1
+    fi
+
+    if ! command -v mvn -v &> /dev/null; then
+      log_error "Maven is not installed or is not found in the path"
+      return 2
+    fi
+
+    if pom_version="$(mvn -q -Dexec.executable=echo -Dexec.args="\${project.version}" --non-recursive exec:exec)"; then
+      echo "${pom_version//-SNAPSHOT/}" # if the version is <major>.<minor>-SNAPSHOT then we only want <major>.<minor>
+    else
+      log_error "Failed to fetch the POM version: ${pom_version}"
+      return 3
+    fi
+  }
+
 fi
