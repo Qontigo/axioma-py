@@ -154,12 +154,12 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     wait_for_results=$([ "${do_not_wait_for_results}" == "true" ] && echo "false" || echo "true")
 
     local builder=("begin"
-        "/k:\"${project_key}\""
-        "/d:sonar.token=\"${token}\""
-        "/d:sonar.host.url=\"${server_url}\""
-        "/d:sonar.qualitygate.wait=${wait_for_results}"
-        "/d:sonar.buildString=\"${build_string}\""
-        "/v:\"${version}\""
+        "-k:\"${project_key}\""
+        "-d:sonar.token=\"${token}\""
+        "-d:sonar.host.url=\"${server_url}\""
+        "-d:sonar.qualitygate.wait=${wait_for_results}"
+        "-d:sonar.buildString=\"${build_string}\""
+        "-v:\"${version}\""
     )
     echo "${builder[@]}"
   }
@@ -195,7 +195,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
           csv="${inclusion}"
         fi
       done
-      __builder+=("/d:sonar.inclusions=\"${csv}\"")
+      __builder+=("-d:sonar.inclusions=\"${csv}\"")
     fi
   }
 
@@ -220,7 +220,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     log_debug "with_dotnet_test_path ${test_path}"
 
     if [[ "${test_path}" != "" ]]; then
-      __builder+=("/d:sonar.cs.vstest.reportsPaths=\"${test_path}\"")
+      __builder+=("-d:sonar.cs.vstest.reportsPaths=\"${test_path}\"")
     fi
   }
 
@@ -244,7 +244,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     log_debug "with_dotnet_coverage_path ${coverage_path}"
 
     if [[ "${coverage_path}" != "" ]]; then
-      __builder+=("/d:sonar.cs.dotcover.reportsPaths=\"${coverage_path}\"")
+      __builder+=("-d:sonar.cs.dotcover.reportsPaths=\"${coverage_path}\"")
     fi
   }
 
@@ -291,13 +291,13 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
         exit 1
       fi
 
-      __builder+=("/d:sonar.pullrequest.base=\"${base_ref}\"")
-      __builder+=("/d:sonar.pullrequest.branch=\"${head_ref}\"")
-      __builder+=("/d:sonar.pullrequest.key=\"${pr_number}\"")
+      __builder+=("-d:sonar.pullrequest.base=\"${base_ref}\"")
+      __builder+=("-d:sonar.pullrequest.branch=\"${head_ref}\"")
+      __builder+=("-d:sonar.pullrequest.key=\"${pr_number}\"")
     else
-      __builder+=("/d:sonar.links.scm=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_REF}\"")
-      __builder+=("/d:sonar.links.ci=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"")
-      __builder+=("/d:sonar.branch.name=\"${build_branch}\"")
+      __builder+=("-d:sonar.links.scm=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/tree/${GITHUB_REF}\"")
+      __builder+=("-d:sonar.links.ci=\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"")
+      __builder+=("-d:sonar.branch.name=\"${build_branch}\"")
       if [[ "${build_branch}" == feature/* ]]; then
           log_info "Scanning Branch: ${build_branch} w.r.t. ${default_branch} (SonarQube project default)"
       else
@@ -315,7 +315,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # - The builder to contain the results
   # - Optional name of a Sonar property config file to apply - defaults to .sonarconfig
   # Output:
-  # - The builder is populated with sonar properties read from the file in the form /d:key=value
+  # - The builder is populated with sonar properties read from the file in the form key=value
   #
   # Example usage:
   # builder=()
@@ -343,9 +343,9 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
 
       # The project name is special - we need to replace it in a different way.
       if [[ "${key,,}" == "sonar.projectname" ]]; then
-        local argument_key="/n:"
+        local argument_key="-n:"
       else
-        local argument_key="/d:${key}="
+        local argument_key="-d:${key}="
       fi
 
       # Check if the key already exists in the arguments array
@@ -382,8 +382,8 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
 
     log_debug "with_property_if_missing ${key} ${value}"
 
-    if ! [[ " ${__builder[*]} " == *" /d:${key}="* ]]; then
-      __builder+=("/d:${key}=\"${value}\"")
+    if ! [[ " ${__builder[*]} " == *" -d:${key}="* ]]; then
+      __builder+=("-d:${key}=\"${value}\"")
     else
       log_debug "${key} key already supplied, ignoring"
     fi
@@ -393,7 +393,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   with_verbose_logging() {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
-    __builder+=("/d:sonar.verbose=true")
+    __builder+=("-d:sonar.verbose=true")
   }
 
   # Returns the report location for a SonarQube report depending on if it is a PR or a branch analysis

@@ -10,6 +10,32 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
 
   __VERSION_PATTERN="([0-9]+)\.([0-9]+)\.([0-9]+)"
 
+  # Returns the major version number from the supplied version string or 1 if not found
+  # Inputs:
+  # - The version string
+  # Output:
+  # - The major version number
+  #
+  # Example usage
+  # major_info="$(get_major_version "1.0.0")
+  #
+  get_major_version() {
+    local version="$1"
+
+    [[ "${version}" =~ $__VERSION_PATTERN ]]
+    local major_version="${BASH_REMATCH[1]}"
+    if [[ -z "${major_version}" ]]; then
+      # Not a semver number but lets see if we can extract a major version from what we have anyway:
+      major_version=$(echo "${version}" | grep -o '^[0-9]*')
+    fi
+    if [[ -n "${major_version}" ]]; then
+      echo "${major_version}"
+    else
+      echo "Unable to extract major version from '${version}"
+      return 1
+    fi
+  }
+  
   # Compare two semantic versions to see if the next is greater than the previous version
   # Inputs:
   # - The previous version string
