@@ -35,7 +35,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
       return 1
     fi
   }
-  
+
   # Compare two semantic versions to see if the next is greater than the previous version
   # Inputs:
   # - The previous version string
@@ -44,7 +44,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # - Array of booleans to indicate major, minor, patch is greater respectively
   #
   # Example usage
-  # version_info=($(compare_versions "1.0.0" "1.0.1"))
+  # version_info=("$(compare_versions "1.0.0" "1.0.1")")
   # major_is_greater="${version_info[0]}"
   # minor_is_greater="${version_info[1]}"
   # patch_is_greater="${version_info[0]}"
