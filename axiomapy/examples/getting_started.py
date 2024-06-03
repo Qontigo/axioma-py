@@ -104,6 +104,7 @@ from axiomapy.axiomaapi import MetaDataAPI, TemplatesAPI, EntitiesAPI
 from axiomapy.odatahelpers import oDataFilterHelper as od
 from axiomapy.axiomaapi import enums
 from axiomapy import axiomaexceptions
+from axiomapy.session import APIType
 
 # ## Logging In
 # 
@@ -386,12 +387,21 @@ PortfoliosAPI.delete_portfolio(pId)
 AxiomaSession.current.close()
 
 
-## Logging in for Bulk Session
+## Logging in for Bulk or CEB Session
 
-#In order to create a session for bulk flows, the user needs to pass BULK in the api type.
+#In order to create a session for Bulk flows, the user needs to pass BULK in the api type.
 AxiomaSession.use_session(
     username=user1['username'],
     password=user1['password'],
     domain=user1['domain'],
     api_type="BULK"
 )
+
+#In order to create a session for CEB workflows, the user needs to pass CEB in the api type.
+AxiomaSession.use_session(
+    username=user1['username'],
+    password=user1['password'],
+    domain=user1['domain'],
+    api_type=APIType.CEB
+)
+

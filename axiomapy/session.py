@@ -46,8 +46,13 @@ _logger.addHandler(logging.NullHandler())
 
 
 API_VERSION = "v1"
-API_TYPE = "REST"
 DEFAULT_APP = "REST_API"
+
+@unique
+class APIType(EnumBase):
+    REST = "REST"
+    BULK = "BULK"
+    CEB = "CEB"
 
 
 @unique
@@ -257,7 +262,7 @@ class AxiomaSession(BaseContext):
         domain: str,
         proxy=None,
         certificates=None,
-        api_type: str = API_TYPE,
+        api_type: str = APIType.REST,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
@@ -286,7 +291,7 @@ class AxiomaSession(BaseContext):
         client_id: str = "5ABB5D0748DF4E8EA733606B9268C3E5",
         proxy=None,
         certificates=None,
-        api_type: str = API_TYPE,
+        api_type: str = APIType.REST,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
@@ -362,7 +367,7 @@ class AxiomaSession(BaseContext):
         client_id: str = "5ABB5D0748DF4E8EA733606B9268C3E5",
         proxy=None,
         certificates=None,
-        api_type: str = API_TYPE,
+        api_type: str = APIType.REST,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,
@@ -799,7 +804,7 @@ class SimpleAuthSession(AxiomaSession):
         domain: str,
         proxy=None,
         certificates=None,
-        api_type: str = API_TYPE,
+        api_type: str = APIType.REST,
         application_name: str = DEFAULT_APP,
         api_version: str = API_VERSION,
         event_hooks: dict = None,

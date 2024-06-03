@@ -37,7 +37,8 @@ from axiomapy import AxiomaSession, AxiomaResponse
 from axiomapy.axiomaapi import (
     PortfoliosAPI,
     AnalysesPerformanceAPI,
-    AnalysesRiskAPI
+    AnalysesRiskAPI,
+    ClientEventBusAPI
 )
 
 # Some other imports
@@ -47,11 +48,9 @@ from axiomapy.axiomaapi import (
 from pprint import pprint
 from datetime import datetime, timedelta
 import logging
+from axiomapy.session import APIType
 
 
-
-
-import logging
 
 logging.basicConfig(level=logging.INFO, 
                     format='%(asctime)s %(levelname)-8s %(message)s', 
@@ -191,3 +190,20 @@ from io import BytesIO
 z = zipfile.ZipFile(BytesIO(raw_results.content))
 for name in z.namelist():
     z.extract(name)
+    
+    
+## Accessing CEB Endpoints
+
+#The users can access the endpoints of Axioma Client Event Bus API using axioma-py. Below is an example to get a collection of market data events using the API
+
+#Create a session to access Client Event Bus endpoints
+
+AxiomaSession.use_session(
+    username=user1['username'],
+    password=user1['password'],
+    domain=user1['domain'],
+    api_type=APIType.CEB
+)
+
+market_data = ClientEventBusAPI.get_all_market_data()
+pprint(market_data.json())

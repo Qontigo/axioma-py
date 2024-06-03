@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.114.gbee286a.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Getting Started with axiomapy &mdash; axiomapy 0+untagged.135.g3bc18c3.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -468,6 +468,7 @@ you prefer to work with a list if the items.</p>
 <span class="kn">from</span> <span class="nn">axiomapy.odatahelpers</span> <span class="kn">import</span> <span class="n">oDataFilterHelper</span> <span class="k">as</span> <span class="n">od</span>
 <span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="n">enums</span>
 <span class="kn">from</span> <span class="nn">axiomapy</span> <span class="kn">import</span> <span class="n">axiomaexceptions</span>
+<span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">APIType</span>
 </pre></div>
 </div>
 </div>
@@ -627,7 +628,7 @@ you prefer to work with a list if the items.</p>
 <span class="n">position_dates</span> <span class="o">=</span> <span class="n">position_dates_resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
 
 <span class="c1"># the position dates returns a list of AsOfDates instances allows direct comparison with a date string or datetime</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The portfolio has positions on the date to load: </span><span class="si">{</span><span class="n">date_to_load_positions</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The portfolio has positions on the date to load: </span><span class="si">{</span><span class="n">date_to_load_positions</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="k">if</span> <span class="n">date_to_load_positions</span> <span class="ow">in</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s1">&#39;asOfDate&#39;</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">position_dates</span><span class="p">[</span><span class="s1">&#39;items&#39;</span><span class="p">]]:</span>
     <span class="n">PortfoliosAPI</span><span class="o">.</span><span class="n">delete_positions</span><span class="p">(</span><span class="n">portfolio_id</span><span class="o">=</span><span class="n">pId</span><span class="p">,</span> <span class="n">as_of_date</span><span class="o">=</span><span class="n">date_to_load_positions</span><span class="p">)</span>
@@ -841,6 +842,20 @@ you prefer to work with a list if the items.</p>
     <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
     <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
     <span class="n">api_type</span><span class="o">=</span><span class="s2">&quot;BULK&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>In order to create a session for CEB workflows, the user needs to pass CEB in the api type.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
+    <span class="n">api_type</span><span class="o">=</span><span class="n">APIType</span><span class="o">.</span><span class="n">CEB</span>
 <span class="p">)</span>
 </pre></div>
 </div>

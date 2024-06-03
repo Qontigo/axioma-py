@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AxiomaPy Direct Access &mdash; axiomapy 0+untagged.114.gbee286a.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>AxiomaPy Direct Access &mdash; axiomapy 0+untagged.135.g3bc18c3.dirty documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -56,6 +56,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#Get-a-list-of-portfolios">Get a list of portfolios</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Performance-Attribution-Request">Performance Attribution Request</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#Risk-Model-Service">Risk Model Service</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Accessing-CEB-Endpoints">Accessing CEB Endpoints</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="with_entitybase.html">Developer Base Class Guide</a></li>
@@ -402,7 +403,8 @@ div.rendered_html tbody tr:hover {
 <span class="kn">from</span> <span class="nn">axiomapy.axiomaapi</span> <span class="kn">import</span> <span class="p">(</span>
     <span class="n">PortfoliosAPI</span><span class="p">,</span>
     <span class="n">AnalysesPerformanceAPI</span><span class="p">,</span>
-    <span class="n">AnalysesRiskAPI</span>
+    <span class="n">AnalysesRiskAPI</span><span class="p">,</span>
+    <span class="n">ClientEventBusAPI</span>
 <span class="p">)</span>
 <br/></pre></div>
 </div>
@@ -415,6 +417,7 @@ div.rendered_html tbody tr:hover {
 <div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
 <span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">APIType</span>
 </pre></div>
 </div>
 </div>
@@ -422,9 +425,7 @@ div.rendered_html tbody tr:hover {
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
-<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
-
-<span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">,</span>
                     <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)-8s</span><span class="s1"> </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
                     <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M:%S&#39;</span><span class="p">)</span>
 </pre></div>
@@ -633,6 +634,33 @@ div.rendered_html tbody tr:hover {
 <span class="n">z</span> <span class="o">=</span> <span class="n">zipfile</span><span class="o">.</span><span class="n">ZipFile</span><span class="p">(</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">raw_results</span><span class="o">.</span><span class="n">content</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">z</span><span class="o">.</span><span class="n">namelist</span><span class="p">():</span>
     <span class="n">z</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Accessing-CEB-Endpoints">
+<h2>Accessing CEB Endpoints<a class="headerlink" href="#Accessing-CEB-Endpoints" title="Permalink to this headline">¶</a></h2>
+<p>The users can access the endpoints of Axioma Client Event Bus API using axioma-py. Below is an example to get a collection of market data events using the API</p>
+<p>Create a session to access Client Event Bus endpoints</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">AxiomaSession</span><span class="o">.</span><span class="n">use_session</span><span class="p">(</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span>
+    <span class="n">domain</span><span class="o">=</span><span class="n">user1</span><span class="p">[</span><span class="s1">&#39;domain&#39;</span><span class="p">],</span>
+    <span class="n">api_type</span><span class="o">=</span><span class="n">APIType</span><span class="o">.</span><span class="n">CEB</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">market_data</span> <span class="o">=</span> <span class="n">ClientEventBusAPI</span><span class="o">.</span><span class="n">get_all_market_data</span><span class="p">()</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">market_data</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
 </pre></div>
 </div>
 </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>axiomapy.axiomaapi.analysisdefinitions &mdash; axiomapy 0+untagged.114.gbee286a.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>axiomapy.axiomaapi.analysisdefinitions &mdash; axiomapy 0+untagged.135.g3bc18c3.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -111,7 +111,7 @@
 
 
 <div class="viewcode-block" id="AnalysisDefinitionAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.AnalysisDefinitionAPI">[docs]</a><span class="k">class</span> <span class="nc">AnalysisDefinitionAPI</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Access api methods of analysis-definitions using the active session</span>
+    <span class="sd">&quot;&quot;&quot;Access api methods of analysis-definitions using the active session</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -123,7 +123,7 @@
         <span class="n">orderby</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method lists all the analysis definitions</span>
+        <span class="sd">&quot;&quot;&quot;This method lists all the analysis definitions</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            filter_results:user can apply filter to the list</span>
@@ -148,7 +148,7 @@
         <span class="n">analysis_def_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method returns a single analysis definition based on id</span>
+        <span class="sd">&quot;&quot;&quot;This method returns a single analysis definition based on id</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            analysis_def_id:analysis definition id</span>
@@ -168,7 +168,7 @@
     <span class="k">def</span> <span class="nf">post_analysis_definition</span><span class="p">(</span>
         <span class="n">analysis_def</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method creates new analysis definitions</span>
+        <span class="sd">&quot;&quot;&quot;This method creates new analysis definitions</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            analysis_def:model to create a new analysis definition</span>
@@ -188,7 +188,7 @@
     <span class="k">def</span> <span class="nf">post_share_analysis_definition</span><span class="p">(</span>
         <span class="n">analysis_def_id</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">share_def</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;This method shares a view with a specific team</span>
+        <span class="sd">&quot;&quot;&quot;This method shares a view with a specific team</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            analysis_def_id:id of analysis definition to share</span>

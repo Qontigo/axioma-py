@@ -67,6 +67,10 @@ BulkAPI
 .. autoclass:: axiomapy.axiomaapi.BulkAPI
 	:members:
 
+ClientEventBusAPI
+------------------------
+.. autoclass:: axiomapy.axiomaapi.ClientEventBusAPI
+	:members:
 
 Enumerations
 ------------------------
@@ -75,7 +79,7 @@ AggregateOption
 ___________________
 .. autoclass:: axiomapy.axiomaapi.enums.AggregateOption
 	:members:
-	
+
 ComputeOption
 ___________________
 .. autoclass:: axiomapy.axiomaapi.enums.ComputeOption
@@ -105,5 +109,3 @@ Status
 ___________________
 .. autoclass:: axiomapy.axiomaapi.enums.Status
 	:members:
-
-    
