@@ -70,7 +70,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
     local -n __builder="$1"
     local language="$2"
     local test_paths="$3"
-    local supported_languages=("generic" "go" "java" "python")
+    local supported_languages=("generic" "go" "java" "javascript" "python" "typescript")
 
     if ! (validate_mandatory_parameter "builder" "${1}"); then
       exit 1
