@@ -76,7 +76,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
       exit 1
     fi
     if ! (validate_parameter_value false "${language}" "${supported_languages[@]}"); then
-      log_error "Invalid language type '${language}'. Supported package types are: [${supported_languages[*]}]"
+      log_error "Invalid language type '${language}'. Supported languages for test reports are: [${supported_languages[*]}]"
       exit 1
     fi
 
@@ -135,7 +135,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
       exit 1
     fi
     if ! (validate_parameter_value false "${language}" "${supported_languages[@]}"); then
-      log_error "Invalid language type '${language}'. Supported package types are: [${supported_languages[*]}]"
+      log_error "Invalid language type '${language}'. Supported languages for coverage types are: [${supported_languages[*]}]"
       exit 1
     fi
 
