@@ -14,6 +14,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # Inputs:
   # - The string to convert
   # - Optional separator between elements if it is NOT a JSON array.  Defaults to space in addition to newline
+  #   or set to <none> if each line should be considered a separate entry
   # Output:
   # - The array created from the string
   #
@@ -36,6 +37,8 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
     # Check if separator is not provided, default to space
     if [[ -z "${separator}" ]]; then
       separator=$' '
+    elif [[ "${separator}" == "<none>" ]]; then
+      separator=''
     fi
 
     local array=()
@@ -52,7 +55,11 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
         # Strip leading and trailing spaces from each line
         line="${line#"${line%%[![:space:]]*}"}"
         line="${line%"${line##*[![:space:]]}"}"
-        IFS="${separator}" read -ra parts <<< "$line"
+        if [[ -z "${separator}" ]]; then
+          parts=("${line}")
+        else
+          IFS="${separator}" read -ra parts <<< "$line"
+        fi
         for part in "${parts[@]}"; do
           if [[ -n "${part}" && ! "${part}" =~ ^[[:space:]]*$ ]]; then
             array+=("${part}")
@@ -81,6 +88,38 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   string_to_json() {
     local raw_data="$1"
     jq -c '.' <<< "${raw_data}"
+  }
+
+  # Converts an array into a delimited string
+  # Inputs:
+  # - The delimiter to use
+  # - The array to convert
+  # Output:
+  # - The delimited string
+  #
+  # Example usage:
+  # data=("foo" "bar")
+  # delimited=$(array_to_delimited_string ";" "${data[@]}")
+  #
+  array_to_delimited_string() {
+    local IFS="$1"
+    shift
+    echo "$*"
+  }
+
+  # Converts an array into a csv string
+  # Inputs:
+  # - The array to convert
+  # Output:
+  # - The comma separated values
+  #
+  # Example usage:
+  # data=("foo" "bar")
+  # delimited=$(array_to_csv "${data[@]}")
+  #
+  array_to_csv() {
+    local values=("$@")
+    array_to_delimited_string "," "${values[@]}"
   }
 
 fi
