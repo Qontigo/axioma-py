@@ -22,13 +22,16 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
     local max_retries="$2"                                      # Maximum retry attempts
     local backoff="$3"                                          # Initial backoff time (seconds)
     local max_wait="$4"                                         # Maximum wait time (seconds)
+    local raw_response="$5"                                     # Do we want to get the raw response?
     local connect_timeout=${CURL_DEFAULT_CONNECTION_TIMEOUT}    # Max time to make the connection
     local max_request_time=${CURL_DEFAULT_MAX_REQUEST_TIMEOUT}  # Max time the request can take
     local retry=0                                               # Current retry
 
-    log_debug "__curl_with_retry $*"
+    if [[ "${raw_response}" != "true" ]]; then # can't log debug messages in "raw" mode
+      log_debug "__curl_with_retry $*"
+    fi
 
-    shift 4 # Remove the first four arguments
+    shift 5 # Remove the first five arguments
 
     # see if we are overriding any defaulted curl arguments
     local curl_options=()
@@ -52,7 +55,9 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
     local original_errexit="$(get_errexit)"
     local original_pipefail="$(get_pipefail)"
     while ((retry < max_retries + 1)); do
-      log_debug "curl -w \"%{response_code}\" --connect-timeout ${connect_timeout} --max-time ${max_request_time} --silent --fail --show-error ${curl_options[*]} ${url}"
+      if [[ "${raw_response}" != "true" ]]; then # can't log debug messages in "raw" mode
+        log_debug "curl -w \"%{response_code}\" --connect-timeout ${connect_timeout} --max-time ${max_request_time} --silent --fail --show-error ${curl_options[*]} ${url}"
+      fi
       set +eo pipefail
 
       # shellcheck disable=SC2068
@@ -60,14 +65,17 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
       exit_code=$?
       response_status="${response: -3}"
       response_body="${response:0:-3}"
-      response_body="${response_body//[$'\t\r\n']}"
+      if [[ "${raw_response}" != "true" ]]; then
+        response_body="${response_body//[$'\t\r\n']}"
+      fi
       reset_errexit "${original_errexit}"
       reset_pipefail "${original_pipefail}"
       if [[ "${response_body}" == "" ]]; then
         response_body="<empty>"
       fi
-      log_debug "curl exit code: ${exit_code}, response status: ${response_status}, raw response: ${response_body}"
-
+      if [[ "${raw_response}" != "true" ]]; then # can't log debug messages in "raw" mode
+        log_debug "curl exit code: ${exit_code}, response status: ${response_status}, raw response: ${response_body}"
+      fi
       # shellcheck disable=SC2076 # I want to compare literally to CURL_NON_RETRYABLE_STATUSES
       if [[ ${exit_code} -eq 0 || ${exit_code} -eq 22 ]]; then
         if [[ ${exit_code} -eq 0 && "${response_status}" =~ ^2 ]]; then
@@ -107,7 +115,9 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
 
       retry=$((retry + 1))
       if (( retry < max_retries + 1 )); then
-        log_debug "Waiting for ${wait_time} seconds before retry ${retry} of ${max_retries}..."
+        if [[ "${raw_response}" != "true" ]]; then # can't log debug messages in "raw" mode
+          log_debug "Waiting for ${wait_time} seconds before retry ${retry} of ${max_retries}..."
+        fi
         sleep "${wait_time}"
       fi
     done
@@ -124,6 +134,7 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
   # makes a curl request with retry and exponential backoff
   # By default this will retry 4 times (ie 5 attempts in total), starting with a 5 second delay and increasing exponentially
   # specify --retry and --retry-delay respectively to control these
+  # specify --raw-response if you want the "raw" output and not e.g. cr/lf stripped (the default)
   # Inputs:
   # - The url for the request - this must be the first argument
   # - Any other curl options
@@ -145,11 +156,16 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
   # POST with retry disabled
   # curl_with_retry "https://httpbin.org/post" --request POST --data "Some body" -u "${token}" -H "Accept: application/json" --retry 0
   #
+  # Get a raw log file
+  # response=$(curl_with_retry "https://myserver.org/logs" -X "GET" -SL --raw-response)
+  # logs=$(echo -e "${response}" | head -n -1 || true) # Remove the last line which is the response code
+  #
   curl_with_retry() {
     local url="$1"
-    local max_retries=4 # Default number of retries
-    local backoff=5     # Default initial backoff time (seconds)
-    local max_wait=120  # Default Maximum retry wait time
+    local max_retries=4        # Default number of retries
+    local backoff=5            # Default initial backoff time (seconds)
+    local max_wait=120         # Default Maximum retry wait time
+    local raw_response="false" # Default to NOT get the raw response
     shift 1
 
     if ! (validate_mandatory_parameter "url" "${url}"); then
@@ -173,6 +189,10 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
                 max_wait="$2"
                 shift 2
                 ;;
+            --raw-response)
+                raw_response="true"
+                shift
+                ;;
             *)
                 curl_options+=("$1")
                 shift
@@ -184,9 +204,13 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
     local response_body
     local response_status
     local return_code
-    response=$(__curl_with_retry "${url}" "${max_retries}" "${backoff}" "${max_wait}" "${curl_options[@]}")
+    response=$(__curl_with_retry "${url}" "${max_retries}" "${backoff}" "${max_wait}" "${raw_response}" "${curl_options[@]}")
     return_code=$?
-    response_body=$(echo "${response}" | tail -n 2 | head -n 1 || true)
+    if [[ "${raw_response}" == "true" ]]; then
+      response_body=$(echo "${response}" | head -n -1 || true) # Remove the last line
+    else
+      response_body=$(echo "${response}" | tail -n 2 | head -n 1 || true) # We the second last line only, which should be the entire response
+    fi
     response_status=$(echo "${response}" | tail -n 1)
     echo "${response_body}"
     echo "${response_status}"

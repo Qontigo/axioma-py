@@ -68,7 +68,11 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
 
       # Check if the key already exists in the arguments array
       if ! [[ " ${__propbuilder[*],,} " == " ${argument_key,,}"* ]]; then
-        __propbuilder+=("${argument_key}\"${value}\"")
+        # Ensure the value is surrounded by quotes
+        if ! [[ "${value}" == \"*\" ]]; then
+            value="\"${value}\""
+        fi
+        __propbuilder+=("${argument_key}${value}")
       else
         log_debug "${key} already exists in the argument list => Ignoring"
       fi
