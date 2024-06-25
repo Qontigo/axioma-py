@@ -508,6 +508,7 @@ class AxiomaSession(BaseContext):
         method: HttpMethods,
         url: str,
         json: dict = None,
+        data = None,
         params: dict = None,
         headers: dict = None,
     ):
@@ -522,6 +523,9 @@ class AxiomaSession(BaseContext):
 
         if json:
             kwargs["json"] = json
+
+        if data:
+            kwargs["data"] = data
 
         if params:
             kwargs["params"] = params
@@ -640,6 +644,7 @@ class AxiomaSession(BaseContext):
         method: HttpMethods,
         url: str,
         json: dict = None,
+        data = None,
         params: dict = None,
         headers: dict = None,
         stream: bool = False,
@@ -659,7 +664,7 @@ class AxiomaSession(BaseContext):
         """
 
         url, kwargs = self._prepare_request_args(
-            method=method, url=url, json=json, params=params, headers=headers
+            method=method, url=url, json=json, data=data, params=params, headers=headers
         )
 
         if stream and cls is not None:
@@ -767,7 +772,8 @@ class AxiomaSession(BaseContext):
     def _patch(
         self,
         url: str,
-        json: dict,
+        json: dict = None,
+        data = None,
         headers: dict = None,
         parameters: dict = None,
         cls: type = None,
@@ -777,6 +783,7 @@ class AxiomaSession(BaseContext):
             HttpMethods.PATCH,
             url,
             json=json,
+            data=data,
             headers=headers,
             params=parameters,
             cls=cls,

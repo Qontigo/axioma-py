@@ -30,13 +30,17 @@ class BulkAPI:
 
     @staticmethod
     def patch_portfolios_payload(
-        as_of_date: str, payload: dict, return_response: bool = True,
+        as_of_date: str,
+            payload,
+            headers: dict = None,
+            return_response: bool = True
     ):
         """The method is to update multiple portfolios in a single request
 
         Args:
             as_of_date: date on which portfolios need to be updated
             payload: portfolios along with update/remove properties
+            headers: Optional headers, if any required (Content-Encoding for zip , Accept-Encoding)
             return_response: If set to true, the response will be returned.
 
         Returns:
@@ -44,7 +48,12 @@ class BulkAPI:
         """
         url = f"/positions/{as_of_date}"
         _logger.info(f"Patching to {url}")
-        response = AxiomaSession.current._patch(
-            url, payload, return_response=return_response
-        )
+        if(headers is not None and 'gzip' in headers.values()):
+            response = AxiomaSession.current._patch(
+                url, data=payload, headers=headers, return_response=return_response
+            )
+        else:
+            response = AxiomaSession.current._patch(
+                url, json=payload, headers=headers, return_response=return_response
+            )
         return response
