@@ -644,7 +644,7 @@ class AxiomaSession(BaseContext):
         method: HttpMethods,
         url: str,
         json: dict = None,
-        data = None,
+        data: bytes = None,
         params: dict = None,
         headers: dict = None,
         stream: bool = False,
