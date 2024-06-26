@@ -16,6 +16,7 @@ under the License.
 """
 import logging
 from axiomapy.session import AxiomaSession
+from typing import Union
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
@@ -31,7 +32,7 @@ class BulkAPI:
     @staticmethod
     def patch_portfolios_payload(
         as_of_date: str,
-            payload,
+            payload: Union[dict, bytes],
             headers: dict = None,
             return_response: bool = True
     ):
@@ -39,7 +40,7 @@ class BulkAPI:
 
         Args:
             as_of_date: date on which portfolios need to be updated
-            payload: portfolios along with update/remove properties
+            payload: portfolios along with update/remove properties; can be dictionary or compressed
             headers: Optional headers, if any required (Content-Encoding for zip , Accept-Encoding)
             return_response: If set to true, the response will be returned.
 
@@ -48,12 +49,8 @@ class BulkAPI:
         """
         url = f"/positions/{as_of_date}"
         _logger.info(f"Patching to {url}")
-        if(headers is not None and 'gzip' in headers.values()):
-            response = AxiomaSession.current._patch(
-                url, data=payload, headers=headers, return_response=return_response
-            )
-        else:
-            response = AxiomaSession.current._patch(
-                url, json=payload, headers=headers, return_response=return_response
-            )
+        response = AxiomaSession.current._patch(
+            url, payload, headers=headers, return_response=return_response
+        )
+
         return response
