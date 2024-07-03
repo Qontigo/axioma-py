@@ -110,7 +110,7 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
           echo "curl failed to obtain a valid response after ${max_wait} seconds from ${url} (exit code: ${exit_code} - ${response_status}: ${response_body}). Please check the server URL and network connection."
           echo "${response_body}"
           echo "${response_status}"
-          return 1
+          return $(( exit_code ? exit_code : 1 )) # make sure we return a non-zero exit code - ideally the curl exit code
       fi
 
       retry=$((retry + 1))
@@ -122,13 +122,13 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
       fi
     done
 
-    message="curl failed to obtain a valid response from ${url} after ${retry} attempts (Status: ${response_status}"
+    message="curl failed to obtain a valid response from ${url} after ${retry} attempts (exit code: ${exit_code} - status: ${response_status}"
     if [[ "${response_body}" != "<empty>" && "${response_body}" != "" ]]; then
       message="${message}, Response: ${response_body}"
     fi
     echo "${message}). Please check the server URL and network connection."
     echo "${response_status}"
-    return 1
+    return $(( exit_code ? exit_code : 1 )) # make sure we return a non-zero exit code - ideally the curl exit code
   }
 
   # makes a curl request with retry and exponential backoff
