@@ -43,7 +43,7 @@ from axiomapy.entitybase import EnumBase
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
-
+from typing import Union
 
 API_VERSION = "v1"
 DEFAULT_APP = "REST_API"
@@ -508,6 +508,7 @@ class AxiomaSession(BaseContext):
         method: HttpMethods,
         url: str,
         json: dict = None,
+        data = None,
         params: dict = None,
         headers: dict = None,
     ):
@@ -522,6 +523,9 @@ class AxiomaSession(BaseContext):
 
         if json:
             kwargs["json"] = json
+
+        if data:
+            kwargs["data"] = data
 
         if params:
             kwargs["params"] = params
@@ -640,6 +644,7 @@ class AxiomaSession(BaseContext):
         method: HttpMethods,
         url: str,
         json: dict = None,
+        data: bytes = None,
         params: dict = None,
         headers: dict = None,
         stream: bool = False,
@@ -659,7 +664,7 @@ class AxiomaSession(BaseContext):
         """
 
         url, kwargs = self._prepare_request_args(
-            method=method, url=url, json=json, params=params, headers=headers
+            method=method, url=url, json=json, data=data, params=params, headers=headers
         )
 
         if stream and cls is not None:
@@ -767,21 +772,32 @@ class AxiomaSession(BaseContext):
     def _patch(
         self,
         url: str,
-        json: dict,
+        json: Union[dict, bytes],
         headers: dict = None,
         parameters: dict = None,
         cls: type = None,
         return_response: bool = False,
     ):
-        resp = self.__make_request(
-            HttpMethods.PATCH,
-            url,
-            json=json,
-            headers=headers,
-            params=parameters,
-            cls=cls,
-            return_response=return_response,
-        )
+        if (headers is not None and 'gzip' in headers.values()):
+            resp = self.__make_request(
+                HttpMethods.PATCH,
+                url,
+                data=json,
+                headers=headers,
+                params=parameters,
+                cls=cls,
+                return_response=return_response,
+            )
+        else:
+            resp = self.__make_request(
+                HttpMethods.PATCH,
+                url,
+                json=json,
+                headers=headers,
+                params=parameters,
+                cls=cls,
+                return_response=return_response,
+            )
         return resp
 
     def _authenticate(self):
