@@ -49,8 +49,9 @@ if [[ -z "${CONFIG_INCLUDED}" ]]; then
       log_debug "${ini_file} found - reading parameters from the file..."
 
       # Process the file, allowing for no empty line at the end and allowing for CRLF instead of just LF
+      local line
       while IFS='=' read -r line || [ -n "${line}" ]; do
-        local line=$(trim "${line}")
+        line=$(trim "${line}")
 
         # Ignore empty lines and comment lines
         if [[ -z "${line}" || "${line}" == "#"* ]]; then
@@ -104,6 +105,7 @@ if [[ -z "${CONFIG_INCLUDED}" ]]; then
     local -n __properties="$1"
     local key="${2,,}"
     local default_value="$3"
+    local kv
 
     for kv in "${__properties[@]}"; do
       local item_key="${kv%%=*}"

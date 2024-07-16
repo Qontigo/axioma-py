@@ -186,6 +186,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
       level=""
     fi
     echo "${level}${label}:"
+    local item
     for item in "${__array[@]}"; do
       echo "${level}  - ${item}"
     done

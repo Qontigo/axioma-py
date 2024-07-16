@@ -47,10 +47,11 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
     if [[ "${input}" == "["* && "${input}" == *"]" ]]; then
       # Input is a JSON array
       json_input=$(jq -r '.[]' <<< "${input}")
-      mapfile -t array <<< "${json_input}"
+      mapfile -t array <<< "$(echo "${json_input}" | tr -d '\r')"
     else
       # Input is a multi-line string
       IFS=$'\n' read -r -d '' -a lines <<< "${input}"
+      local line
       for line in "${lines[@]}"; do
         # Strip leading and trailing spaces from each line
         line="${line#"${line%%[![:space:]]*}"}"
@@ -60,6 +61,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
         else
           IFS="${separator}" read -ra parts <<< "$line"
         fi
+        local part
         for part in "${parts[@]}"; do
           if [[ -n "${part}" && ! "${part}" =~ ^[[:space:]]*$ ]]; then
             array+=("${part}")

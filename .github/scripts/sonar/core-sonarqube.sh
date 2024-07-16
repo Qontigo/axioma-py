@@ -54,6 +54,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     # shellcheck disable=SC2155
     local prefix=$(__get_arg_prefix __propbuilder)
 
+    local kv
     for kv in "${__properties[@]}"; do
       local key="${kv%%=*}"
       local value="${kv#*=}"
@@ -121,6 +122,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     log_debug "Checking uri: ${sonar_uri} to see if the project exists..."
 
     local response=""
+    local curl_exit_code
     response=$(curl_with_retry "${sonar_uri}" -s -u "${token}:" -H "Accept: application/json")
     curl_exit_code=$?
     sonarqube_response_code=$(echo "${response}" | tail -n 1)
@@ -143,7 +145,10 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
       log_debug "404 response => Do not run the analysis for ${project_key}.  Now we have to figure out why...."
 
       local component_key=""
-      component_key=$(echo "${sonarqube_response_body}" | grep -oP "Component key '\\K[^']+")
+      # Look for Component key '<project>' in the not found error message
+      msg=$(echo "${sonarqube_response_body}" | jq -r '.errors[].msg')
+      component_key="${msg#*Component key \'}"
+      component_key="${component_key%%\'*}"
       if [[ "${component_key}" == "${project_key}" ]]; then
         log_debug "SonarQube: Project key '${project_key}' does not exist in '${server_url}'"
         return 1
@@ -184,7 +189,10 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
 
     values=$(jq -r --arg key "${key}" '.settings[] | select(.key == $key) | if has("values") then .values[] else .value end' <<< "${response}")
     if [[ -n "${values}" ]]; then
-      readarray -t __values_array <<< "${values}"
+      local line
+      while IFS= read -r line; do
+        __values_array+=("$line")
+      done <<< "${values}"
     fi
   }
 
@@ -275,9 +283,15 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
 
     log_debug "with_inclusions ${inclusions}"
 
+    local inclusions_array=()
     if [[ -n "${inclusions}" ]]; then
-      readarray -t inclusions_array < <(string_to_array "${inclusions}" || true)
+      local line
+      while IFS= read -r line; do
+        inclusions_array+=("$line")
+      done < <(string_to_array "${inclusions}" || true)
+
       local csv=""
+      local inclusion
       for inclusion in "${inclusions_array[@]}"; do
         if [[ -n "$csv" ]]; then
           csv="${csv},${inclusion}"

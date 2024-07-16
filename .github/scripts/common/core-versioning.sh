@@ -2,6 +2,7 @@
 
 __coreversioning_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+[[ -z "${LOGGING_INCLUDED}" ]] && source "${__coreversioning_SCRIPT_DIR}/core-logging.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__coreversioning_SCRIPT_DIR}/core-validation.sh"
 
 # Ensure versioning functions are included only once
@@ -9,6 +10,158 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   VERSIONING_INCLUDED=1
 
   __VERSION_PATTERN="([0-9]+)\.([0-9]+)\.([0-9]+)"
+  __GITVERSION_FILENAME="GitVersion.yml"
+  __NERDBANKVERSION_FILENAME="version.json"
+  __SUPPORTED_VERSION_FORMATS=("GitVersion" "Nerdbank")
+
+  # "internal" implementation of get_version_from_string
+  __get_version_from_string() {
+    local format="$1"
+    local data="$2"
+
+    log_debug 'get_version_from_string '"${format}"' '"${data}"
+
+    case "${format,,}" in
+      gitversion)
+        log_debug "GitVersion file => get next-version property"
+        version=$(echo "${data}" | grep -oE 'next-version:\s*\S+' | cut -d' ' -f2)
+        ;;
+      nerdbank)
+        log_debug "Nerdbank version file => get version property"
+        version=$(echo "${data}" | jq -r '.version')
+        ;;
+      *)
+        log_error "${format} is not recognised as either the GitVersion or Nerdbank formats => cannot retrieve version details"
+        return 1
+        ;;
+    esac
+
+    if [[ "${version}" == "" ]]; then
+      log_error 'Version info not found in the '"${format}"' format input data: '"${data}"' => cannot retrieve version details'
+      return 1
+    fi
+
+    echo "${version}"
+  }
+
+  # "internal" implementation of get_version_from_file
+  __get_version_from_file() {
+    local version_file="$1"
+    local filename=""
+    local data=""
+    local exit_code
+
+    log_debug "get_version_from_file ${version_file}"
+
+    format=$(get_version_format_from_filename "${version_file}")
+    exit_code=$?
+    if [[ ${exit_code} -ne 0 ]]; then
+      echo "${format}"
+      return $exit_code
+    fi
+
+    data=$(cat "${version_file}")
+    __get_version_from_string "${format}" "${data}"
+  }
+
+  # Returns the version format based on the supplied file name
+  # Inputs:
+  # - The path to the file
+  # Output:
+  # - The format of the file
+  #
+  # Example usage:
+  # format=$(get_version_format_from_filename "./GitVersion.yml")
+  # echo "Format: ${format}"
+  #
+  get_version_format_from_filename() {
+    local filename
+    filename=$(basename "$1")
+
+    if ! (validate_mandatory_parameter "filename" "${filename}"); then
+      exit 1
+    fi
+
+    if [[ "${filename}" == "${__GITVERSION_FILENAME}" ]]; then
+      echo "GitVersion"
+    elif [[ "${filename}" == "${__NERDBANKVERSION_FILENAME}" ]]; then
+      echo "Nerdbank"
+    else
+      log_error "${filename} is not recognised as either a GitVersion or a Nerdbank version file => cannot retrieve version details"
+      return 1
+    fi
+  }
+
+  # Returns the version number from the supplied string representation of a format file
+  # Inputs:
+  # - The format of the provided string - either GitVersion or NerdBank
+  # - The string to parse in the specified format
+  # Output:
+  # - The version number from the data
+  #
+  # Example usage:
+  # version=$(get_version_from_string "GitVersion" "next-version: 1.2.3")
+  # echo "Version: ${version}"
+  #
+  get_version_from_string() {
+    local format="$1"
+    local data="$2"
+    local exit_code
+
+    if ! (validate_mandatory_parameter "format" "${format}"); then
+      exit 1
+    fi
+
+    if ! (validate_parameter_value false "${format}" "${__SUPPORTED_VERSION_FORMATS[@]}"); then
+      log_error "Invalid version file format '${format}'. Supported formats are: [${__SUPPORTED_VERSION_FORMATS[*]}]"
+      exit 1
+    fi
+
+    local raw_output
+    raw_output="$(__get_version_from_string "${format}" "${data}")"
+    exit_code=$?
+    if [[ ${exit_code} -ne 0 ]]; then
+      echo "${raw_output}"
+    else
+      echo "${raw_output}" | tail -n 1
+    fi
+    return $exit_code
+  }
+
+  # Returns the version number from the supplied GitVersion or Nerdbank version file
+  # Inputs:
+  # - The path to the file
+  # Output:
+  # - The version number read from the file (next-version from a GitVersion.yml file)
+  #
+  # Example usage:
+  # version=$(get_version_from_file "./GitVersion.yml")
+  # echo "Version: ${version}"
+  #
+  get_version_from_file() {
+    local version_file="$1"
+    local exit_code
+
+    if ! (validate_mandatory_parameter "version_file" "${version_file}"); then
+      exit 1
+    fi
+
+    if [[ ! -e "${version_file}" ]]; then
+      log_error "Filename ${version_file} does not exist => cannot retrieve version details"
+      return 1
+    fi
+
+    local raw_output
+    raw_output="$(__get_version_from_file "${version_file}")"
+    exit_code=$?
+
+    if [[ ${exit_code} -ne 0 ]]; then
+      echo "${raw_output}"
+    else
+      echo "${raw_output}" | tail -n 1
+    fi
+    return $exit_code
+  }
 
   # Returns the major version number from the supplied version string or 1 if not found
   # Inputs:
@@ -129,8 +282,9 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
 
     local raw_keys=""
     local components=()
-    raw_keys=$(jq -r 'keys[]' <<< "${input_json}")
+    raw_keys=$(jq -r 'keys[]' <<< "${input_json}" | tr -d '\r')
     IFS=$'\n' read -d '' -r -a components <<< "${raw_keys}" || true # Don't want it to fail if there is only one key
+    local component
     for component in "${components[@]}"; do
         local value=""
         local prev_version=""
@@ -257,4 +411,5 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
       echo "${version}-${stripped_branch}"
     fi
   }
+
 fi

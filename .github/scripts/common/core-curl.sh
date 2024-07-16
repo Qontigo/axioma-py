@@ -18,11 +18,12 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
 
   # Internal implementation for curl_with_retry which will log debug messages
   __curl_with_retry() {
-    local url="$1"
-    local max_retries="$2"                                      # Maximum retry attempts
-    local backoff="$3"                                          # Initial backoff time (seconds)
-    local max_wait="$4"                                         # Maximum wait time (seconds)
-    local raw_response="$5"                                     # Do we want to get the raw response?
+    local curl_bin="$1"                                         # The curl binary to use
+    local url="$2"                                              # The url to access
+    local max_retries="$3"                                      # Maximum retry attempts
+    local backoff="$4"                                          # Initial backoff time (seconds)
+    local max_wait="$5"                                         # Maximum wait time (seconds)
+    local raw_response="$6"                                     # Do we want to get the raw response?
     local connect_timeout=${CURL_DEFAULT_CONNECTION_TIMEOUT}    # Max time to make the connection
     local max_request_time=${CURL_DEFAULT_MAX_REQUEST_TIMEOUT}  # Max time the request can take
     local retry=0                                               # Current retry
@@ -31,7 +32,7 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
       log_debug "__curl_with_retry $*"
     fi
 
-    shift 5 # Remove the first five arguments
+    shift 6 # Remove the first 6 arguments
 
     # see if we are overriding any defaulted curl arguments
     local curl_options=()
@@ -54,6 +55,27 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
 
     local original_errexit="$(get_errexit)"
     local original_pipefail="$(get_pipefail)"
+    set +eo pipefail
+    if [[ "${curl_bin}" != "curl" ]]; then
+      # This should only be the case on windows - this stuff can be removed once a fixed version of curl is installed on the GHA agents
+      if [[ "${raw_response}" != "true" ]]; then # can't log messages in "raw" mode
+        log_warning "Running on $(uname) => Installing curl 8.7.1 to work around issues with 8.8.0"
+      fi
+      install_output=$(choco install curl --version="${curl_bin}" --no-progress --force -y 2>&1) && status=0 || status=$?
+      if [[ $status -ne 0 ]]; then
+        log_error "Failed to install curl version ${curl_bin} - ${install_output} (no point retrying)"
+        echo "${install_output}"
+        echo "500"
+        return 1
+      fi
+      curl_bin="C:/ProgramData/chocolatey/bin/curl.exe"
+    else
+      if [[ "${raw_response}" != "true" ]]; then # can't log messages in "raw" mode
+        log "Running on $(uname) => Ok with the standard curl"
+      fi
+      curl_bin="curl"
+    fi
+
     while ((retry < max_retries + 1)); do
       if [[ "${raw_response}" != "true" ]]; then # can't log debug messages in "raw" mode
         log_debug "curl -w \"%{response_code}\" --connect-timeout ${connect_timeout} --max-time ${max_request_time} --silent --fail --show-error ${curl_options[*]} ${url}"
@@ -61,7 +83,7 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
       set +eo pipefail
 
       # shellcheck disable=SC2068
-      response=$(curl -w "%{response_code}" --connect-timeout "${connect_timeout}" --max-time "${max_request_time}" --silent --fail --show-error "${curl_options[@]}" "${url}" 2>&1)
+      response=$("${curl_bin}" -w "%{response_code}" --connect-timeout "${connect_timeout}" --max-time "${max_request_time}" --silent --fail --show-error "${curl_options[@]}" "${url}" 2>&1)
       exit_code=$?
       response_status="${response: -3}"
       response_body="${response:0:-3}"
@@ -204,7 +226,17 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
     local response_body
     local response_status
     local return_code
-    response=$(__curl_with_retry "${url}" "${max_retries}" "${backoff}" "${max_wait}" "${raw_response}" "${curl_options[@]}")
+
+    # There is a bug in curl for Windows 8.8 - https://github.com/curl/curl/issues/13845
+    # So we need to downgrade it until this bug is fixed
+    curl_bin="curl"
+    if [[ "$(uname)" != "Linux" ]]; then
+      curl_bin="8.7.1"
+    else
+      curl_bin="curl"
+    fi
+
+    response=$(__curl_with_retry "${curl_bin}" "${url}" "${max_retries}" "${backoff}" "${max_wait}" "${raw_response}" "${curl_options[@]}")
     return_code=$?
     if [[ "${raw_response}" == "true" ]]; then
       response_body=$(echo "${response}" | head -n -1 || true) # Remove the last line

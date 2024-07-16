@@ -61,7 +61,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
   # - 0 if it does not already exist (or exists and we are not overwriting); 1 if it does and we would need to overwrite it;2 otherwise
   #
   # Example Usage:
-  # check_package_does_not_already_exist_in_the_nuget_repo "https://artifactory-server.com" "nuget-components" "Foo.1.2.3.nupkg" "${{ inputs.artifactory-api-key }}"
+  # check_package_does_not_already_exist_in_the_nuget_repo "https://artifactory-server.com" "${{ inputs.artifactory-api-key }}" "nuget-components" "Foo.1.2.3.nupkg"
   #
   check_package_does_not_already_exist_in_the_nuget_repo() {
     local server="$1"
@@ -73,6 +73,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
     local response
     local response_body
     local response_code
+    local curl_exit_code
 
     if ! (validate_mandatory_parameter "server" "${server}" && \
           validate_mandatory_parameter "api_key" "${api_key}" && \
@@ -83,7 +84,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
 
     search_url="${server}/artifactory/api/search/artifact?name=${package}&repos=${repo}"
     response=$(curl_with_retry "${search_url}" -SL -H "X-JFrog-Art-Api: ${api_key}")
-    local curl_exit_code=$?
+    curl_exit_code=$?
     response_code=$(echo "${response}" | tail -n 1)
     response_body=$(echo "${response}" | head -n 1)
     # Check if curl command was successful
@@ -128,6 +129,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
     local response
     local response_body
     local response_code
+    local curl_exit_code
 
     if ! (validate_mandatory_parameter "server" "${server}" && \
           validate_mandatory_parameter "api_key" "${api_key}" && \
@@ -137,7 +139,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
 
     search_url="${server}/artifactory/api/search/artifact?name=${package}"
     response=$(curl_with_retry "${search_url}" -SL -H "X-JFrog-Art-Api: ${api_key}")
-    local curl_exit_code=$?
+    curl_exit_code=$?
     response_code=$(echo "${response}" | tail -n 1)
     response_body=$(echo "${response}" | head -n 1)
     # Check if curl command was successful
@@ -146,12 +148,15 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
       exit 2
     fi
 
-    # The response is an array of uri's each like this: <artifactory base url>/artifactory/api/storage/<repository>/<component> so we need to extract the
+    # The response is an array of uri's each like this: <artifactory base url>/artifactory/api/storage/<repository>/<component>
+    # so we need to extract the repository from the urls
     uris=$(echo "${response_body}" | jq -r '.results[].uri')
 
     local repository_names=()
+    local uri
     while IFS= read -r uri; do
-        repository_name=$(echo "${uri}" | grep -oP 'storage/\K[^/]+')
+        repository_name="${uri#*storage/}"
+        repository_name="${repository_name%%/*}"
         if [[ "${repository_name}" != "" ]]; then
           repository_names+=("$repository_name")
         fi

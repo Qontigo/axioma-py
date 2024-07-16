@@ -35,6 +35,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
 
     if [[ "${expand_wildcards}" == "true" ]]; then
       local expanded_paths=()
+      local path
       for path in "${path_array[@]}"; do
         if [[ "${path}" == *"**"* ]]; then
           path="${path%/}" # Remove trailing slash if present
