@@ -124,4 +124,47 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
     array_to_delimited_string "," "${values[@]}"
   }
 
+  # Converts a path to be cross-platform
+  # Inputs:
+  # - The path
+  # - Optional root - eg. if the input was c:\foo we might want to map this to /mnt/c/foo
+  # Output:
+  # The path in a cross platform format
+  #
+  # Example usage:
+  # echo "$(to_crossplatform_path "D:\foo\bar")"
+  #
+  to_crossplatform_path() {
+    local path="$1"
+    local root="$2"
+
+    path="${path//\\//}" # Replace \ with /
+    # Remove colon and add a leading / if necessary - e.g C:/ => /c
+    if [[ "${path}" == *":"* ]]; then
+      local drive="${path%%:*}"
+      path="/${drive,,}${path#*:}"
+    fi
+
+    if [ -n "${root}" ]; then
+      if [[ "${path}" != /* ]]; then
+        root="${root}/"
+      fi
+    fi
+    echo "${root}${path}"
+  }
+
+  # Converts a string (typically a path) to be a valid Github artifact name
+  # It removes characters known to cause problems cross-platform
+  # Inputs:
+  # - The string to convert to a valid artifact name
+  # Output:
+  # A valid artifact name
+  #
+  # Example usage:
+  # echo "$(to_artifact_name "D:\foo\bar")"
+  #
+  to_artifact_name() {
+    local input="$1"
+    echo -e "${input}" | tr -d '\":<>\|\*\?\r\n\\/\/ '
+  }
 fi

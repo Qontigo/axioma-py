@@ -15,7 +15,7 @@ if ($True -eq $suppliedScriptArgs['Debug'] -or $DebugPreference -eq 'Continue') 
     $DebugPreference = 'Continue' # We don't want to pause on debug but we do want to see Write-Debug messages
 }
 
-function Convert-FromArrayString {
+function ConvertFrom-ArrayString {
     <#
     .SYNOPSIS
          Converts a string representation of multiple values to a powershell array
@@ -39,14 +39,14 @@ function Convert-FromArrayString {
     .EXAMPLE
         # JSON array string => Powershell array
 
-        foreach ($a in @('[ "foo bar", "baz" ]' | Convert-FromArrayString)) {
+        foreach ($a in @('[ "foo bar", "baz" ]' | ConvertFrom-ArrayString)) {
             Write-Host "- $a"
         }
 
     .EXAMPLE
         # CSV array string => Powershell array
 
-        $array = @('foo bar,baz' | Convert-FromArrayString -Separator ",")
+        $array = @('foo bar,baz' | ConvertFrom-ArrayString -Separator ",")
         foreach ($a in $array) {
             Write-Host "- $a"
         }
@@ -59,7 +59,7 @@ function Convert-FromArrayString {
         foo bar
         baz
         "@
-         foreach ($a in @($array | Convert-FromArrayString -Separator "<none>")) {
+         foreach ($a in @($array | ConvertFrom-ArrayString -Separator "<none>")) {
             Write-Host "- $a"
         }
     #>
@@ -105,3 +105,151 @@ function Convert-FromArrayString {
     }
     $array
 }
+
+function ConvertFrom-Object {
+    <#
+    .SYNOPSIS
+         Converts an object to a dictionary of key-value pairs
+
+    .DESCRIPTION
+      # Converts an object to a dictionary of key-value pairs
+        Each key is the full path to the value:
+         - for a root level property "foo" the key would be "foo"
+         - for a nested property foo { bar: "baz" } the key would be "foo.bar"
+
+    .PARAMETER Object
+        The object to convert
+
+    .PARAMETER Parent
+        The parent property name - should not normally be user-supplied
+
+    .PARAMETER BoolToString
+        Optionally convert booleans to strings
+
+    .OUTPUTS
+        A flattened dictionary of the supplied JSON object
+
+    .EXAMPLE
+
+    #>
+    [CmdletBinding(PositionalBinding=$True)]
+    param (
+        [Parameter(Mandatory=$False, Position=0)]
+        [PSCustomObject]$Object=$Null,
+        [Parameter(Mandatory=$false)]
+        [string]$Parent = "",
+        [Parameter(Mandatory=$false)]
+        [switch]$BoolToString = $False
+    )
+
+    $properties = @{}
+    if ($Null -ne $Object) {
+        foreach ($property in $Object.PSObject.Properties) {
+            $key = if ($Parent) { "$Parent.$($property.Name)" } else { $property.Name }
+
+            if ($property.Value -is [PSCustomObject]) {
+                $properties += ConvertFrom-Object -Object $property.Value -Parent $key -BoolToString:$BoolToString
+            }
+            else {
+                if ($BoolToString -and $property.Value -is [bool]) {
+                    $property.Value = $property.Value.ToString().ToLower()
+                }
+                $properties[$key] = $property.Value
+            }
+        }
+    }
+    return $properties
+}
+
+function ConvertFrom-JsonString {
+    <#
+    .SYNOPSIS
+         Converts a JSON object string to a dictionary of key-value pairs
+
+    .DESCRIPTION
+      # Converts a JSON object to a dictionary of key-value pairs
+        Each key is the full path to the value:
+         - for a root level property "foo" the key would be "foo"
+         - for a nested property foo { bar: "baz" } the key would be "foo.bar"
+
+    .PARAMETER Json
+        The json object string to convert
+
+    .PARAMETER Parent
+        The parent property name - should not normally be user-supplied
+
+    .OUTPUTS
+        A flattened dictionary of the supplied JSON object
+
+    .EXAMPLE
+        # JSON array string => Powershell array
+
+        foreach ($a in @('[ "foo bar", "baz" ]' | ConvertFrom-ArrayString)) {
+            Write-Host "- $a"
+        }
+
+    #>
+    [CmdletBinding(PositionalBinding=$True)]
+    param (
+        [Parameter(Mandatory=$True, ValueFromPipeline=$True, Position=0)]
+        [string]$Json,
+        [Parameter(Mandatory=$false)]
+        [string]$Parent = ""
+    )
+
+    $jsonObject = $Null
+    try {
+        $jsonObject = ConvertFrom-Json -InputObject $Json -ErrorAction Stop
+    }
+    catch {
+        throw [System.ArgumentException]::new("JSON validation failed: $($_.Exception.Message), input: $Json", "`$Json")
+    }
+    if ($jsonObject -is [System.Array]) {
+        throw [System.ArgumentException]::new("The supplied object is a JSON array - this is not supported.", "`$Json")
+    }
+
+    ConvertFrom-Object $jsonObject -BoolToString
+}
+
+  function ConvertTo-CrossPlatformPath {
+    <#
+    .SYNOPSIS
+         Converts a path to a cross-platform version
+
+    .PARAMETER Path
+        The Path to convert
+
+    .PARAMETER Root
+        Optional root prefix to add - eg. if the input was c:\foo we might want to map this to /mnt/c/foo
+
+    .OUTPUTS
+        The cross-platform version of the path
+
+    .EXAMPLE
+        Write-Host ("C:\foo" | ConvertTo-CrossPlatformPath)
+
+    .EXAMPLE
+        ConvertTo-CrossPlatformPath "C:\foo" "/mnt"
+    #>
+    [CmdletBinding(PositionalBinding=$True)]
+    param (
+        [Parameter(Mandatory=$False, ValueFromPipeline=$True, Position=0)]
+        [string]$Path="",
+        [Parameter(Mandatory=$False, Position=1)]
+        [string]$Root=""
+    )
+
+    $Path=$Path.Replace('\', '/')
+    # Remove colon and add a leading / if necessary - e.g C:/ => /c
+    if ($Path -match ":") {
+        $drive = $Path.Split(':')[0]
+        $Path = "/$($drive.ToLower())$($path.Split(':')[1])"
+    }
+
+    if ("" -ne $Root) {
+        if (-not $Path.StartsWith("/")) {
+            $Root += "/"
+        }
+    }
+    return "${Root}${Path}"
+  }

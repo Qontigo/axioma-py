@@ -168,7 +168,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - A label for the array
   # - The name of the array to print out
-  # - Should the array always be printed or only in debug mode?  Default: debug mode
+  # - Should the array always be logged or only in debug mode?  Default: debug mode
   #
   # Example usage:
   # all_changed_files=("file1.txt" "file2.txt" "file3.txt")
@@ -177,20 +177,71 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   function log_array() {
     local label="$1"
     local -n __array="$2"
-    local always="$3"
-    local level="::debug::"
+    local always="${3:-false}"
     original_errexit="$(get_errexit)"
     set +e
 
-    if [[ "${always}" == "true" ]]; then
-      level=""
+    if [[ "${always}" == "false" ]]; then
+      logger=log_debug
+    else
+      logger=log
     fi
-    echo "${level}${label}:"
+
+    $logger "${label}:"
     local item
     for item in "${__array[@]}"; do
-      echo "${level}  - ${item}"
+      $logger "  - ${item}"
     done
     reset_errexit "${original_errexit}"
   }
+
+  # Logs a JSON dictionary, typically workflow_dispatch inputs
+  # Inputs:
+  # - A label for the dictionary
+  # - The JSON dictionary
+  # - Should the array always be printed or only in debug mode?  Default: debug mode
+  #
+  # Example usage:
+  # log_json_dictionary 'Input Parameters' '${{ toJson(inputs) }}'
+  #
+  function log_json_dictionary() {
+    local label="$1"
+    local json_dictionary="$2"
+    local always="${3:-false}"
+    original_errexit="$(get_errexit)"
+    set +e
+
+    if [[ "${always}" == "false" ]]; then
+      logger=log_debug
+    else
+      logger=log
+    fi
+
+    $logger "${label}:"
+    echo "${json_dictionary}" | jq -r 'to_entries[] | "\(.key) \(.value)"' | \
+    awk '
+        BEGIN {
+            max_width = 0
+        }
+        {
+          # Calculate the width of the widest key
+          if (length($1) > max) {
+              max_width = length($1) + 1
+          }
+          lines[NR] = $0
+        }
+        END {
+          for (i = 1; i <= NR; i++) {
+              split(lines[i], arr, " ")
+              key = arr[1]
+              sub(arr[1] " ", "", lines[i])
+              printf "%-*s: %s\n", max_width, key, lines[i]
+          }
+        }
+    ' | while read -r line; do
+        $logger "  - ${line}"
+    done
+    reset_errexit "${original_errexit}"
+ }
 
 fi
