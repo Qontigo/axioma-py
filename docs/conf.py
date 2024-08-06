@@ -25,7 +25,7 @@ release = axiomapy.__version__
 
 
 project = "axiomapy"
-copyright = "Copyright © 2024 Axioma by SimCorp"
+copyright = "2024 Axioma by SimCorp"
 author = "Axioma"
 
 # The full version, including alpha/beta/rc tags
