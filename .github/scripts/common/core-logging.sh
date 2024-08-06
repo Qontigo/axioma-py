@@ -218,7 +218,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
     fi
 
     $logger "${label}:"
-    echo "${json_dictionary}" | jq -r 'to_entries[] | .key as $k | .value | if type=="string" then fromjson? // . else . end | [$k, .] | "\(.[0]) \(.[1])"' | \
+    echo "${json_dictionary}" | jq -r 'to_entries[] | .key as $k | .value | if type=="string" then fromjson? // . else . end | [$k, .] | "\(.[0]) \(.[1])"' | sort | \
     awk '
         BEGIN {
             max_width = 0
@@ -235,7 +235,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
               split(lines[i], arr, " ")
               key = arr[1]
               sub(arr[1] " ", "", lines[i])
-              printf "%-*s: %s\n", max_width, key, lines[i]
+              printf "%-*s : %s\n", max_width, key, lines[i]
           }
         }
     ' | while read -r line; do
