@@ -25,8 +25,8 @@ release = axiomapy.__version__
 
 
 project = "axiomapy"
-copyright = "2022 Qontigo GmbH"
-author = "Qontigo"
+copyright = "Copyright © 2024 Axioma by SimCorp"
+author = "Axioma"
 
 # The full version, including alpha/beta/rc tags
 
@@ -66,7 +66,7 @@ rinoh_documents = [
         "index",  # top-level file (index.rst)
         "bluepytoolkit",  # output (target.pdf)
         "Documentation",  # document title
-        "Qontigo",
+        "Axioma",
     )
 ]  # document author
 

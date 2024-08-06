@@ -8,7 +8,7 @@ Welcome to axioma-py
 =====================
 
 
-**axioma-py** is a Python software development kit (SDK) created for Qontigo customers and partners. It is a set 
+**axioma-py** is a Python software development kit (SDK) created for Axioma customers and partners. It is a set
 of Python wrappers for our Axioma REST API that provide easy access to its endpoints. It supports Python versions 
 3.6 and above. 
 
