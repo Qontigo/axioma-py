@@ -64,7 +64,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
 
   # Logs a message
   # Inputs:
-  # - The meessage to log
+  # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
   log() {
@@ -73,7 +73,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
 
   # Logs a success message
   # Inputs:
-  # - The meessage to log
+  # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
   log_success() {
@@ -82,7 +82,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
 
   # Logs an info level message
   # Inputs:
-  # - The meessage to log
+  # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
   log_info() {
@@ -91,7 +91,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
 
   # Logs a warning message
   # Inputs:
-  # - The meessage to log
+  # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
   log_warning() {
@@ -100,7 +100,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
 
   # Logs a skipped message
   # Inputs:
-  # - The meessage to log
+  # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
   log_skipped() {
@@ -109,7 +109,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
 
   # Logs a failure message
   # Inputs:
-  # - The meessage to log
+  # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
   log_error() {
@@ -218,7 +218,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
     fi
 
     $logger "${label}:"
-    echo "${json_dictionary}" | jq -r 'to_entries[] | "\(.key) \(.value)"' | \
+    echo "${json_dictionary}" | jq -r 'to_entries[] | .key as $k | .value | if type=="string" then fromjson? // . else . end | [$k, .] | "\(.[0]) \(.[1])"' | \
     awk '
         BEGIN {
             max_width = 0
