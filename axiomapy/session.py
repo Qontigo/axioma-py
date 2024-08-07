@@ -493,7 +493,7 @@ class AxiomaSession(BaseContext):
             str: text from response
         """
         print(f"Running Test on: {self.name}")
-        url = f"{self.domain}{self.api_type}/api/{self.api_version}/$me"
+        url = posixpath.join(self.domain, self.api_type, "api", self.api_version, "$me")
         response = self._session.get(url)
         sub = {
             k: v
