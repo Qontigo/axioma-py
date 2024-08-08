@@ -3,7 +3,7 @@
 
 ## Welcome!
 
-Welcome to Qontigo's axioma-py open-source project. We hope you will enjoy using axioma-py and perhaps even want to contribute to it. 
+Welcome to Axioma's axioma-py open-source project. We hope you will enjoy using axioma-py and perhaps even want to contribute to it. 
 
 
 
@@ -11,9 +11,9 @@ Welcome to Qontigo's axioma-py open-source project. We hope you will enjoy using
 
 
 
-axioma-py is a Python software development kit (SDK) created for Qontigo customers and partners. It is designed to make it easier for our clients who are python users to access and use Qontigo's Axioma API. axioma-py allows our python-friendly clients to import data, perform complex risk and attribution analytics on that data, and generate reports or other output, just as they would if directly accessing our REST API.
+axioma-py is a Python software development kit (SDK) created for Axioma customers and partners. It is designed to make it easier for our clients who are python users to access and use Axioma's Axioma API. axioma-py allows our python-friendly clients to import data, perform complex risk and attribution analytics on that data, and generate reports or other output, just as they would if directly accessing our REST API.
 
-This project has been specifically designed to let users of our analytics products process their data in the API and retrieve results using python rather than directly accessing the REST endpoints and JSONs. For those who are comfortable with python, axioma-py may provide a quicker and more convenient way of accessing and working with the REST API. We invite Qontigo clients, associates, and, especially, anyone interested in creating or enhancing a Python interface for REST commands to take a look at what we've done so far, ask questions, and contribute to expanding axioma-py use cases. 
+This project has been specifically designed to let users of our analytics products process their data in the API and retrieve results using python rather than directly accessing the REST endpoints and JSONs. For those who are comfortable with python, axioma-py may provide a quicker and more convenient way of accessing and working with the REST API. We invite Axioma clients, associates, and, especially, anyone interested in creating or enhancing a Python interface for REST commands to take a look at what we've done so far, ask questions, and contribute to expanding axioma-py use cases. 
 
 Currently, axioma-py makes it simpler for you to:
 
@@ -33,7 +33,7 @@ Currently, axioma-py makes it simpler for you to:
 
 **How do I ask a question, make a suggestion, report a problem, pitch an enhancement idea, file a bug, or contact someone?**
     
-* At the top of the project is an **Issues** menu option. Click it to go to the Issues page and then click the **Add New Issue** button. An editing box will appear. You can use [Markdown editing commands](https://guides.github.com/features/mastering-markdown/) (supported by Github) to format your issue, if you like. Or you can use HTML. Or even mix the two. If you need more immediate help, please send an email to: axioma-py@qontigo.com.  
+* At the top of the project is an **Issues** menu option. Click it to go to the Issues page and then click the **Add New Issue** button. An editing box will appear. You can use [Markdown editing commands](https://guides.github.com/features/mastering-markdown/) (supported by Github) to format your issue, if you like. Or you can use HTML. Or even mix the two. If you need more immediate help, please send an email to: axioma-py-SCTeam@simcorp.com.  
 
 
 **How do I submit a contribution?**   
@@ -86,10 +86,10 @@ By making a contribution to this project, I certify that:
 
 If you've determined that the copyright holder for the code you write is some other entity (e.g. your employer), you must ensure that you are authorized by the copyright holder to be able to license this code under the Apache 2.0 license (see the License file in the root directory of this project) for the purpose of contribution to the axioma-py project. 
 
-Please contact us at axioma-py@qontigo.com and we can assist you in the proper Developer Certificate of Origin (DCO) or Contributor Licensing Agreement (CLA).
+Please contact us at axioma-py-SCTeam@simcorp.com and we can assist you in the proper Developer Certificate of Origin (DCO) or Contributor Licensing Agreement (CLA).
 
 ## Installation and Setup
 
-Ready to get started?  Welcome to the axioma-py project! We're quite happy to have you here. If you have any questions or feedback, please contact <axioma-py@qontigo.com> with "axioma-py" in the subject line and include any ideas, questions or comments you have. You'll find the technical information for downloading and installing this project in [Installation and Setup](INSTALLING.md).
+Ready to get started?  Welcome to the axioma-py project! We're quite happy to have you here. If you have any questions or feedback, please contact <axioma-py-SCTeam@simcorp.com> with "axioma-py" in the subject line and include any ideas, questions or comments you have. You'll find the technical information for downloading and installing this project in [Installation and Setup](INSTALLING.md).
 
 

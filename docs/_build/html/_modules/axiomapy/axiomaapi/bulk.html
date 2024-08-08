@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>axiomapy.axiomaapi.bulk &mdash; axiomapy 0+untagged.135.g3bc18c3.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <title>axiomapy.axiomaapi.bulk &mdash; axiomapy 0+untagged.158.g35c16a1.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -86,7 +86,7 @@
              
   <h1>Source code for axiomapy.axiomaapi.bulk</h1><div class="highlight"><pre>
 <span></span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">Copyright © 2022 Qontigo GmbH.</span>
+<span class="sd">Copyright © 2024 Axioma by SimCorp.</span>
 <span class="sd">Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
 <span class="sd">you may not use this file except in compliance with the License.</span>
 <span class="sd">You may obtain a copy of the License at</span>
@@ -103,6 +103,7 @@
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 <span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">())</span>
@@ -117,13 +118,17 @@
 
 <div class="viewcode-block" id="BulkAPI.patch_portfolios_payload"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI.patch_portfolios_payload">[docs]</a>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">patch_portfolios_payload</span><span class="p">(</span>
-        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+            <span class="n">payload</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
+            <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;The method is to update multiple portfolios in a single request</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            as_of_date: date on which portfolios need to be updated</span>
-<span class="sd">            payload: portfolios along with update/remove properties</span>
+<span class="sd">            payload: portfolios along with update/remove properties; can be dictionary or compressed</span>
+<span class="sd">            headers: Optional headers, if any required (Content-Encoding for zip , Accept-Encoding)</span>
 <span class="sd">            return_response: If set to true, the response will be returned.</span>
 
 <span class="sd">        Returns:</span>
@@ -132,8 +137,9 @@
         <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;/positions/</span><span class="si">{</span><span class="n">as_of_date</span><span class="si">}</span><span class="s2">&quot;</span>
         <span class="n">_logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Patching to </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">AxiomaSession</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">_patch</span><span class="p">(</span>
-            <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
+            <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
+
         <span class="k">return</span> <span class="n">response</span></div></div>
 </pre></div>
 
@@ -144,7 +150,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022 Qontigo GmbH.</p>
+    <p>&#169; Copyright 2024 Axioma by SimCorp.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

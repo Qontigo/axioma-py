@@ -1,5 +1,5 @@
 """
-Copyright © 2022 Qontigo GmbH.
+Copyright © 2024 Axioma by SimCorp.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -493,7 +493,7 @@ class AxiomaSession(BaseContext):
             str: text from response
         """
         print(f"Running Test on: {self.name}")
-        url = f"{self.domain}{self.api_type}/api/{self.api_version}/$me"
+        url = posixpath.join(self.domain, self.api_type, "api", self.api_version, "$me")
         response = self._session.get(url)
         sub = {
             k: v

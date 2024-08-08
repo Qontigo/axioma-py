@@ -1,5 +1,5 @@
 """
-Copyright © 2022 Qontigo GmbH.
+Copyright © 2024 Axioma by SimCorp.
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -24,8 +24,8 @@ setuptools.setup(
     name="axiomapy",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    author="Qontigo",
-    author_email="axioma-py@qontigo.com",
+    author="Axioma",
+    author_email="axioma-py-SCTeam@simcorp.com",
     description="Ideas for an api toolkit package",
     long_description=long_description,
     long_description_content_type="text/markdown",

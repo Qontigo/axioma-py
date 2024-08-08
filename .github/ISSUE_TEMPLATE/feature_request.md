@@ -18,7 +18,7 @@ assignees: ''
 
 Thank you 🙇‍♀ for identifying a scope of enhancement in this repository. Before you do, please ensure you are filing the issue in the right place. Issues should only be opened on if the issue **relates to code in this repository**.  
 
-* If you have found a security issue, please contact <axioma-py@qontigo.com>
+* If you have found a security issue, please contact <axioma-py-SCTeam@simcorp.com>
 
 If your issue is relevant to this repository, please include the information below:
 

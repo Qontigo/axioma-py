@@ -1,13 +1,13 @@
 
 # Installation and Setup
 
-axioma-py is a Python software development kit (SDK) created for Qontigo customers and partners. It can be used to import portfolios and data, perform complex risk and attribution analysis, and generate reports or other output.
+axioma-py is a Python software development kit (SDK) created for Axioma customers and partners. It can be used to import portfolios and data, perform complex risk and attribution analysis, and generate reports or other output.
 
 
 ## Who is this For?
 
 
-This is for clients and prospects of Qontigo who would prefer to use a python-based code to access our rest API. It assumes a working knowledge of python. It includes instructions on how to download and set up the project in a local system and some additional items you may need to set this up to work offline. 
+This is for clients and prospects of Axioma who would prefer to use a python-based code to access our rest API. It assumes a working knowledge of python. It includes instructions on how to download and set up the project in a local system and some additional items you may need to set this up to work offline. 
 
 
 ## Installation Prerequisites
@@ -85,7 +85,7 @@ The online help manual reads like a standard user's guide, and the numerous "sou
 
 ## Thank You!
 
-Thank you again for reviewing this project. If you have any comments or suggestions, or are just curious, we'd love hearing from you.  Please contact us at <axioma-py@qontigo.com> and put "axioma-py" in the subject line.  
+Thank you again for reviewing this project. If you have any comments or suggestions, or are just curious, we'd love hearing from you.  Please contact us at <axioma-py-SCTeam@simcorp.com> and put "axioma-py" in the subject line.  
 
 --*The axioma-py Team*
 

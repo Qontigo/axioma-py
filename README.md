@@ -1,23 +1,22 @@
-<img alt="Qontigo" src="https://web.qontigo.com/hubfs/Logos/Qontigo-Logo---no-padding.jpg" width="400"><br>
 
+[<img src="simcorpLogo.png" width="200"/>](LOGO)
 
 [<img src="license-apache.png" width="150"/>](LICENSE)
 
-
 # Welcome to axioma-py! 
-## Qontigo’s open-source software for our API users
+## Axioma's open-source software for our API users
 
 
 Thank you for your interest in our project. We are excited to share it with you and hear your feedback.
 
 
-**axioma-py** is a Python software development kit (SDK) created for Qontigo's API clients and partners. It is a set of Python wrappers for our Axioma REST API that provide easy access to its Axioma Risk&trade; endpoints. It supports Python versions 3.6 and above. This Python-based SDK is an alternative to working directly with the endpoint/JSON structure used in the native REST API. It provides users with the flexibility, speed, and on-the-fly processing common to Python programming and can be used to enable and accelerate the development of applications for systems and data integration with Qontigo products as well as perform advanced analytics. Information needed to run each endpoint is provided in the wrapper code and in the compiled online manual, along with examples.  Qontigo/axioma-py is licensed under [Apache License 2.0](LICENSE).
+**axioma-py** is a Python software development kit (SDK) created for Axioma's API clients and partners. It is a set of Python wrappers for our Axioma REST API that provide easy access to its Axioma Risk&trade; endpoints. It supports Python versions 3.6 and above. This Python-based SDK is an alternative to working directly with the endpoint/JSON structure used in the native REST API. It provides users with the flexibility, speed, and on-the-fly processing common to Python programming and can be used to enable and accelerate the development of applications for systems and data integration with Axioma products as well as perform advanced analytics. Information needed to run each endpoint is provided in the wrapper code and in the compiled online manual, along with examples. axioma-py is licensed under [Apache License 2.0](LICENSE).
 
-axioma-py was originally written, maintained and used by internal Qontigo users. We now want to invite our clients to use this code and share in its further development. axioma-py is not a Qontigo supported product. Nor is it a comprehensive SDK for our REST API, but it will provide those conversant in Python with a strong starting point. All are welcome to provide feedback and contribute to its development.
+axioma-py was originally written, maintained and used by internal Axioma users. We now want to invite our clients to use this code and share in its further development. axioma-py is not an Axioma-supported product. Nor is it a comprehensive SDK for our REST API, but it will provide those conversant in Python with a strong starting point. All are welcome to provide feedback and contribute to its development.
 
 # Features 
 
-* This package contains a set of classes and associated methods that help business users leverage Qontigo's Axioma REST API and better understand its benefits. 
+* This package contains a set of classes and associated methods that help business users leverage Axioma's REST API and better understand its benefits. 
 * It provides a development platform that is easy for anyone conversant in Python to pick up and collaborate on. 
 * The downloadable package comes with comprehensive examples and tutorials on the usage of this Python-based SDK.  
 * The extensive boilerplate and example code will likely reduce the time it takes to build custom applications leveraging the API. 
@@ -56,7 +55,7 @@ You can find some examples [here](axiomapy/examples). In addition, the documents
 
 ## Where Can I Get Help, if I need it?  
 
-You are welcome to submit an issue, if your question is complex or bug-related. Just click "Issues" on the top menu bar over the project to get to the Issues screen. If your problem requires a more immediate response or discussion, please email <axioma-py@qontigo.com> and put **axioma-py** in the message title.
+You are welcome to submit an issue, if your question is complex or bug-related. Just click "Issues" on the top menu bar over the project to get to the Issues screen. If your problem requires a more immediate response or discussion, please email <axioma-py-SCTeam@simcorp.com> and put **axioma-py** in the message title.
 
 
 ## What were the changes made in last release?
