@@ -47,10 +47,13 @@ if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
   # Adds the .NET code coverage report path(s) to the argument builder
   # Inputs:
   # - The builder
-  # - The path(s) to the coverage report(s) in dotCover HTML format
+  # - The path(s) to the coverage report(s)
   #
   # builder=()
   # with_coverage_path builder "./path/to/coverage"
+  #  - If the coverage path contains "SonarQube.xml" then the input is assumed to be in Sonar generic format - https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/test-coverage/test-coverage-parameters/#all-languages
+  #  - If the coverage path contains any other .xml file then the input is assumed to be in VS Coverage XML format
+  #  - Otherwise the input is assumed to be in dotCover HTML format
   with_dotnet_coverage_path() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
@@ -69,9 +72,17 @@ if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
 
     local coverage_path_array
     local delimited_paths
+    if [[ "${coverage_paths}" == *"SonarQube.xml"* ]]; then
+      coverage_key="sonar.coverageReportPaths"
+    elif [[ "${coverage_paths}" == *".xml"* ]]; then
+      coverage_key="sonar.cs.vscoveragexml.reportsPaths"
+    else
+      coverage_key="sonar.cs.dotcover.reportsPaths"
+    fi
     readarray -t coverage_path_array < <(string_to_array "${coverage_paths}" "<none>" || true)
     delimited_paths="$(array_to_csv "${coverage_path_array[@]}")"
-    __builder+=("-d:sonar.cs.dotcover.reportsPaths=\"${delimited_paths}\"")
+
+    __builder+=("-d:${coverage_key}=\"${delimited_paths}\"")
   }
 
 fi
