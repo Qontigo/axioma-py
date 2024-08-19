@@ -6,7 +6,7 @@
 __corecurl_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__corecurl_SCRIPT_DIR}/core-logging.sh"
-[[ -z "${UTILITIES_INCLUDED}" ]] && source "${__corecurl_SCRIPT_DIR}/core-utilities.sh"
+[[ -z "${VALIDATION_INCLUDED}" ]] && source "${__corecurl_SCRIPT_DIR}/core-utilities.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__corecurl_SCRIPT_DIR}/core-validation.sh"
 
 # Ensure functions are included only once

@@ -124,25 +124,6 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
     array_to_delimited_string "," "${values[@]}"
   }
 
-  # Converts an array into a json array
-  # Inputs:
-  # - The array to convert - e.g. ("foo" "bar")
-  # Output:
-  # - The json array - e.g. ["foo","bar"]
-  #
-  # Example usage:
-  # data=("foo" "bar")
-  # json=$(array_to_json "${data[@]}")
-  #
-  array_to_json() {
-    local values=("$@")
-    if [ ${#values[@]} -eq 0 ]; then
-      echo '[]'
-    else
-      printf '%s\n' "${values[@]}" | jq -R . | jq -s -c .
-    fi
-  }
-
   # Converts a path to be cross-platform
   # Inputs:
   # - The path

@@ -120,6 +120,9 @@ function ConvertFrom-Object {
     .PARAMETER Object
         The object to convert
 
+    .PARAMETER Parent
+        The parent property name - should not normally be user-supplied
+
     .PARAMETER BoolToString
         Optionally convert booleans to strings
 
@@ -134,38 +137,28 @@ function ConvertFrom-Object {
         [Parameter(Mandatory=$False, Position=0)]
         [PSCustomObject]$Object=$Null,
         [Parameter(Mandatory=$false)]
+        [string]$Parent = "",
+        [Parameter(Mandatory=$false)]
         [switch]$BoolToString = $False
     )
 
-    function ConvertFrom-ObjectImpl {
-        [CmdletBinding(PositionalBinding=$True)]
-        param (
-            [Parameter(Mandatory=$False, Position=0)]
-            [PSCustomObject]$Object=$Null,
-            [Parameter(Mandatory=$false)]
-            [string]$ParentKey = "",
-            [Parameter(Mandatory=$false)]
-            [switch]$BoolToString = $False
-        )
-        $properties = @{}
-        if ($Null -ne $Object) {
-            foreach ($property in $Object.PSObject.Properties) {
-                $key = if ($ParentKey) { "$ParentKey.$($property.Name)" } else { $property.Name }
+    $properties = @{}
+    if ($Null -ne $Object) {
+        foreach ($property in $Object.PSObject.Properties) {
+            $key = if ($Parent) { "$Parent.$($property.Name)" } else { $property.Name }
 
-                if ($property.Value -is [PSCustomObject]) {
-                    $properties += ConvertFrom-ObjectImpl -Object $property.Value -ParentKey $key -BoolToString:$BoolToString
+            if ($property.Value -is [PSCustomObject]) {
+                $properties += ConvertFrom-Object -Object $property.Value -Parent $key -BoolToString:$BoolToString
+            }
+            else {
+                if ($BoolToString -and $property.Value -is [bool]) {
+                    $property.Value = $property.Value.ToString().ToLower()
                 }
-                else {
-                    if ($BoolToString -and $property.Value -is [bool]) {
-                        $property.Value = $property.Value.ToString().ToLower()
-                    }
-                    $properties[$key] = $property.Value
-                }
+                $properties[$key] = $property.Value
             }
         }
-        return $properties
     }
-    ConvertFrom-ObjectImpl -Object $Object -BoolToString:$BoolToString
+    return $properties
 }
 
 function ConvertFrom-JsonString {
@@ -182,6 +175,9 @@ function ConvertFrom-JsonString {
     .PARAMETER Json
         The json object string to convert
 
+    .PARAMETER Parent
+        The parent property name - should not normally be user-supplied
+
     .OUTPUTS
         A flattened dictionary of the supplied JSON object
 
@@ -196,7 +192,9 @@ function ConvertFrom-JsonString {
     [CmdletBinding(PositionalBinding=$True)]
     param (
         [Parameter(Mandatory=$True, ValueFromPipeline=$True, Position=0)]
-        [string]$Json
+        [string]$Json,
+        [Parameter(Mandatory=$false)]
+        [string]$Parent = ""
     )
 
     $jsonObject = $Null

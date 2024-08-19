@@ -6,7 +6,6 @@ __corenugetpublish_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> 
 
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-logging.sh"
 [[ -z "${CURL_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-curl.sh"
-[[ -z "${GIT_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-git.sh"
 [[ -z "${NUGET_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-nuget.sh"
 [[ -z "${UTILITIES_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-utilities.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-validation.sh"
