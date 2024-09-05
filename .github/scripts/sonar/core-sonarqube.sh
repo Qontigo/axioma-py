@@ -203,11 +203,12 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # - The type of scanner being used - "dotnet" or "cli"
   # - SonarQube project key for the project you want to analyse
   # - Version of the build project/component
-  # - Optional build string to add to the analysis.  Default: "${version}+${GITHUB_RUN_NUMBER}"
+  # - Optional build string to add to the analysis.  Default: version + GITHUB_RUN_NUMBER
   # - Optional override wait for Sonar analysis to complete. Usually this should be false/not supplied - ie, you WANT to wait for analysis
+  # - Optional inclusions - this could be a single or multi-line string or a JSON array - but NOT a BASH array
   #
   # Example Usage:
-  # builder=("$(sonar_command_builder "${{ inputs.sonar-url }}" "${{ inputs.token }}" "dotnet" "${{ inputs.project-key }}" "${version}" )"")
+  # builder=("$(sonar_command_builder "${{ inputs.sonar-url }}" "${{ inputs.token }}" "dotnet" "${{ inputs.project-key }}" "${version}" )" "${{ inputs.inclusions }}")
   #
   sonar_command_builder() {
 
@@ -216,8 +217,9 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     local scanner_type="$3"
     local project_key="$4"
     local version="$5"
-    local build_string="${6:-${version}+${GITHUB_RUN_NUMBER}}"
+    local build_string="$6"
     local do_not_wait_for_results="$7"
+    local inclusions="$8"
     local supported_scanner_types=("dotnet" "cli")
 
     if ! (validate_mandatory_parameter "server_url" "${server_url}" && \
@@ -230,6 +232,14 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     if ! (validate_parameter_value false "${scanner_type}" "${supported_scanner_types[@]}"); then
       log_error "Invalid scanner_type '${scanner_type}'. Supported scanner types are: [${supported_scanner_types[*]}]"
       exit 1
+    fi
+
+    if [[ -z "${build_string}" ]]; then
+      if [[ "${version}" =~ (\.|\+)$GITHUB_RUN_NUMBER$ ]]; then
+        build_string="${version}" # Version already includes the run number
+      else
+        build_string="${version}+${GITHUB_RUN_NUMBER}"
+      fi
     fi
 
     local wait_for_results
@@ -258,6 +268,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
         "${prefix}sonar.buildString=\"${build_string}\""
         "${version_param}"
     )
+    with_inclusions builder "${inclusions}"
 
     echo "${builder[@]}"
   }
@@ -280,8 +291,6 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
     if ! (validate_mandatory_parameter "builder" "$1"); then
       exit 1
     fi
-
-    log_debug "with_inclusions ${inclusions}"
 
     local inclusions_array=()
     if [[ -n "${inclusions}" ]]; then
