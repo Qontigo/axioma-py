@@ -31,6 +31,8 @@ if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
       exit 1
     fi
 
+    log_debug "with_dotnet_test_report_path ${test_paths}"
+
     if [[ -z "${test_paths}" ]]; then
       return 0
     fi
@@ -61,6 +63,8 @@ if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
     if ! (validate_mandatory_parameter "builder" "$1"); then
       exit 1
     fi
+
+    log_debug "with_dotnet_coverage_path ${coverage_paths}"
 
     if [[ -z "${coverage_paths}" ]]; then
       return 0
