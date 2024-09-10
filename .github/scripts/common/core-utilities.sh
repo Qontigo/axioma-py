@@ -72,7 +72,10 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # Example Usage:
   # trimmed=$(trim " A String ")
   trim() {
-    echo "$1" | awk '{$1=$1};1'
+    local input="$1"
+    input="${input#"${input%%[![:space:]]*}"}"  # Remove leading whitespace
+    input="${input%"${input##*[![:space:]]}"}"  # Remove trailing whitespace
+    echo "${input}"
   }
-
+  
 fi
