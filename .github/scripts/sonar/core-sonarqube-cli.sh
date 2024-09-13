@@ -73,18 +73,16 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
     local test_paths="$3"
     local supported_languages=("generic" "go" "java" "javascript" "python" "typescript")
 
+    if [[ -z "${test_paths}" ]]; then
+      return 0
+    fi
+
     if ! (validate_mandatory_parameter "builder" "${1}"); then
       exit 1
     fi
     if ! (validate_parameter_value false "${language}" "${supported_languages[@]}"); then
-      log_error "Invalid language type '${language}'. Supported languages for test reports are: [${supported_languages[*]}]"
+      log_error "with_test_report_path - Invalid language type '${language}'. Supported languages for test reports are: [${supported_languages[*]}]"
       exit 1
-    fi
-
-    log_debug "with_test_report_path ${language} ${test_paths}"
-
-    if [[ -z "${test_paths}" ]]; then
-      return 0
     fi
 
     local param_name=""
@@ -132,18 +130,16 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
     local coverage_paths="$3"
     local supported_languages=("generic" "go" "java" "javascript" "python" "typescript")
 
+    if [[ -z "${coverage_paths}" ]]; then
+      return 0
+    fi
+
     if ! (validate_mandatory_parameter "builder" "${1}"); then
       exit 1
     fi
     if ! (validate_parameter_value false "${language}" "${supported_languages[@]}"); then
-      log_error "Invalid language type '${language}'. Supported languages for coverage types are: [${supported_languages[*]}]"
+      log_error "with_coverage_path - Invalid language type '${language}'. Supported languages for coverage types are: [${supported_languages[*]}]"
       exit 1
-    fi
-
-    log_debug "with_coverage_path ${language} ${coverage_paths}"
-
-    if [[ -z "${coverage_paths}" ]]; then
-      return 0
     fi
 
     local param_name=""
