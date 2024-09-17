@@ -1,7 +1,0 @@
-self-hosted-runner:
-  labels:
-    - selfhosted-lnx-standard
-    - selfhosted-win-standard
-    - selfhosted-win-standard-vs
-    - selfhosted-win-highperf
-    - selfhosted-win-highperf-vs
