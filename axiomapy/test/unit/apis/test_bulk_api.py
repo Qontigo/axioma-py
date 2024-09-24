@@ -112,6 +112,40 @@ class TestBulkAPIMocker(unittest.TestCase):
             self.assertEqual(bulk_response.status_code, 200)
             self.assertEqual(url, "https://test/BULK/api/v1/positions/2023-01-13")
 
+    @patch.object(httpx.Client, "build_request")
+    def test_delete_positions(self, mock_Request):
+        as_of_date = "2024-07-02"
+        payload = {
+            "description": "My set of portfolios",
+            "portfolios": [
+                "TestPortfolio1",
+                "TestPortfolio2",
+            ]
+        }
+        mock_response = Mock(spec=Response)
+        mock_response.status_code = 200
+        mock_request = Mock(spec=Request)
+        mock_request.url = "https://mock_url"
+        mock_request.method = "DELETE"
+        mock_response.request = mock_request
+
+        mock_Request.return_value = Request("DELETE", "https://mock_url")
+
+        with patch.object(
+                AxiomaSession.current._session,
+                "send",
+                return_value=Request(method="DELETE", url=self.domain),
+        ) as mock_session_send:
+            mock_session_send.return_value = mock_response
+            bulk_response = BulkAPI.delete_portfolios_payload(as_of_date=as_of_date, payload=payload)
+            url = (
+                f"{self.domain}/api/{AxiomaSession.current.api_version}/positions/{as_of_date}"
+            )
+
+            mock_Request.assert_called_with(method="DELETE", url=url, headers=ANY, json=payload)
+            self.assertEqual(bulk_response.status_code, 200)
+            self.assertEqual(url, f"https://test/BULK/api/v1/positions/{as_of_date}")
+
 
 if __name__ == "__main__":
     unittest.main()

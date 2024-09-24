@@ -724,6 +724,7 @@ class AxiomaSession(BaseContext):
         url: str,
         params: dict = None,
         headers: dict = None,
+        json: dict = None,
         return_response: bool = False,
     ):
         resp = self.__make_request(
@@ -731,6 +732,7 @@ class AxiomaSession(BaseContext):
             url,
             params=params,
             headers=headers,
+            json=json,
             return_response=return_response,
         )
         return resp

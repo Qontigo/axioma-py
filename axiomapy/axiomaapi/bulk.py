@@ -48,3 +48,24 @@ class BulkAPI:
             url, payload, return_response=return_response
         )
         return response
+
+    @staticmethod
+    def delete_portfolios_payload(
+        as_of_date: str, payload: dict, return_response: bool = True,
+    ):
+        """The method is used to delete multiple portfolio positions in a single request
+
+        Args:
+            as_of_date: date on which portfolios need to be updated
+            payload: a dict of portfolio names
+            return_response: If set to true, the response will be returned.
+
+        Returns:
+            Success message if portfolios are updated. Status code 200
+        """
+        url = f"/positions/{as_of_date}"
+        _logger.info(f"Deleting to {url}")
+        response = AxiomaSession.current._delete(
+            url, json=payload, return_response=return_response
+        )
+        return response
