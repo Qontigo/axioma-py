@@ -1,6 +1,9 @@
 #!/bin/bash
 # shellcheck disable=SC2155 # Ignore combined declaration and assignment
 
+# These are utility functions that have no real other home.
+# Functions should only be added here after due consideration and determination that there really is no other suitable home for them
+
 __coreutilities_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Ensure convert functions are included only once
@@ -68,14 +71,41 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
     fi
   }
 
-  # Trims the incoming string
+  # Trims leading and trailing spaces from the incoming string
+  # Inputs:
+  # - The string to be trimmed
   # Example Usage:
   # trimmed=$(trim " A String ")
+  #
   trim() {
     local input="$1"
     input="${input#"${input%%[![:space:]]*}"}"  # Remove leading whitespace
     input="${input%"${input##*[![:space:]]}"}"  # Remove trailing whitespace
     echo "${input}"
   }
-  
+
+  # Sets environment variables from an array
+  # Inputs:
+  # - The array of key=value environment variable values
+  #
+  # Example usage:
+  # env_vars=("foo=bar" "baz=buzz")
+  # set_environment_variables "${env_vars[@]}"
+  #
+  set_environment_variables() {
+    local entries
+    local entry
+    if [[ $# -eq 0 ]]; then
+      return # No parameters
+    fi
+
+    eval "entries=($*)"
+    for entry in "${entries[@]}"; do
+      entry=$(trim "${entry}")
+      if [[ -n "${entry}" ]]; then
+        export "${entry?}"
+      fi
+    done
+  }
+
 fi
