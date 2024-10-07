@@ -218,7 +218,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
     fi
 
     $logger "${label}:"
-    echo "${json_dictionary}" | jq -r 'to_entries[] | .key as $k | .value | gsub("\n"; " ") | if type=="string" then fromjson? // . else . end | [$k, .] | "\(.[0]) \(.[1])"' | sort | \
+    echo "${json_dictionary}" | jq -r 'to_entries[] | .key as $k | .value | if type == "string" then gsub("\n"; " ") | fromjson? // . else . end | [$k, .] | "\(.[0]) \(.[1])"' | sort | \
     awk '
         BEGIN {
             max_width = 0
