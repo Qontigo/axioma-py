@@ -72,6 +72,11 @@ ClientEventBusAPI
 .. autoclass:: axiomapy.axiomaapi.ClientEventBusAPI
 	:members:
 
+AdminAPI
+------------------------
+.. autoclass:: axiomapy.axiomaapi.AdminAPI
+	:members:
+
 Enumerations
 ------------------------
 
