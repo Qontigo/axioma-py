@@ -72,7 +72,7 @@ class AdminAPI:
         return response
 
     @staticmethod
-    def post_external_identities(external_identity: dict,
+    def post_external_identity(external_identity: dict,
                                  return_response: bool = False):
         """The method creates a new external identity
 
