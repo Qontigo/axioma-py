@@ -84,7 +84,7 @@ class AdminAPI:
              Success message if the external identity is created. Status code 201
         """
         url = "/admin/external-identities"
-        _logger.info(f"Getting from {url}")
+        _logger.info(f"Posting to {url}")
         response = AxiomaSession.current._post(
             url, external_identity, return_response=return_response
         )
@@ -105,7 +105,7 @@ class AdminAPI:
              Success message if the external identity is updated. Code 204
         """
         url = f"/admin/external-identities/{external_identity_id}"
-        _logger.info(f"Getting from {url}")
+        _logger.info(f"Sending Put to {url}")
         response = AxiomaSession.current._put(
             url, external_identity, return_response=return_response
         )
@@ -124,7 +124,7 @@ class AdminAPI:
              Success message if the external identity is deleted. Code 204
         """
         url = f"/admin/external-identities/{external_identity_id}"
-        _logger.info(f"Getting from {url}")
+        _logger.info(f"Delete using {url}")
         response = AxiomaSession.current._delete(
             url, return_response=return_response
         )
