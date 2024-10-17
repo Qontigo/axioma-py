@@ -18,7 +18,6 @@ under the License.
 import logging
 from axiomapy.session import AxiomaSession
 from axiomapy.utils import odata_params
-from axiomapy.odatahelpers import oDataFilterHelper as od
 
 _logger = logging.getLogger(__name__)
 _logger.addHandler(logging.NullHandler())
