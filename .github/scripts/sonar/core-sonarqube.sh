@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+# NOTE: This file is maintained in the Qontigo/devops-gh-actions repo (scripts/sonar/core-sonarqube.sh) and that copy will overwrite any changes made in any repo using the file
+#       If changes are necessary to this file then you will need to raise a PR in that repo and perform appropriate testing with repos which use this file
+
+# SonarQube helper functions for building a command line to run a scan
+#
 
 __coresonarqube_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 

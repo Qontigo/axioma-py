@@ -1,5 +1,8 @@
 #!/bin/bash
 # shellcheck disable=SC2155 # Ignore combined declaration and assignment
+#
+# NOTE: This file is maintained in the Qontigo/devops-gh-actions repo (scripts/common/core-utilities.sh) and that copy will overwrite any changes made in any repo using the file
+#       If changes are necessary to this file then you will need to raise a PR in that repo and perform appropriate testing with repos which use this file
 
 # These are utility functions that have no real other home.
 # Functions should only be added here after due consideration and determination that there really is no other suitable home for them

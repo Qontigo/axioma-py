@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# NOTE: This file is maintained in the Qontigo/devops-gh-actions repo (scripts/common/core-validation.sh) and that copy will overwrite any changes made in any repo using the file
+#       If changes are necessary to this file then you will need to raise a PR in that repo and perform appropriate testing with repos which use this file
+
+# Validation functions
 
 # Ensure validation functions are included only once
 if [[ -z "${VALIDATION_INCLUDED}" ]]; then
@@ -54,7 +59,7 @@ if [[ -z "${VALIDATION_INCLUDED}" ]]; then
     else
       if [[ " ${valid_values[*],,} " == *" ${value,,} "* ]]; then
         return 0
-      fi    
+      fi
     fi
     return 1
   }

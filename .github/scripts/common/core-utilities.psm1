@@ -1,6 +1,11 @@
 #!/usr/bin/env pwsh
+#
+# NOTE: This file is maintained in the Qontigo/devops-gh-actions repo (scripts/common/core-utilities.psm1) and that copy will overwrite any changes made in any repo using the file
+#       If changes are necessary to this file then you will need to raise a PR in that repo and perform appropriate testing with repos which use this file
+
 # Powershell utility functions
-# Note: Using this module requires Scripts/Common/Shared-Functions.psm1 to have been loaded first from the DevOps Repo.
+#
+# NOTE: Using this module requires Scripts/Common/Shared-Functions.psm1 to have been loaded first from the DevOps Repo.
 #       This should be addressed by https://qontigo-cloud.atlassian.net/browse/DEVXP-902
 #
 
