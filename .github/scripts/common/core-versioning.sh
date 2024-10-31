@@ -308,7 +308,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
         output_json+="\"${component}\": ${value}, \"isGreater\": ${is_greater}},"
     done
 
-    echo "${output_json%,}}" # Remove the trailing comma and add a closing
+    echo "${output_json%,}}" | jq -c . # Remove the trailing comma and add a closing }
   }
 
   # Returns the informational version string to use to stamp an assembly
