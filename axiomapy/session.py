@@ -27,7 +27,6 @@ from enum import unique
 from pathlib import Path
 from typing import Optional
 import posixpath
-import backoff
 import httpx
 
 from axiomapy.axiomaexceptions import (
@@ -348,7 +347,6 @@ class AxiomaSession(BaseContext):
     def init(self) -> None:
         """Initializes the http client and authenticates the session"""
         if not self._session:
-            #self._session = self.session_type()
             if(self.certificates is not None and self.certificates != ''):
                 self._session = httpx.Client(proxies=self.proxy, verify=self.certificates)
             else:
@@ -709,6 +707,16 @@ class AxiomaSession(BaseContext):
 
         return prepped_response
 
+    def _set_api_type(self):
+        stack = inspect.stack()
+        file_name = stack[2].filename.split("\\")[-1]
+        if file_name == "bulk.py":
+            self.api_type = APIType.BULK
+        elif file_name == "clienteventbus.py":
+            self.api_type = APIType.CEB
+        else:
+            self.api_type = APIType.REST
+
     def _get(
         self,
         url: str,
@@ -718,6 +726,7 @@ class AxiomaSession(BaseContext):
         cls: type = None,
         return_response: bool = False,
     ):
+        self._set_api_type()
         resp = self.__make_request(
             HttpMethods.GET,
             url,
@@ -736,6 +745,7 @@ class AxiomaSession(BaseContext):
         headers: dict = None,
         return_response: bool = False,
     ):
+        self._set_api_type()
         resp = self.__make_request(
             HttpMethods.DELETE,
             url,
@@ -748,6 +758,7 @@ class AxiomaSession(BaseContext):
     def _post(
         self, url: str, json: dict, headers: dict = None, return_response: bool = False,
     ):
+        self._set_api_type()
         resp = self.__make_request(
             HttpMethods.POST,
             url,
@@ -760,6 +771,7 @@ class AxiomaSession(BaseContext):
     def _put(
         self, url: str, json: dict, headers: dict = None, return_response: bool = False,
     ):
+        self._set_api_type()
         resp = self.__make_request(
             HttpMethods.PUT,
             url,
@@ -778,6 +790,7 @@ class AxiomaSession(BaseContext):
         cls: type = None,
         return_response: bool = False,
     ):
+        self._set_api_type()
         if (headers is not None and 'gzip' in headers.values()):
             resp = self.__make_request(
                 HttpMethods.PATCH,
