@@ -14,7 +14,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   LOGGING_INCLUDED=1
 
   # internal log message
-  __log() {
+  function __log() {
     local type="$1"
     local prefix="$2"
     local message="$3"
@@ -26,7 +26,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   }
 
   # internal log summary message
-  __log_summary() {
+  function __log_summary() {
     local prefix="$1"
     local message="$2"
     local summary_message=""
@@ -39,7 +39,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   }
 
   # Logs a message to debug
-  log_debug() {
+  function log_debug() {
     __log "::debug::" "" "${1}"
   }
 
@@ -47,7 +47,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_env() {
+  function log_env() {
     log_debug "$*"
     if [[ -n "${GITHUB_ACTIONS}" ]]; then
       echo "$*" >> "${GITHUB_ENV}"
@@ -58,7 +58,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_output() {
+  function log_output() {
     log_debug "$*"
     if [[ -n "${GITHUB_ACTIONS}" ]]; then
       echo "$*" >> "${GITHUB_OUTPUT}"
@@ -70,7 +70,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
-  log() {
+  function log() {
     __log "" "" "$1" "$2"
   }
 
@@ -79,7 +79,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
-  log_success() {
+  function log_success() {
     __log "" "✅ " "$1" "$2"
   }
 
@@ -88,7 +88,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
-  log_info() {
+  function log_info() {
     __log "" "ℹ️ " "$1" "$2"
   }
 
@@ -97,7 +97,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
-  log_warning() {
+  function log_warning() {
     __log "::warning::" "⚠️ " "$1" "$2"
   }
 
@@ -106,7 +106,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
-  log_skipped() {
+  function log_skipped() {
     __log "" "✖️ " "$1" "$2"
   }
 
@@ -115,7 +115,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # - The message to log
   # - Optional parameter to log as a notice message - true | false/not supplied (default)
   #
-  log_error() {
+  function log_error() {
     __log "::error::" "❌ " "$1" "$2"
   }
 
@@ -123,7 +123,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_summary() {
+  function log_summary() {
     __log_summary "" "$1"
   }
 
@@ -131,7 +131,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_summary_info() {
+  function log_summary_info() {
     __log_summary "ℹ️ " "$1"
   }
 
@@ -139,7 +139,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_summary_success() {
+  function log_summary_success() {
     __log_summary "✅ " "$1"
   }
 
@@ -147,7 +147,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_summary_skipped() {
+  function log_summary_skipped() {
     __log_summary "✖️ " "$1"
   }
 
@@ -155,7 +155,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_summary_warning() {
+  function log_summary_warning() {
     __log_summary "⚠️ " "$1"
   }
 
@@ -163,7 +163,7 @@ if [[ -z "${LOGGING_INCLUDED}" ]]; then
   # Inputs:
   # - The message to log
   #
-  log_summary_error() {
+  function log_summary_error() {
     __log_summary "❌ " "$1"
   }
 

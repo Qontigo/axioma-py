@@ -30,7 +30,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
   #
   # Example Usage:
   # check_we_would_publish_from_here_at_all "${{ github.event_name }}" "${{ github.ref }}" "${{ github.base_ref }}" "${{ github.base_ref }}"
-  check_we_would_publish_from_here_at_all() {
+  function check_we_would_publish_from_here_at_all() {
     local github_event_name="$1"
     local github_ref="$2"
     local github_base_ref="$3"
@@ -67,7 +67,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
   # Example Usage:
   # check_package_does_not_already_exist_in_the_nuget_repo "https://artifactory-server.com" "${{ inputs.artifactory-api-key }}" "nuget-components" "Foo.1.2.3.nupkg"
   #
-  check_package_does_not_already_exist_in_the_nuget_repo() {
+  function check_package_does_not_already_exist_in_the_nuget_repo() {
     local server="$1"
     local api_key="$2"
     local repo="$3"
@@ -125,7 +125,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
   #  echo "- ${r}"
   # done
   #
-  get_existing_nuget_repos_for_package() {
+  function get_existing_nuget_repos_for_package() {
     local server="$1"
     local api_key="$2"
     local package="$3"
@@ -188,7 +188,7 @@ if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
   #   allowed=false
   # fi
   #
-  check_should_publish_package() {
+  function check_should_publish_package() {
     local github_event_name="$1"
     local github_event_action="$2"
     local github_pr_merged="$3"

@@ -20,7 +20,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   __SUPPORTED_VERSION_FORMATS=("GitVersion" "Nerdbank")
 
   # "internal" implementation of get_version_from_string
-  __get_version_from_string() {
+  function __get_version_from_string() {
     local format="$1"
     local data="$2"
 
@@ -50,7 +50,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   }
 
   # "internal" implementation of get_version_from_file
-  __get_version_from_file() {
+  function __get_version_from_file() {
     local version_file="$1"
     local filename=""
     local data=""
@@ -79,7 +79,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # format=$(get_version_format_from_filename "./GitVersion.yml")
   # echo "Format: ${format}"
   #
-  get_version_format_from_filename() {
+  function get_version_format_from_filename() {
     local filename
     filename=$(basename "$1")
 
@@ -108,7 +108,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # version=$(get_version_from_string "GitVersion" "next-version: 1.2.3")
   # echo "Version: ${version}"
   #
-  get_version_from_string() {
+  function get_version_from_string() {
     local format="$1"
     local data="$2"
     local exit_code
@@ -143,7 +143,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # version=$(get_version_from_file "./GitVersion.yml")
   # echo "Version: ${version}"
   #
-  get_version_from_file() {
+  function get_version_from_file() {
     local version_file="$1"
     local exit_code
 
@@ -177,7 +177,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # Example usage
   # major_info="$(get_major_version "1.0.0")
   #
-  get_major_version() {
+  function get_major_version() {
     local version="$1"
 
     [[ "${version}" =~ $__VERSION_PATTERN ]]
@@ -207,7 +207,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # minor_is_greater="${version_info[1]}"
   # patch_is_greater="${version_info[0]}"
   #
-  compare_versions() {
+  function compare_versions() {
 
     local prev_version="$1"
     local next_version="$2"
@@ -277,7 +277,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # Example usage
   # json_output=$(compare_multiple_versions "${json_input}")
   #
-  compare_multiple_versions() {
+  function compare_multiple_versions() {
     local input_json="$1"
     local output_json="{"
 
@@ -330,7 +330,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # info_version=$(get_informational_version "1.2.3" "80f1a2e37283c3f7e578b83a28bc6dc32551395d" "feature/JIRA-789" "456" "104")
   # echo "${info_version}"
   #
-  get_informational_version() {
+  function get_informational_version() {
     local version="$1"
     local sha="$2"
     local branch_name="$3"
@@ -360,7 +360,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # clean_branch_name_for_version "hotfix/JIRA-456" # Returns hotfixJIRA456
   # clean_branch_name_for_version "some/other/branch" # Returns otherbranch
   #
-  clean_branch_name_for_version() {
+  function clean_branch_name_for_version() {
     local branch_name="$1"
     local stripped_branch=""
     case "${branch_name}" in
@@ -400,7 +400,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   # get_branch_version "1.2.3" "hotfix/JIRA-456" # Returns 1.2.3-hotfixJIRA456
   # get_branch_version "1.2.3" "some/other/branch" # Returns 1.2.3-otherbranch
   #
-  get_branch_version() {
+  function get_branch_version() {
     local version="$1"
     local branch_name="$2"
     local stripped_branch=""

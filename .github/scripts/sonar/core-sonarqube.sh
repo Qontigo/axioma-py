@@ -32,7 +32,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # builder=()
   # prefix=$(__get_arg_prefix builder)
   #
-  __get_arg_prefix() {
+  function __get_arg_prefix() {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __prefixbuilder="$1"
 
@@ -216,7 +216,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # Example Usage:
   # builder=("$(sonar_command_builder "${{ inputs.sonar-url }}" "${{ inputs.token }}" "dotnet" "${{ inputs.project-key }}" "${version}" )" "${{ inputs.inclusions }}")
   #
-  sonar_command_builder() {
+  function sonar_command_builder() {
 
     local server_url="$1"
     local token="$2"
@@ -288,7 +288,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # builder=()
   # with_inclusions builder "Inc1 Inc2"
   #
-  with_inclusions() {
+  function with_inclusions() {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
     local inclusions=""
@@ -343,7 +343,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # builder=()
   # with_github_event builder "master" "${{ github.ref_name}}" "release/1.2.3" "${{ github.event_name }}" "${{ github.event.pull_request.base.ref }}" "${{ github.event.pull_request.head.ref }}" "${{ github.event.pull_request.number }}"
   #
-  with_github_event() {
+  function with_github_event() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
@@ -437,7 +437,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # builder=()
   # with_sonar_properties builder "foo=bar"
   #
-  with_sonar_properties() {
+  function with_sonar_properties() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
@@ -473,7 +473,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # builder=()
   # with_sonar_properties_file builder ".sonarconfig"
   #
-  with_sonar_properties_file() {
+  function with_sonar_properties_file() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
@@ -503,7 +503,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # builder=()
   # with_sonar_properties_file builder "sonar.links.homepage" "${{ inputs.homepage-link }}"
   #
-  with_property_if_missing() {
+  function with_property_if_missing() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
@@ -528,7 +528,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   }
 
   # Sets Sonar logging to be verbose
-  with_verbose_logging() {
+  function with_verbose_logging() {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
     # shellcheck disable=SC2155
@@ -549,7 +549,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # Example Usage:
   # report_location=$(get_report_location "${{ github.event_name }}" "${{ vars.SONARQUBE_SERVER_URL }}" "${{ github.ref_name }}" "${{ github.event.pull_request.number }}")
   #
-  get_report_location() {
+  function get_report_location() {
 
     local event_name="$1"
     local server_url="$2"
@@ -584,7 +584,7 @@ if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   # - The path to the config file or an empty string if there is none.
   # Example Usage:
   # config_file=$(get_config_file_location "." "Foo" | tail -n 1)
-  get_config_file_location() {
+  function get_config_file_location() {
 
     local ROOT="$1"
     local project="$2"

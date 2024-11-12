@@ -18,7 +18,7 @@ if [[ -z "${JAVA_INCLUDED}" ]]; then
   # Example Usage:
   # installed_version="$(get_java_version)"
   #
-  get_java_version() {
+  function get_java_version() {
     local java_binary
     if command -v java &> /dev/null; then
       java_binary="java"
@@ -48,7 +48,7 @@ if [[ -z "${JAVA_INCLUDED}" ]]; then
   # Example Usage:
   # pom_version="$(get_pom_version)"
   #
-  get_pom_version() {
+  function get_pom_version() {
     local pom_version=""
 
     if [[ ! -f "pom.xml" ]]; then

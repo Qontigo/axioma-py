@@ -20,7 +20,7 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
   CURL_NON_RETRYABLE_STATUSES=(400 401 403 404 422) # From the Octokit rety plugin: https://github.com/octokit/plugin-retry.js/blob/9a2443746c350b3beedec35cf26e197ea318a261/src/index.ts#L14)
 
   # Internal implementation for curl_with_retry which will log debug messages
-  __curl_with_retry() {
+  function __curl_with_retry() {
     local url="$1"                                              # The url to access
     local max_retries="$2"                                      # Maximum retry attempts
     local backoff="$3"                                          # Initial backoff time (seconds)
@@ -165,7 +165,7 @@ if [[ -z "${CURL_INCLUDED}" ]]; then
   # response=$(curl_with_retry "https://myserver.org/logs" -X "GET" -SL --raw-response)
   # logs=$(echo -e "${response}" | head -n -1 || true) # Remove the last line which is the response code
   #
-  curl_with_retry() {
+  function curl_with_retry() {
     local url="$1"
     local max_retries=4        # Default number of retries
     local backoff=5            # Default initial backoff time (seconds)

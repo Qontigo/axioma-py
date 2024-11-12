@@ -29,7 +29,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   #  echo "- ${a}"
   # done
   #
-  string_to_array() {
+  function string_to_array() {
     local input="$1"
     local separator="$2"
 
@@ -90,7 +90,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # response_body='[{"name":"Steve","age":69},{"name":"Elon","age":52}]'
   # json_result=$(response_body_to_json "$response_body")
   #
-  string_to_json() {
+  function string_to_json() {
     local raw_data="$1"
     jq -c '.' <<< "${raw_data}"
   }
@@ -106,7 +106,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # data=("foo" "bar")
   # delimited=$(array_to_delimited_string ";" "${data[@]}")
   #
-  array_to_delimited_string() {
+  function array_to_delimited_string() {
     local IFS="$1"
     shift
     echo "$*"
@@ -122,7 +122,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # data=("foo" "bar")
   # delimited=$(array_to_csv "${data[@]}")
   #
-  array_to_csv() {
+  function array_to_csv() {
     local values=("$@")
     array_to_delimited_string "," "${values[@]}"
   }
@@ -137,7 +137,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # data=("foo" "bar")
   # json=$(array_to_json "${data[@]}")
   #
-  array_to_json() {
+  function array_to_json() {
     local values=("$@")
     if [ ${#values[@]} -eq 0 ]; then
       echo '[]'
@@ -156,7 +156,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # Example usage:
   # echo "$(to_crossplatform_path "D:\foo\bar")"
   #
-  to_crossplatform_path() {
+  function to_crossplatform_path() {
     local path="$1"
     local root="$2"
 
@@ -185,7 +185,7 @@ if [[ -z "${CONVERT_INCLUDED}" ]]; then
   # Example usage:
   # echo "$(to_artifact_name "D:\foo\bar")"
   #
-  to_artifact_name() {
+  function to_artifact_name() {
     local input="$1"
     echo -e "${input}" | tr -d '\":<>\|\*\?\r\n\\/\/ '
   }

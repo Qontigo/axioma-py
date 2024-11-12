@@ -18,7 +18,7 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # Example Usage:
   # errexit="$(get_errexit)"
   #
-  get_errexit() {
+  function get_errexit() {
     # The below is very sensitive to changes - do not change "$- =~ e" unless you have a very good reason to.
     if [[ $- =~ e ]]; then
       echo "enabled"
@@ -34,7 +34,7 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # Example Usage:
   # original_errexit="$(get_errexit)"
   # reset_errexit "${original_errexit}"
-  reset_errexit() {
+  function reset_errexit() {
 
     local original_errexit="$1"
     if [[ "${original_errexit}" == "enabled" ]]; then
@@ -49,7 +49,7 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # Example Usage:
   # pipefail="$(get_pipefail)"
   #
-  get_pipefail() {
+  function get_pipefail() {
     if ! set -o | grep -q "pipefail.*on"; then
       echo "disabled"
     else
@@ -64,7 +64,7 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # Example Usage:
   # original_pipefail="$(get_pipefail)"
   # reset_pipefail "${original_pipefail}"
-  reset_pipefail() {
+  function reset_pipefail() {
 
     local original_pipefail="$1"
     if [[ "${original_pipefail}" == "enabled" ]]; then
@@ -80,7 +80,7 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # Example Usage:
   # trimmed=$(trim " A String ")
   #
-  trim() {
+  function trim() {
     local input="$1"
     input="${input#"${input%%[![:space:]]*}"}"  # Remove leading whitespace
     input="${input%"${input##*[![:space:]]}"}"  # Remove trailing whitespace
@@ -95,7 +95,7 @@ if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   # env_vars=("foo=bar" "baz=buzz")
   # set_environment_variables "${env_vars[@]}"
   #
-  set_environment_variables() {
+  function set_environment_variables() {
     local entries
     local entry
     if [[ $# -eq 0 ]]; then

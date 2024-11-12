@@ -20,7 +20,7 @@ if [[ -z "${GIT_INCLUDED}" ]]; then
   # branch="$(get_branch_name)"
   # branch="$(get_branch_name "refs/heads/feature/JIRA-123")"
   #
-  get_branch_name() {
+  function get_branch_name() {
     local ref="$1"
     if [[ "" == "${ref}" ]]; then
       echo "${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}"
@@ -37,7 +37,7 @@ if [[ -z "${GIT_INCLUDED}" ]]; then
   # Example Usage:
   # is_pr=$(is_pull_request "pull/123")
   #
-  is_pull_request() {
+  function is_pull_request() {
     local pull_request_ref="$1"
 
     if ! (validate_mandatory_parameter "pull_request_ref" "${pull_request_ref}"); then
@@ -64,7 +64,7 @@ if [[ -z "${GIT_INCLUDED}" ]]; then
   # Example Usage:
   # pr=$(get_pull_request_number "pull/123")
   #
-  get_pull_request_number() {
+  function get_pull_request_number() {
     local pull_request_ref="$1"
 
     if ! (validate_mandatory_parameter "pull_request_ref" "${pull_request_ref}"); then
@@ -87,7 +87,7 @@ if [[ -z "${GIT_INCLUDED}" ]]; then
   # Example Usage:
   # is_merge=$(is_merge_ref "pull/123")
   #
-  is_merge_ref() {
+  function is_merge_ref() {
     local pull_request_ref="$1"
 
     if ! (validate_mandatory_parameter "pull_request_ref" "${pull_request_ref}"); then

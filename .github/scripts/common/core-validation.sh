@@ -21,7 +21,7 @@ if [[ -z "${VALIDATION_INCLUDED}" ]]; then
   #   exit 1
   # fi
   #
-  validate_mandatory_parameter() {
+  function validate_mandatory_parameter() {
     local name="$1"
     local value="$2"
 
@@ -46,7 +46,7 @@ if [[ -z "${VALIDATION_INCLUDED}" ]]; then
   #   exit 1
   # fi
   #
-  validate_parameter_value() {
+  function validate_parameter_value() {
     local case_sensitive="$1"
     shift
     local value="$1"

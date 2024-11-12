@@ -27,7 +27,7 @@ if [[ -z "${NUGET_INCLUDED}" ]]; then
   # read -r name version < <(get_component_name_and_version "myPackage.1.2.3.nupkg")
   # echo "Component: ${name}, Version: ${version}"
   #
-  get_component_name_and_version() {
+  function get_component_name_and_version() {
     local package="$1"
 
     if ! (validate_mandatory_parameter "package" "${package}") ; then
@@ -52,7 +52,7 @@ if [[ -z "${NUGET_INCLUDED}" ]]; then
   # Example Usage:
   # repo="$(get_component_target_nuget_repository "${{ github.ref }}")"
   #
-  get_component_target_nuget_repository() {
+  function get_component_target_nuget_repository() {
     local github_ref="$1"
 
     if ! (validate_mandatory_parameter "github_ref" "${github_ref}") ; then
@@ -81,7 +81,7 @@ if [[ -z "${NUGET_INCLUDED}" ]]; then
   # Example Usage:
   # repo="$(get_other_nuget_repository "${{ github.ref }}")"
   #
-  get_component_non_target_nuget_repository() {
+  function get_component_non_target_nuget_repository() {
     local github_ref="$1"
 
     if ! (validate_mandatory_parameter "github_ref" "${github_ref}") ; then
