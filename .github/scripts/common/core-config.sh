@@ -31,7 +31,7 @@ if [[ -z "${CONFIG_INCLUDED}" ]]; then
   # properties=()
   # get_ini_file_section "./.sonarconfig" "Workflow" properties
   #
-  get_ini_file_section() {
+  function get_ini_file_section() {
 
     local ini_file="$1"
     local section="$2"
@@ -103,7 +103,7 @@ if [[ -z "${CONFIG_INCLUDED}" ]]; then
   # properties=("foo=bar" "fail.OnMissingProject=always")
   # value=$(get_option_value properties "fail.OnMissingProject")
   #
-  get_option_value () {
+  function get_option_value () {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __properties="$1"
     local key="${2,,}"

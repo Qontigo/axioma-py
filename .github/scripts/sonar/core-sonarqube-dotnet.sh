@@ -27,7 +27,7 @@ if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
   # builder=()
   # with_dotnet_test_report_path builder "./path/to/tests"
   #
-  with_dotnet_test_report_path() {
+  function with_dotnet_test_report_path() {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
     local test_paths="$2"
@@ -57,7 +57,7 @@ if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
   #  - If the coverage path contains "SonarQube.xml" then the input is assumed to be in Sonar generic format - https://docs.sonarsource.com/sonarqube/latest/analyzing-source-code/test-coverage/test-coverage-parameters/#all-languages
   #  - If the coverage path contains any other .xml file then the input is assumed to be in VS Coverage XML format
   #  - Otherwise the input is assumed to be in dotCover HTML format
-  with_dotnet_coverage_path() {
+  function with_dotnet_coverage_path() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"

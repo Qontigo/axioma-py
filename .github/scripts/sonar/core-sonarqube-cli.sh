@@ -34,7 +34,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
   # files=("**/target/surefire-reports/")
   # delimited=$(__string_to_sonar_array "${files[@]}" true)
   #
-  __string_to_sonar_array() {
+  function __string_to_sonar_array() {
     local paths="$1"
     local expand_wildcards="${2:-false}"
     local path_array=()
@@ -73,7 +73,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
   # builder=()
   # with_test_report_path builder "java" "./path/to/junit/tests"
   #
-  with_test_report_path() {
+  function with_test_report_path() {
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
     local language="$2"
@@ -129,7 +129,7 @@ if [[ -z "${SONARQUBE_CLI_INCLUDED}" ]]; then
   # builder=()
   # with_coverage_path builder "typescript" "./path/to/lcov/reports"
   #
-  with_coverage_path() {
+  function with_coverage_path() {
 
     # shellcheck disable=SC2178 # https://github.com/koalaman/shellcheck/issues/1309
     local -n __builder="$1"
