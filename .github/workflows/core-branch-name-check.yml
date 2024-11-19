@@ -12,6 +12,7 @@ on:
 
 jobs:
   check_branchname:
+    # NB: Changing the name below would mean any mandatory checks would need to be updated in all branches of all repos that depend on this name - change with care!
     name: Validate current branch name
     runs-on: ubuntu-latest
 
