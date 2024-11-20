@@ -10,7 +10,7 @@ __coreversioning_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /d
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__coreversioning_SCRIPT_DIR}/core-logging.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__coreversioning_SCRIPT_DIR}/core-validation.sh"
 
-# Ensure versioning functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   VERSIONING_INCLUDED=1
 

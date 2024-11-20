@@ -9,7 +9,7 @@
 
 __coreutilities_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-# Ensure convert functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${UTILITIES_INCLUDED}" ]]; then
   UTILITIES_INCLUDED=1
 

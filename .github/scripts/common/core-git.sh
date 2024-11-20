@@ -10,7 +10,7 @@ __coregit_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__coregit_SCRIPT_DIR}/core-logging.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__coregit_SCRIPT_DIR}/core-validation.sh"
 
-# Ensure git functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${GIT_INCLUDED}" ]]; then
   GIT_INCLUDED=1
 

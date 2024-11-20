@@ -5,7 +5,7 @@
 
 # Validation functions
 
-# Ensure validation functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${VALIDATION_INCLUDED}" ]]; then
   VALIDATION_INCLUDED=1
 

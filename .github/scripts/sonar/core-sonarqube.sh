@@ -15,7 +15,7 @@ __coresonarqube_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /de
 [[ -z "${UTILITIES_INCLUDED}" ]] && source "${__coresonarqube_SCRIPT_DIR}/../common/core-utilities.sh"
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__coresonarqube_SCRIPT_DIR}/../common/core-logging.sh"
 
-# Ensure Sonarqube functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${SONARQUBE_INCLUDED}" ]]; then
   SONARQUBE_INCLUDED=1
 

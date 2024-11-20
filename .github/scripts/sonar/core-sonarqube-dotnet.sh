@@ -14,7 +14,7 @@ __coresonarqubedotnet_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" 
 [[ -z "${SONARQUBE_INCLUDED}" ]] && source "${__coresonarqubedotnet_SCRIPT_DIR}/core-sonarqube.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__coresonarqubedotnet_SCRIPT_DIR}/../common/core-validation.sh"
 
-# Ensure Sonarqube functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${SONARQUBE_DOTNET_INCLUDED}" ]]; then
   SONARQUBE_DOTNET_INCLUDED=1
 

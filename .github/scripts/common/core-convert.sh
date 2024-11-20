@@ -9,7 +9,7 @@ __coreconvert_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/
 
 [[ -z "${UTILITIES_INCLUDED}" ]] && source "${__coreconvert_SCRIPT_DIR}/core-utilities.sh"
 
-# Ensure convert functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${CONVERT_INCLUDED}" ]]; then
   CONVERT_INCLUDED=1
 

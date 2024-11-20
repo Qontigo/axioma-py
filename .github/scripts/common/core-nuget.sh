@@ -10,14 +10,14 @@ __corenuget_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/nu
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__corenuget_SCRIPT_DIR}/core-logging.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__corenuget_SCRIPT_DIR}/core-validation.sh"
 
-# Ensure publishing functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${NUGET_INCLUDED}" ]]; then
   NUGET_INCLUDED=1
 
   NUGET_COMPONENTS="nuget-components"
   NUGET_FEATURES="nuget-features"
 
-  # Returns the compnent name and version from a package file of the form my.package.1.2.3.nupkg
+  # Returns the component name and version from a package file of the form my.package.1.2.3.nupkg
   # Inputs:
   # - The full package name
   # Returns:

@@ -11,7 +11,7 @@ __coreconfig_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/n
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__coreconfig_SCRIPT_DIR}/core-logging.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__coreconfig_SCRIPT_DIR}/core-validation.sh"
 
-# Ensure config functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${CONFIG_INCLUDED}" ]]; then
   CONFIG_INCLUDED=1
 

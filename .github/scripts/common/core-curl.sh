@@ -12,7 +12,7 @@ __corecurl_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/nul
 [[ -z "${UTILITIES_INCLUDED}" ]] && source "${__corecurl_SCRIPT_DIR}/core-utilities.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__corecurl_SCRIPT_DIR}/core-validation.sh"
 
-# Ensure functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${CURL_INCLUDED}" ]]; then
   CURL_INCLUDED=1
   CURL_DEFAULT_CONNECTION_TIMEOUT=120

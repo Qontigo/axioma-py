@@ -9,7 +9,7 @@ __corelogging_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/
 
 [[ -z "${UTILITIES_INCLUDED}" ]] && source "${__corelogging_SCRIPT_DIR}/core-utilities.sh"
 
-# Ensure logging functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${LOGGING_INCLUDED}" ]]; then
   LOGGING_INCLUDED=1
 

@@ -14,7 +14,7 @@ __corenugetpublish_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> 
 [[ -z "${UTILITIES_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-utilities.sh"
 [[ -z "${VALIDATION_INCLUDED}" ]] && source "${__corenugetpublish_SCRIPT_DIR}/core-validation.sh"
 
-# Ensure publishing functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${NUGET_PUBLISH_INCLUDED}" ]]; then
   NUGET_PUBLISH_INCLUDED=1
 

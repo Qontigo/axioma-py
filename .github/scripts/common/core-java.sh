@@ -9,7 +9,7 @@ __corejava_SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/nul
 
 [[ -z "${LOGGING_INCLUDED}" ]] && source "${__corejava_SCRIPT_DIR}/core-logging.sh"
 
-# Ensure publishing functions are included only once
+# Ensure the functions are included only once
 if [[ -z "${JAVA_INCLUDED}" ]]; then
   JAVA_INCLUDED=1
 
