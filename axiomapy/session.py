@@ -21,6 +21,7 @@ Copyright 2019 Goldman Sachs under Apache License 2.0
 
 import inspect
 import logging
+import os.path
 from collections.abc import Mapping
 from configparser import ConfigParser
 from enum import unique
@@ -709,7 +710,7 @@ class AxiomaSession(BaseContext):
 
     def _set_api_type(self):
         stack = inspect.stack()
-        file_name = stack[2].filename.split("\\")[-1]
+        file_name = stack[2].filename.split(os.path.sep)[-1]
         if file_name == "bulk.py":
             self.api_type = APIType.BULK
         elif file_name == "clienteventbus.py":
