@@ -349,7 +349,7 @@ class AxiomaSession(BaseContext):
         """Initializes the http client and authenticates the session"""
         if not self._session:
             if(self.certificates is not None and self.certificates != ''):
-                self._session = httpx.Client(proxies=self.proxy, verify=self.certificates)
+                self._session = httpx.Client(proxy=self.proxy, verify=self.certificates)
             else:
                 self._session = self.session_type()
             self._is_authenticated = self._authenticate()
@@ -879,7 +879,7 @@ class SimpleAuthSession(AxiomaSession):
         certificates = self.certificates
         _logger.info("Preparing to authenticate:")
 
-        with httpx.Client(proxies=proxy, verify=certificates, timeout=self.timeout) as client:
+        with httpx.Client(proxy=proxy, verify=certificates, timeout=self.timeout) as client:
             response = client.post(self.auth_url, data=credentials, headers=headers)
 
         _logger.info(f"Sending authentication request to {self.auth_url}")
@@ -889,13 +889,34 @@ class SimpleAuthSession(AxiomaSession):
                 f"Unable to authenticate: {response.status_code} - {response.text}"
             )
 
-            raise AxiomaAuthenticationError(
-                message="Response error from request. Note: The order of parameters were changed as part of axiomapy 1.77 release. Please refer to examples or Change log for additional details.",
-                content=response.text,
-                reason=response.reason_phrase,
-                status_code=response.status_code,
-                response=response,
-            )
+            response_dict = response.json()
+            if response_dict['error'] == 'invalid_client':
+                raise AxiomaRequestValidationError(
+                    message="Response error from request. Note: The order of parameters were changed as part of axiomapy 1.77 release. Please refer to examples or Change log for additional details.",
+                    content=response.text,
+                    reason=response.reason_phrase,
+                    status_code=response.status_code,
+                    response=response,
+                    validation_error=response_dict['error']
+                )
+
+            if response_dict['error'] == 'invalid_grant':
+                raise AxiomaAuthenticationError(
+                    message="Invalid credentials. Please validate your credentials.",
+                    content=response.text,
+                    reason=response.reason_phrase,
+                    status_code=response.status_code,
+                    response=response,
+                )
+            else:
+                raise AxiomaAuthenticationError(
+                    message="Something went wrong with the request. Please check details for more information.",
+                    content=response.text,
+                    reason=response.reason_phrase,
+                    status_code=response.status_code,
+                    response=response,
+                )
+
 
         response_json = response.json()
         access_token = response_json.get("access_token")

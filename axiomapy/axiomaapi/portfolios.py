@@ -164,18 +164,34 @@ class PortfoliosAPI:
 
     @staticmethod
     def get_position_dates(
-        portfolio_id: int, return_response: bool = False,
+        portfolio_id: int,
+        start_date: str = None,
+        end_date: str = None,
+        return_response: bool = False,
     ):
         """This method is used to list dates for which there are positions for the portfolio, latest first
 
         Args:
             portfolio_id: Id of the portfolio
+            start_date: beginning date to filter position dates
+            end_date: last date to filter position dates
             return_response: If set to true, the response will be returned
 
         Returns:
             The dates for which the portfolio is available
         """
-        url = f"/portfolios/{portfolio_id}/positions"
+        filter_results = None
+        if (start_date is not None):
+            filter_results = f"asOfDate gt {start_date}"
+        if (end_date is not None):
+            if filter_results is None:
+                filter_results = f"asOfDate lt {end_date}"
+            else:
+                filter_results = f"{filter_results}&asOfDate lt {end_date}"
+        if filter_results is not None:
+            url = f"/portfolios/{portfolio_id}/positions?$filter={filter_results}"
+        else:
+            url = f"/portfolios/{portfolio_id}/positions"
         _logger.info(f"Getting from {url}")
         response = AxiomaSession.current._get(url, return_response=return_response)
         return response

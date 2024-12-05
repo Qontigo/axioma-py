@@ -54,3 +54,27 @@ class BulkAPI:
         )
 
         return response
+
+    @staticmethod
+    def post_rollover_positions(
+            payload: dict,
+            headers: dict = None,
+            return_response: bool = True
+    ):
+        """The method performs the positions rollover of one or more portfolios via a single portfolio group or by multiple portfolios
+
+        Args:
+            payload: Portfolio names or portfolio group name for which the positions rollover is to be done along with rollOverToDate
+            headers: Optional headers, if any required (Content-Encoding for zip , Accept-Encoding)
+            return_response: If set to true, the response will be returned.
+
+        Returns:
+            Success message if portfolios are updated. Status code 200
+        """
+        url = f"/positions/rollover-requests"
+        _logger.info(f"Posting to {url}")
+        response = AxiomaSession.current._post(
+            url, payload, headers=headers, return_response=return_response
+        )
+
+        return response
