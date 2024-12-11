@@ -187,7 +187,7 @@ class PortfoliosAPI:
             if filter_results is None:
                 filter_results = f"asOfDate lt {end_date}"
             else:
-                filter_results = f"{filter_results}&asOfDate lt {end_date}"
+                filter_results = f"{filter_results} and asOfDate lt {end_date}"
         if filter_results is not None:
             url = f"/portfolios/{portfolio_id}/positions?$filter={filter_results}"
         else:
