@@ -37,4 +37,5 @@ ____________
 As of this release,
     * axioma-py will support httpx package 0.26.0 and above. Please upgrade your packages in order to use the latest version of the axioma-py.
     * A new endpoint was introduced to rollover positions in bulk.
+    * axioma-py now requires Python 3.8 or above.
 Please refer to the documentation for more details.

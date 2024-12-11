@@ -27,7 +27,7 @@ axioma-py was originally written, maintained and used by internal Axioma users. 
 
 ## Basic Requirements
 
-* Python 3.6 or greater
+* Python 3.8 or greater
 * Access to PIP package manager 
 
 
