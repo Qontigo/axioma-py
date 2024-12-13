@@ -37,10 +37,10 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.8",
     install_requires=[
         "pandas",
-        "httpx>=0.16.0",
+        "httpx>=0.26.0",
         "typing;python_version<'3.7'",
         "typing-inspect",
         "inflection",

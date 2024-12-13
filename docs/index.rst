@@ -32,7 +32,7 @@ Library Installation
 
 Requirements:
 
-- Python 3.6 or greater
+- Python 3.8 or greater
 - Access to PIP package manager
 
 If you don't already have one, create a virtualenv using `these instructions <https://docs.python.org/3/library/venv.html>`_ from the official Python documentation. Per the instructions, "it is always recommended to use a virtualenv while developing Python applications."
