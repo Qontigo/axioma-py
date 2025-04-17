@@ -345,7 +345,7 @@ if [[ -z "${VERSIONING_INCLUDED}" ]]; then
   }
 
   # Returns the "cleaned" branch name that should be used in generating a branch-specific version
-  # - For main/master/prod/release it will simply return an empty string as we typcially do no suffix these versions
+  # - For main/master/prod/release it will simply return an empty string as we typically do no suffix these versions
   # - For relfix/XXX or hotfix/XXX branches it will return <version>-(relfix|hotfix)XXX with [-_/] stripped from it
   # - For feature branches and any other branches, it will return XXX where XXX is anything after the first "/" in the branch name, with [-_/] stripped from it
   # Inputs:
