@@ -83,3 +83,50 @@ class RiskModelDefinitionsAPI:
             url, headers=headers, return_response=return_response
         )
         return response
+
+    @staticmethod
+    def post_risk_model_definition(
+            entity: dict,
+            headers: dict = None,
+            return_response: bool = False,
+    ):
+        """This method creates a single risk model definition
+
+        Args:
+            entity: Dictionary with entity details to be created
+            headers: Optional headers if any needed (Correlation ID , Accept-Encoding)
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the entity is created. Code 201
+        """
+        url = f"/risk-model-definitions"
+        _logger.info(f"Posting from {url}")
+        response = AxiomaSession.current._post(
+            url, entity, headers=headers, return_response=return_response
+        )
+        return response
+
+    @staticmethod
+    def put_risk_model_definition(
+            entity: dict,
+            risk_model_definition_id: str,
+            headers: dict = None,
+            return_response: bool = False,
+    ):
+        """This method replaces a single risk model definition
+
+        Args:
+            entity: Dictionary with entity details to replace
+            headers: Optional headers if any needed (Correlation ID , Accept-Encoding)
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the entity is created. Code 201
+        """
+        url = f"/risk-model-definitions/{risk_model_definition_id}"
+        _logger.info(f"Putting from {url}")
+        response = AxiomaSession.current._put(
+            url, entity, headers=headers, return_response=return_response
+        )
+        return response
