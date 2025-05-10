@@ -122,7 +122,7 @@ class RiskModelDefinitionsAPI:
             return_response: If set to true, the response will be returned
 
         Returns:
-            Success message if the entity is created. Code 201
+            Success message if the entity is replaced. Code 204
         """
         url = f"/risk-model-definitions/{risk_model_definition_id}"
         _logger.info(f"Putting from {url}")
