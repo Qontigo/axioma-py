@@ -28,7 +28,7 @@ def request_model(data, timelimit=500):
         status = AnalysesRiskAPI.get_risk_model_request_status(requestId)
         stat = status.json()["status"]
         print(stat)
-        if stat.lower() in [
+        if stat in [
             enums.FinishedStatuses.Completed,
             enums.FinishedStatuses.Failed,
         ]:
