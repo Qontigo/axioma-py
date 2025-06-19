@@ -107,7 +107,10 @@ if [[ -z "${GIT_INCLUDED}" ]]; then
 
   # Validates that the supplied branch name meets our standard requirements:
   # - Branch names must start with one of the allowed prefixes (release, feature, relfix, hotfix, or 'dependabot' for dependabot branches)
-  # - release branches must be in the format N.N.N or N.N.N.N - e.g. release/1.2.3 or release/24.23.22.21
+  # - release branches must be in one of the following formats:
+  #   - N.N.N   - e.g. release/1.2.3
+  #   - N.N.N.N - e.g. release/24.23.22.21
+  #   - YYYY.NN - e.g. release/2025.22
   # - feature/relfix/hotfix branches must be in one of two formats, depending on if it is for JIRA or for Digital.ai Agility:
   #   - For JIRA it is <prefix>/JIRA-NO or <prefix>/JIRA-NO-<suffix> - e.g. feature/JIRA-123 or hotfix/JIRA-123-FIX-TEST
   #   - For Digital.ai Agility is is <prefix>/D-<NNN>, <prefix>/S-<NNN>, <prefix>/D-<NNN>-<suffix>, or <prefix>/S-<NNN>-<suffix> - e.g. feature/D-123 or hotfix/S-4567-SUFFIX
@@ -126,7 +129,7 @@ if [[ -z "${GIT_INCLUDED}" ]]; then
     local branch_name="$1"
 
     local allowed_branches=("develop" "main" "master" "prod") # Branch names to ignore from the convention
-    local branch_name_regex='^(hotfix|feature|relfix)\/([A-Z]{2,}-[0-9]+|[DS]-[0-9]+)(-[a-zA-Z0-9]+)*$|^release\/([0-9]+\.){2,3}[0-9]+(-[a-zA-Z0-9]+)*$|^dependabot\/[a-zA-Z]{2,}.{2,}$'
+    local branch_name_regex='^(hotfix|feature|relfix)\/([A-Z]{2,}-[0-9]+|[DS]-[0-9]+)(-[a-zA-Z0-9]+)*$|^release\/([0-9]{4}\.[0-9]{2}|([0-9]+\.){2,3}[0-9]+)(-[a-zA-Z0-9]+)*$|^dependabot\/[a-zA-Z]{2,}.{2,}$'
     local min_length=3 # Min length of the branch name (excluding the prefix)
     local max_length=100  # Max length of the branch name (excluding the prefix)
 
