@@ -138,6 +138,26 @@ class PortfolioGroupsAPI:
         return response
 
     @staticmethod
+    def put_portfolios(portfolio_group_id: int,
+                               portfolios_dict: dict,
+                               return_response: bool = False):
+        """This method replaces portfolios in a portfolio group based on the json provided
+
+        Args:
+            portfolio_group_id: portfolio group to be updated
+            portfolios_dict: updated portfolios for the portfolio group
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the portfolio group is updated successfully. Code 204
+        """
+        url = f"/portfolio-groups/{portfolio_group_id}/portfolios"
+        _logger.info(f"Put portfolios at {url}")
+        response = AxiomaSession.current._put(url, portfolios_dict,
+                                                return_response=return_response)
+        return response
+
+    @staticmethod
     def patch_portfolio_groups(portfolio_group_id: int,
                                portfolios_dict: dict,
                                return_response: bool = False):
@@ -154,5 +174,65 @@ class PortfolioGroupsAPI:
         url = f"/portfolio-groups/{portfolio_group_id}/portfolios"
         _logger.info(f"Patching portfolios at {url}")
         response = AxiomaSession.current._patch(url, portfolios_dict,
+                                                return_response=return_response)
+        return response
+
+    @staticmethod
+    def patch_teams(portfolio_group_id: int,
+                               teams_dict: dict,
+                               return_response: bool = False):
+        """This method upserts or deletes the portfolio group teams with the teams json
+
+        Args:
+            portfolio_group_id: portfolio group to be updated
+            teams_dict: teams to upsert or delete from the portfolio group
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the portfolio group is updated successfully. Code 204
+        """
+        url = f"/portfolio-groups/{portfolio_group_id}/teams"
+        _logger.info(f"Patching teams at {url}")
+        response = AxiomaSession.current._patch(url, teams_dict,
+                                                return_response=return_response)
+        return response
+
+    @staticmethod
+    def put_teams(portfolio_group_id: int,
+                    teams_dict: dict,
+                    return_response: bool = False):
+        """This method replaces the portfolio group teams with the teams json
+
+        Args:
+            portfolio_group_id: portfolio group to be updated
+            teams_dict: updated teams for the portfolio group
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the portfolio group is updated successfully. Code 204
+        """
+        url = f"/portfolio-groups/{portfolio_group_id}/teams"
+        _logger.info(f"Put teams at {url}")
+        response = AxiomaSession.current._put(url, teams_dict,
+                                                return_response=return_response)
+        return response
+
+    @staticmethod
+    def patch_users(portfolio_group_id: int,
+                    users_dict: dict,
+                    return_response: bool = False):
+        """This method replaces the portfolio group teams with the teams json
+
+        Args:
+            portfolio_group_id: portfolio group to be updated
+            users_dict: users to upsert or delete from the portfolio group
+            return_response: If set to true, the response will be returned
+
+        Returns:
+            Success message if the portfolio group is updated successfully. Code 204
+        """
+        url = f"/portfolio-groups/{portfolio_group_id}/users"
+        _logger.info(f"Patching users at {url}")
+        response = AxiomaSession.current._patch(url, users_dict,
                                                 return_response=return_response)
         return response
