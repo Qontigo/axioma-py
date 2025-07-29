@@ -44,8 +44,8 @@ pipeline {
 
       emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER} \nMore info at: ${env.BUILD_URL}",
         subject: "Jenkins: ${env.JOB_BASE_NAME} BUILD SUCCESSFUL!",
-        to: "bspector@qontigo.com",
-        from: "jenkins@qontigo.com"
+        to: "jenkins@simcorp.com",
+        from: "jenkins@simcorp.com"
     }
 
     failure {
@@ -56,7 +56,7 @@ pipeline {
         to: emailextrecipients([
                          [$class: 'CulpritsRecipientProvider']
                      ]),
-        from: "jenkins@qontigo.com"
+        from: "jenkins@simcorp.com"
     }
   }
 }
