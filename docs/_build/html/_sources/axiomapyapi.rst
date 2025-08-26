@@ -77,6 +77,11 @@ AdminAPI
 .. autoclass:: axiomapy.axiomaapi.AdminAPI
 	:members:
 
+IAPPerformanceIntegrationAPI
+------------------------------
+.. autoclass:: axiomapy.axiomaapi.IAPPerformanceIntegrationAPI
+	:members:
+
 Enumerations
 ------------------------
 

@@ -1,21 +1,25 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Change Log &mdash; axiomapy 0+untagged.201.gda83024.dirty documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+  <title>Change Log &mdash; axiomapy 0+untagged.214.g2f1032b.dirty documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76452be6"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -41,21 +45,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Examples and Use Cases:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Examples and Use Cases:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples2.html">Examples</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Packages:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Packages:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sessions.html">Sessions Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="axiomapyapi.html">AxiomaAPI Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odatafilterhelpers.html">oDataFilterHelpers</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Endpoints:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Endpoints:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="endpoints.html">Axiomarisk endpoints covered by axioma-py</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Other:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Change Log</a><ul>
@@ -92,47 +96,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="change-log">
-<h1>Change Log<a class="headerlink" href="#change-log" title="Permalink to this headline">¶</a></h1>
+  <section id="change-log">
+<h1>Change Log<a class="headerlink" href="#change-log" title="Link to this heading"></a></h1>
 <p>This document records all notable changes to axioma-py.</p>
-<div class="section" id="id1">
-<h2>1.77<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="id1">
+<h2>1.77<a class="headerlink" href="#id1" title="Link to this heading"></a></h2>
 <p>As of this release, the AxiomaSession Object will have a default client id. The AxiomaSession initiation will now only require username, password, and domain. The order of arguments will change from previous releases. Please refer to our examples for more details.</p>
-</div>
-<div class="section" id="tag-23-12">
-<h2>Tag-23.12<a class="headerlink" href="#tag-23-12" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tag-23-12">
+<h2>Tag-23.12<a class="headerlink" href="#tag-23-12" title="Link to this heading"></a></h2>
 <p>As of this release, support for Python 3.12 was introduced. axioma-py is now compatible with Python 3.12.</p>
-</div>
-<div class="section" id="tag-24-6">
-<h2>Tag-24.6<a class="headerlink" href="#tag-24-6" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tag-24-6">
+<h2>Tag-24.6<a class="headerlink" href="#tag-24-6" title="Link to this heading"></a></h2>
 <p>As of this release, Client Event Bus endpoints were introduced in axioma-py. The clients can now access events and market-data via axioma-py. Please refer to the documentation for details related to supported endpoints.</p>
-</div>
-<div class="section" id="tag-24-11">
-<h2>Tag-24.11<a class="headerlink" href="#tag-24-11" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tag-24-11">
+<h2>Tag-24.11<a class="headerlink" href="#tag-24-11" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>As of this release:</dt><dd><ul class="simple">
 <li><p>Users will have access to Admin endpoints to related to External entities.</p></li>
@@ -142,9 +122,9 @@
 </dd>
 </dl>
 <p>Please refer to the documentation for complete endpoints guide.</p>
-</div>
-<div class="section" id="tag-24-12">
-<h2>Tag-24.12<a class="headerlink" href="#tag-24-12" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="tag-24-12">
+<h2>Tag-24.12<a class="headerlink" href="#tag-24-12" title="Link to this heading"></a></h2>
 <dl class="simple">
 <dt>As of this release,</dt><dd><ul class="simple">
 <li><p>axioma-py will support httpx package 0.26.0 and above. Please upgrade your packages in order to use the latest version of the axioma-py.</p></li>
@@ -154,8 +134,8 @@
 </dd>
 </dl>
 <p>Please refer to the documentation for more details.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

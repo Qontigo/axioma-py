@@ -36,6 +36,7 @@ from .riskmodeldefinitions import RiskModelDefinitionsAPI
 from .templates import TemplatesAPI
 from .clienteventbus import ClientEventBusAPI
 from .admin import AdminAPI
+from .iapperformanceintegration import IAPPerformanceIntegrationAPI
 
 __all__ = [
     "AnalysisDefinitionAPI",
@@ -62,5 +63,6 @@ __all__ = [
     "RiskModelDefinitionsAPI",
     "BulkAPI",
     "ClientEventBusAPI",
-    "AdminAPI"
+    "AdminAPI",
+    "IAPPerformanceIntegrationAPI"
 ]

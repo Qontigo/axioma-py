@@ -588,7 +588,6 @@ class PortfoliosAPI:
     @staticmethod
     def patch_valuations(
         portfolio_id: int,
-        as_of_date: str,
         valuations_upsert: List[dict] = None,
         valuations_remove: List[dict] = None,
         return_response: bool = False,
@@ -597,7 +596,6 @@ class PortfoliosAPI:
 
         Args:
             portfolio_id:id of the portfolio
-            as_of_date:the date for which valuations are being patched
             valuations_upsert:valuations to be created or updated
             valuations_remove:the valuations that needs to be deleted
             return_response: If set to true, the response will be returned

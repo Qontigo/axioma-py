@@ -25,8 +25,6 @@ _logger.addHandler(logging.NullHandler())
 class BulkAPI:
     """Perform bulk actions using the active session
 
-    Returns:
-        [type]: [description]
     """
 
     @staticmethod

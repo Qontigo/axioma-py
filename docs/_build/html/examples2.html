@@ -1,21 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples &mdash; axiomapy 0+untagged.201.gda83024.dirty documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/clipboard.min.js"></script>
-        <script src="_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+  <title>Examples &mdash; axiomapy 0+untagged.214.g2f1032b.dirty documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=76452be6"></script>
+      <script src="_static/doctools.js?v=9a2dae69"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script type="text/x-mathjax-config">MathJax.Hub.Config({"TeX": {"equationNumbers": {"autoNumber": "AMS", "useLabelIds": true}}, "tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -42,7 +48,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Examples and Use Cases:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Examples and Use Cases:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#instructions-for-running-examples">Instructions for running examples</a><ul>
@@ -55,17 +61,17 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Packages:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Packages:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sessions.html">Sessions Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="axiomapyapi.html">AxiomaAPI Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="odatafilterhelpers.html">oDataFilterHelpers</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Endpoints:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Endpoints:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="endpoints.html">Axiomarisk endpoints covered by axioma-py</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Other:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="changelog.html">Change Log</a></li>
@@ -95,36 +101,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="examples">
-<span id="axioma-py-examples"></span><h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
-<p>(The examples notebooks can be downloaded here <a class="reference download internal" download="" href="_downloads/015a92deca58537583f47a1d5c78cf84/all_examples.zip"><code class="xref download docutils literal notranslate"><span class="pre">all_examples.zip</span></code></a>)</p>
-<div class="section" id="instructions-for-running-examples">
-<h2>Instructions for running examples<a class="headerlink" href="#instructions-for-running-examples" title="Permalink to this headline">¶</a></h2>
-<p>Download the zipped set of examples (<a class="reference download internal" download="" href="_downloads/015a92deca58537583f47a1d5c78cf84/all_examples.zip"><code class="xref download docutils literal notranslate"><span class="pre">all_examples.zip</span></code></a>) and unzip and cd into that folder.
+  <section id="examples">
+<span id="axioma-py-examples"></span><h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<p>(The examples notebooks can be downloaded here <code class="xref download docutils literal notranslate"><span class="pre">all_examples.zip</span></code>)</p>
+<section id="instructions-for-running-examples">
+<h2>Instructions for running examples<a class="headerlink" href="#instructions-for-running-examples" title="Link to this heading"></a></h2>
+<p>Download the zipped set of examples (<code class="xref download docutils literal notranslate"><span class="pre">all_examples.zip</span></code>) and unzip and cd into that folder.
 (Or if you have cloned the repo from GIT, cd to axiomapy/examples)</p>
 <p>The examples reference sample data json files and a json from which to load up credentials.
 Two modules are used to load the users and the sample data load_credentials.py and load_sample_data.py.
@@ -140,15 +122,15 @@ If you do not wish to use the credentials file remove references to load_credent
 <p>Sample data is loaded from the files in the /sample_data folder.</p>
 <p>The examples are provided as Jupyter Notebooks.</p>
 <p>If you have installed axiomapy in a new environment you may also need to install jupyter.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install jupyter
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>jupyter
 </pre></div>
 </div>
 <p>Optional: Depending how you launch jupyter you may also need to add a Python Kernel for your new virtual environment which can be selected when running jupyter notebook.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipython kernel install --name <span class="s2">&quot;axiomapy-venv-kernel&quot;</span> --user
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ipython<span class="w"> </span>kernel<span class="w"> </span>install<span class="w"> </span>--name<span class="w"> </span><span class="s2">&quot;axiomapy-venv-kernel&quot;</span><span class="w"> </span>--user
 </pre></div>
 </div>
 <p>The start the notebook and open the examples.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter<span class="w"> </span>notebook
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
@@ -232,8 +214,8 @@ If you do not wish to use the credentials file remove references to load_credent
 </li>
 </ul>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
