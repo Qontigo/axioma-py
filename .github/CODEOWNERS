@@ -11,3 +11,6 @@
 # DEVOPS-6480 - DEVOPS must review changes to these files
 .terraform-docs.yml @Qontigo/qontigo-devops
 .tflint.ci.* @Qontigo/qontigo-devops
+
+# AN-6034 - DEVOPS must review changes to these files
+/.teamcity/ @Qontigo/qontigo-devops
