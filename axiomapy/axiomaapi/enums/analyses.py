@@ -40,6 +40,7 @@ class FinishedStatuses(EnumBase):
 
     Completed = "Completed"
     Failed = "Failed"
+    Success = "Success"
 
 
 @unique

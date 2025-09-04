@@ -17,6 +17,7 @@ under the License.
 import time
 
 from axiomapy.axiomaapi import AnalysesAPI, AnalysesRiskAPI, enums
+from axiomapy.axiomaapi import IAPPerformanceIntegrationAPI
 
 
 def request_model(data, timelimit=500):
@@ -78,3 +79,28 @@ def request_aggregation(data, portfolio_id, timelimit=500, polling_freq=5):
         time.sleep(polling_freq)
         print("Still waiting", idx * polling_freq, "seconds")
     return status, headers
+
+def request_iap(data, upload_flag= False, headers=None, timelimit=500, polling_freq=5):
+    try:
+        response = IAPPerformanceIntegrationAPI.post_iap_performance_integration(
+            payload=data, upload=upload_flag, headers=headers
+        )
+        request_id = response.headers["operation-location"]
+        # Recursively checking the status of the job
+        itns = int(timelimit / polling_freq)
+        for idx in range(itns):
+            time.sleep(polling_freq)
+            status = IAPPerformanceIntegrationAPI.get_iap_performance_integration_status(request_id)
+            stat = status.json()['main']['status']
+            print(stat)
+            if stat.title() in [
+                enums.FinishedStatuses.Success,
+                enums.FinishedStatuses.Failed,
+            ]:
+                break
+            print("Still waiting", idx * polling_freq, "seconds")
+        logs = IAPPerformanceIntegrationAPI.get_iap_performance_integration_logs(request_id).json()
+        return stat, request_id, logs
+    except Exception as e:
+        return 'Failed', None, e
+

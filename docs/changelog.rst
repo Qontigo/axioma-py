@@ -4,13 +4,14 @@ Change Log
 
 
 
-This document records all notable changes to axiomapy.
+This document records all notable changes to axioma-py.
 
 
 1.77
 ____________
 
 As of this release, the AxiomaSession Object will have a default client id. The AxiomaSession initiation will now only require username, password, and domain. The order of arguments will change from previous releases. Please refer to our examples for more details.
+
 
 Tag-23.12
 ____________

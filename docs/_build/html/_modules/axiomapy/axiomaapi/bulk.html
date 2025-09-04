@@ -1,21 +1,24 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>axiomapy.axiomaapi.bulk &mdash; axiomapy 0+untagged.201.gda83024.dirty documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
-  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/clipboard.min.js"></script>
-        <script src="../../../_static/copybutton.js"></script>
-        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+  <title>axiomapy.axiomaapi.bulk &mdash; axiomapy 0+untagged.214.g2f1032b.dirty documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=76452be6"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -40,21 +43,21 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <p class="caption"><span class="caption-text">Examples and Use Cases:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Examples and Use Cases:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../examples2.html">Examples</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Packages:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Packages:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../sessions.html">Sessions Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../axiomapyapi.html">AxiomaAPI Package</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../odatafilterhelpers.html">oDataFilterHelpers</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Endpoints:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Endpoints:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../endpoints.html">Axiomarisk endpoints covered by axioma-py</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Other:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Change Log</a></li>
@@ -101,29 +104,31 @@
 <span class="sd">under the License.</span>
 
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">from</span> <span class="nn">axiomapy.session</span> <span class="kn">import</span> <span class="n">AxiomaSession</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">axiomapy.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">AxiomaSession</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
 <span class="n">_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 <span class="n">_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">())</span>
 
 
-<div class="viewcode-block" id="BulkAPI"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI">[docs]</a><span class="k">class</span> <span class="nc">BulkAPI</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Perform bulk actions using the active session</span>
+<div class="viewcode-block" id="BulkAPI">
+<a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">BulkAPI</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Perform bulk actions using the active session</span>
 
-<span class="sd">    Returns:</span>
-<span class="sd">        [type]: [description]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="BulkAPI.patch_portfolios_payload"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI.patch_portfolios_payload">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">patch_portfolios_payload</span><span class="p">(</span>
+<div class="viewcode-block" id="BulkAPI.patch_portfolios_payload">
+<a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI.patch_portfolios_payload">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">patch_portfolios_payload</span><span class="p">(</span>
         <span class="n">as_of_date</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">payload</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">bytes</span><span class="p">],</span>
             <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The method is to update multiple portfolios in a single request</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method is to update multiple portfolios in a single request</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            as_of_date: date on which portfolios need to be updated</span>
@@ -142,13 +147,16 @@
 
         <span class="k">return</span> <span class="n">response</span></div>
 
-<div class="viewcode-block" id="BulkAPI.post_rollover_positions"><a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI.post_rollover_positions">[docs]</a>    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">post_rollover_positions</span><span class="p">(</span>
+
+<div class="viewcode-block" id="BulkAPI.post_rollover_positions">
+<a class="viewcode-back" href="../../../axiomapyapi.html#axiomapy.axiomaapi.BulkAPI.post_rollover_positions">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">post_rollover_positions</span><span class="p">(</span>
             <span class="n">payload</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
             <span class="n">headers</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">return_response</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;The method performs the positions rollover of one or more portfolios via a single portfolio group or by multiple portfolios</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The method performs the positions rollover of one or more portfolios via a single portfolio group or by multiple portfolios</span>
 
 <span class="sd">        Args:</span>
 <span class="sd">            payload: Portfolio names or portfolio group name for which the positions rollover is to be done along with rollOverToDate</span>
@@ -164,7 +172,9 @@
             <span class="n">url</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">return_response</span><span class="o">=</span><span class="n">return_response</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">response</span></div></div>
+        <span class="k">return</span> <span class="n">response</span></div>
+</div>
+
 </pre></div>
 
            </div>
