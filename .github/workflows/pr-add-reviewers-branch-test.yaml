@@ -11,18 +11,12 @@ jobs:
   add_reviewer:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          repository: Qontigo/gh-action-github-script           # based on public actions/github-script
-          ref: refs/tags/v3
-          token: ${{ secrets.QONTIGO_GH_ACTION_PAT }}
-          path: ./.github/actions/
-      - name: Run Private Action - Add Reviewers
-        uses: ./.github/actions/
+      - name: Add Reviewers
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # 8.0.0
         with:
           github-token: ${{secrets.QONTIGO_GH_ACTION_PAT}}
           script: |
-            github.pulls.requestReviewers({
+            await github.rest.pulls.requestReviewers({
               pull_number: context.payload.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
