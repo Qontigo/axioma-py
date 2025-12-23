@@ -16,7 +16,7 @@ jobs:
         with:
           github-token: ${{secrets.QONTIGO_GH_ACTION_PAT}}
           script: |
-            github.rest.pulls.requestReviewers({
+            github.pulls.requestReviewers({
               pull_number: context.payload.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
