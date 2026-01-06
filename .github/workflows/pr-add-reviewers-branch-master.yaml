@@ -3,7 +3,6 @@ name: Automatically Add Approver Individuals and Groups - master branch
 # cspell:ignore technologysolutions
 
 on:
-  workflow_dispatch:
   pull_request:
     branches: [ master ]
     types: [ opened ]
