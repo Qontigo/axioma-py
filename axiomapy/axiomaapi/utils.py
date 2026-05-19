@@ -15,9 +15,12 @@ under the License.
 
 """
 import time
-
+import pandas as pd
+from io import StringIO
+import json
 from axiomapy.axiomaapi import AnalysesAPI, AnalysesRiskAPI, enums
 from axiomapy.axiomaapi import IAPPerformanceIntegrationAPI
+
 
 
 def request_model(data, timelimit=500):
@@ -50,7 +53,7 @@ def request_instrument_analytics(data, timelimit=500):
         status = AnalysesAPI.get_analyses_status(requestId)
         stat = status.json()["status"]
         print(stat)
-        if stat.lower() in [
+        if stat.title() in [
             enums.FinishedStatuses.Completed,
             enums.FinishedStatuses.Failed,
         ]:
@@ -58,6 +61,25 @@ def request_instrument_analytics(data, timelimit=500):
         time.sleep(5)
         print("Still waiting", idx * 5, "seconds")
     return stat, headers
+
+def request_position_analytics(data, timelimit=500):
+    headers = AnalysesRiskAPI.post_positions_analyses(data)
+    requestId = int(headers.headers["location"].split("/")[-1])
+
+    # Recursively checking the status of the job
+    itns = int(timelimit / 5)
+    for idx in range(itns):
+        status = AnalysesAPI.get_analyses_status(requestId)
+        stat = status.json()["status"]
+        print(stat)
+        if stat.title() in [
+            enums.FinishedStatuses.Completed,
+            enums.FinishedStatuses.Failed,
+        ]:
+            break
+        time.sleep(5)
+        print("Still waiting", idx * 5, "seconds")
+    return status, headers
 
 
 def request_aggregation(data, portfolio_id, timelimit=500, polling_freq=5):
@@ -104,3 +126,85 @@ def request_iap(data, upload_flag= False, headers=None, timelimit=500, polling_f
     except Exception as e:
         return 'Failed', None, e
 
+
+def get_results_and_logs(request_id, stat):
+    agg_logs = AnalysesAPI.get_analyses_log(request_id).json()
+
+    if stat in 'Completed':
+        res = AnalysesAPI.get_analyses(request_id=request_id, as_csv=True).text
+        res_df = pd.read_csv(StringIO(res), delimiter=',')
+    else:
+        res_df = pd.DataFrame()
+        print(json.dumps(agg_logs))
+        print("A problem happened, check the logs file above")
+    return res_df
+
+def get_hedges_quantity(list_of_hedging_rules, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition="AxiomaUS", pricing_source="Default"):
+    hedging_quantity_report = {
+        "name": "Hedging Quantity Report",
+        "aggregationLevelDefinitions": [
+            {
+                "name": "Currency",
+                "item": {
+                    "templateName": "{DefaultTemplateFor_ViewReportingLevelOnPosition}",
+                    "content": {
+                        "attributeName": "Currency",
+                        "drilldown": None
+                    }
+                }
+            },
+            {
+                "name": "ClientId",
+                "item": {
+                    "templateName": "{DefaultTemplateFor_ViewReportingLevelOnPosition}",
+                    "content": {
+                        "attributeName": "ClientId",
+                        "drilldown": None
+                    }
+                }
+            }
+        ],
+        "statisticDefinitions": [{
+                "name": "Coverage",
+                "item": {
+                    "templateName": "AxR-Coverage",
+                    "content": {
+                        "Description": "Coverage stat indicating coverage at instrument level and portfolio level"
+                    }
+                }
+            }]
+    }
+
+    for rule in list_of_hedging_rules:
+        stat_def = {
+                "name": f"HEDGING ({rule})",
+                "item": {
+                    "templateName": "RC-Hedging-At-Scale",
+                    "content": {
+                        "HedgingUniversePortfolio": f"Portfolio={hedging_portfolio_name}",
+                        "RiskFactorReductionRule": rule
+                    }
+                }
+            }
+
+        hedging_quantity_report["statisticDefinitions"].append(stat_def)
+
+    analysis_payload = {
+        "analysisDate": position_date,
+        "positionDate": position_date,
+        "analysisDefinition": None,
+        "dataPartition": data_partition,
+        "riskDataSource": pricing_source,
+        "aggregationOptions": {
+            "aggregate": "OnCompletion",
+            "compute": "MissingOnly"
+        },
+        "showFactorModelNameAsRiskFactorPrefix": True
+    }
+
+    analysis_payload["analysisDefinition"] = hedging_quantity_report
+    status, headers = request_aggregation(analysis_payload, unhedged_portfolio_id, timelimit=3600)
+    hedges_quantity_df = get_results_and_logs(request_id=int(headers.headers["location"].split("/")[-1]),
+                                          stat=status.json()["status"])
+
+    return hedges_quantity_df
