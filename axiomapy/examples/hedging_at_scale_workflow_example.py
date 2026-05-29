@@ -152,9 +152,9 @@ def run_breakeven_report(swaps_positions, position_date, data_partition, pricing
 
 
 def create_ir_hedges(risk_decomp_df, hedging_portfolio_name, hedging_portfolio_id, position_date):
-    # Create constant maturity bonds for duration (USD and CHF GVT interest rate risk factors) hedging
+    # Create constant maturity bonds for duration (GVT interest rate risk factors) hedging
     mask = (risk_decomp_df['RiskType'] == 'Risk Type : Interest Rate') & (
-        risk_decomp_df['RiskFactor'].str.contains('USD.GVT|CHF.GVT', na=False))
+        risk_decomp_df['RiskFactor'].str.contains('GVT', na=False))
     filtered_df = risk_decomp_df.loc[mask]
     unique_ir_risk_factors = filtered_df['RiskFactor'].unique().tolist()
     print("Interest Rate Risk Factors to hedge:")
@@ -424,8 +424,8 @@ position_date = '2026-05-01'
 data_partition = 'AxiomaUS'
 pricing_source = 'Default'
 
-# An example hedging case to hedge USD and CHF GVT factors, as well as GBP inflation factor
-list_of_hedging_rules = ["OR(CONTAINS(#RiskFactorName,\"USD.GVT\"), CONTAINS(#RiskFactorName,\"CHF.GVT\"))", "CONTAINS(#RiskFactorName,\"GB.GBP.BEI\")"]
+# An example hedging case to hedge GVT factors for all currencies and GBP inflation factor
+hedging_rule = "CONTAINS(#RiskFactorName,\"GVT\") | CONTAINS(#RiskFactorName,\"GB.GBP.BEI\")"
 
 # Get the PortfolioId of the unhedged portfolio and make sure it has a default portfolio currency
 try:
@@ -535,23 +535,23 @@ if not risk_decomp_df.empty:
     my_hedges.extend(my_ie_hedges)
 
 # Get the hedging instruments' quantity needed to hedge the risk factors
-hedges_quantity_df = utils.get_hedges_quantity(list_of_hedging_rules, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition, pricing_source)
+hedges_quantity_df = utils.get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition, pricing_source)
 
 # Update the quantity of the hedging instruments
 hedging_dict = {}
-for hedging_rule in list_of_hedging_rules:
-    hedging_results = hedges_quantity_df[f'HEDGING ({hedging_rule})'].iloc[0]
-    for pair in hedging_results.split(';'):
-        key, value = pair.split(':')
-        hedging_dict[key.strip()] = float(value) * -1
 
-    for hedge in my_hedges:
-        client_id = hedge['clientId']
-        if client_id in hedging_dict:
-            hedge['quantity']['value'] = hedging_dict[client_id]
+hedging_results = hedges_quantity_df[f'HEDGING ({hedging_rule})'].iloc[0]
+for pair in hedging_results.split(';'):
+    key, value = pair.split(':')
+    hedging_dict[key.strip()] = float(value) * -1
 
-    r = PortfoliosAPI.patch_positions(portfolio_id=hedging_portfolio_id,
-                                      as_of_date=position_date,
-                                      positions_upsert=my_hedges,
-                                      positions_remove=[])
-    print(f'{hedging_portfolio_name} positions quantity updated')
+for hedge in my_hedges:
+    client_id = hedge['clientId']
+    if client_id in hedging_dict:
+        hedge['quantity']['value'] = hedging_dict[client_id]
+
+r = PortfoliosAPI.patch_positions(portfolio_id=hedging_portfolio_id,
+                                  as_of_date=position_date,
+                                  positions_upsert=my_hedges,
+                                  positions_remove=[])
+print(f'{hedging_portfolio_name} positions quantity updated')

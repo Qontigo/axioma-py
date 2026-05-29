@@ -139,7 +139,7 @@ def get_results_and_logs(request_id, stat):
         print("A problem happened, check the logs file above")
     return res_df
 
-def get_hedges_quantity(list_of_hedging_rules, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition="AxiomaUS", pricing_source="Default"):
+def get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition="AxiomaUS", pricing_source="Default"):
     hedging_quantity_report = {
         "name": "Hedging Quantity Report",
         "aggregationLevelDefinitions": [
@@ -175,19 +175,18 @@ def get_hedges_quantity(list_of_hedging_rules, unhedged_portfolio_id, hedging_po
             }]
     }
 
-    for rule in list_of_hedging_rules:
-        stat_def = {
-                "name": f"HEDGING ({rule})",
-                "item": {
-                    "templateName": "RC-Hedging-At-Scale",
-                    "content": {
-                        "HedgingUniversePortfolio": f"Portfolio={hedging_portfolio_name}",
-                        "RiskFactorReductionRule": rule
-                    }
+    stat_def = {
+            "name": f"HEDGING ({hedging_rule})",
+            "item": {
+                "templateName": "RC-Hedging-At-Scale",
+                "content": {
+                    "HedgingUniversePortfolio": f"Portfolio={hedging_portfolio_name}",
+                    "RiskFactorReductionRule": hedging_rule
                 }
             }
+        }
 
-        hedging_quantity_report["statisticDefinitions"].append(stat_def)
+    hedging_quantity_report["statisticDefinitions"].append(stat_def)
 
     analysis_payload = {
         "analysisDate": position_date,
