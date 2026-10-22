@@ -405,6 +405,78 @@ def create_ie_hedges(risk_decomp_df, currency, hedging_portfolio_name, hedging_p
 
         return my_ie_hedges
 
+def create_fx_hedges(currencies_list_to_hedge, portfolio_currency, hedging_portfolio_name, hedging_portfolio_id, position_date, data_partition="AxiomaUS", pricing_source="Default"):
+    def patch_fxforward(currency_to_hedge, portfolio_currency, fx_rate_map):
+        start = datetime.datetime.strptime(position_date, '%Y-%m-%d')
+        end = start + pd.DateOffset(months=1)
+        fx_forward_name = f"FX_Forward_{currency_to_hedge}{portfolio_currency}_{end.strftime('%Y-%m-%d')}"
+
+        fx_forward = {
+        "templateName": "AxR-OTC-FX Forward",
+        "content": {
+            "Name": fx_forward_name,
+            "buy_currency": f"Currency={portfolio_currency}",
+            "sell_currency": f"Currency={currency_to_hedge}",
+            "maturity_date": end.strftime('%Y-%m-%dT%H:%M:%S'),
+            "forward_rate": fx_rate_map.get(fx_forward_name, 1)
+        }
+    }
+
+        r = TemplatesAPI.patch_entities(template_name="{DefaultTemplateFor_Modeling_Of_FXForward}",
+                                        entities_upsert=[fx_forward])
+
+        if r.status_code == 204:
+            fx_forward_name = f"FX_Forward_{currency_to_hedge}{portfolio_currency}_{end.strftime('%Y-%m-%d')}"
+            print(f"{fx_forward_name} Updated")
+        else:
+            print(
+                f"Error: Received status code {r.status_code} when creating FX_Forward_{currency_to_hedge}{portfolio_currency}_{end.strftime('%Y-%m-%d')}")
+            exit()
+
+        return fx_forward_name
+
+    # Create zero coupon inflation swap for inflation (GBP.BEI risk factors) hedging
+
+    hedging_positions_list = []
+    for currency_to_hedge in currencies_list_to_hedge:
+        fx_forward_name = patch_fxforward(currency_to_hedge, portfolio_currency,{})
+        hedging_positions_list.append(fx_forward_name)
+
+    my_fx_hedges = []
+    for fx_forward in hedging_positions_list:
+        my_fx_hedges.append(
+            {
+                "clientId": fx_forward,
+                "description": fx_forward,
+                "identifiers": [
+                    {
+                        "type": "ClientGiven",
+                        "value": fx_forward
+                    }
+                ],
+                "quantity": {
+                    "value": 1,
+                    "scale": "NumberOfInstruments"
+                }
+            }
+        )
+
+    r = PortfoliosAPI.patch_positions(portfolio_id=hedging_portfolio_id,
+                                      as_of_date=position_date,
+                                      positions_upsert=my_fx_hedges,
+                                      positions_remove=[])
+    print(f'{hedging_portfolio_name} positions imported')
+
+    # Calculate the fx forward rate so the PV of these forwards are 0 at initiation
+    break_even_df = run_breakeven_report(my_fx_hedges, position_date, data_partition, pricing_source)
+    fx_forward_rate_map = break_even_df[break_even_df['ClientId'] != 'Total'].set_index('ClientId')['breakeven'].to_dict()
+
+    for currency_to_hedge in currencies_list_to_hedge:
+        fx_forward_name = patch_fxforward(currency_to_hedge, portfolio_currency, fx_forward_rate_map)
+
+
+    return my_fx_hedges
+
 ###################################################################################################################################################
 
 from axiomapy.examples.load_credentials import get_user
@@ -424,8 +496,10 @@ position_date = '2026-05-01'
 data_partition = 'AxiomaUS'
 pricing_source = 'Default'
 
-# An example hedging case to hedge GVT factors for all currencies and GBP inflation factor
-hedging_rule = "CONTAINS(#RiskFactorName,\"GVT\") | CONTAINS(#RiskFactorName,\"GB.GBP.BEI\")"
+# Example hedging cases to hedge GVT factors for all currencies, GBP inflation factor or FX risk factors
+# hedging_rule = "CONTAINS(#RiskFactorName,\"GVT\") | CONTAINS(#RiskFactorName,\"GB.GBP.BEI\") |
+# hedging_rule = "CONTAINS(#RiskFactorName,\"GB.GBP.BEI\")"
+hedging_rule = "CONTAINS(#RiskFactorName,\"Currency\")"
 
 # Get the PortfolioId of the unhedged portfolio and make sure it has a default portfolio currency
 try:
@@ -439,6 +513,25 @@ except (KeyError, IndexError, TypeError):
     raise ValueError(
         f"Portfolio with name '{portfolio_name}' not found or the portfolio does not have a default currency.")
 
+# Add some bonds to the unhedged portfolio for the example
+patch_position = [{"clientId": "UKTI 0.625 22-Mar-2040",
+                   "identifiers": [{"type": "ISIN", "value": "GB00B3LZBF68"}],
+                   "quantity": {"value": 10000,
+                                "scale": "NotionalValue"}},
+                  {"clientId": "DOW 5.25 15-Nov-2041",
+                   "identifiers": [{"type": "ISIN", "value": "US260543CE14"}],
+                   "quantity": {"value": 10000,
+                                "scale": "NotionalValue"}},
+                   {"clientId": "SWISS 4 06-Jan-2049",
+                    "identifiers": [{"type": "ISIN", "value": "CH0009755197"}],
+                    "quantity": {"value": 10000,
+                                 "scale": "NotionalValue"}}]
+patch = PortfoliosAPI.patch_positions(
+    as_of_date=position_date,
+    portfolio_id=unhedged_portfolio_id,
+    positions_upsert=patch_position,
+    positions_remove=[]
+)
 
 # Create a portfolio which will contain the hedging universe
 hedging_portfolio = {
@@ -528,14 +621,18 @@ risk_decomp_df = run_risk_decomp_report(unhedged_portfolio_id, position_date, da
 my_hedges = []
 if not risk_decomp_df.empty:
     # Duration hedging example using constant maturity bonds with matching maturities to hedge GVT interest rate risk factors
-    my_ir_hedges = create_ir_hedges(risk_decomp_df, portfolio_name, hedging_portfolio_id, position_date)
-    my_hedges.extend(my_ir_hedges)
-    # Inflation hedging (GBP) example using zero coupon inflation swap with matching maturities to hedge GBP inflation risk factors
-    my_ie_hedges = create_ie_hedges(risk_decomp_df, 'GBP', portfolio_name, hedging_portfolio_id, position_date, data_partition, pricing_source)
-    my_hedges.extend(my_ie_hedges)
+    # my_ir_hedges = create_ir_hedges(risk_decomp_df, portfolio_name, hedging_portfolio_id, position_date)
+    # my_hedges.extend(my_ir_hedges)
+
+    # # Inflation hedging (GBP) example using zero coupon inflation swap with matching maturities to hedge GBP inflation risk factors
+    # my_ie_hedges = create_ie_hedges(risk_decomp_df, 'GBP', portfolio_name, hedging_portfolio_id, position_date, data_partition, pricing_source)
+    # my_hedges.extend(my_ie_hedges)
+    # FX hedging (GBP, CHF) example using FX forward with 1 month maturity to hedge FX risk factors
+    my_fx_hedges = create_fx_hedges(['GBP', 'CHF'], default_currency, portfolio_name, hedging_portfolio_id, position_date,  data_partition, pricing_source)
+    my_hedges.extend(my_fx_hedges)
 
 # Get the hedging instruments' quantity needed to hedge the risk factors
-hedges_quantity_df = utils.get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition, pricing_source)
+hedges_quantity_df = utils.get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition, pricing_source, "MissingOnly")
 
 # Update the quantity of the hedging instruments
 hedging_dict = {}
