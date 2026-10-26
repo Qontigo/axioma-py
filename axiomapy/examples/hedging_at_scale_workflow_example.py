@@ -35,7 +35,7 @@ from axiomapy.axiomaapi import AnalysesAPI, AnalysesRiskAPI, PortfoliosAPI, Temp
 from axiomapy.odatahelpers import oDataFilterHelper as od
 from axiomapy import axiomaexceptions
 
-def get_results_and_logs(request_id, stat):
+def get_results_and_logs(request_id: int, stat: str):
     agg_logs = AnalysesAPI.get_analyses_log(request_id).json()
 
     if stat in 'Completed':
