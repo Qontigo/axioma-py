@@ -35,6 +35,89 @@ from axiomapy.axiomaapi import AnalysesAPI, AnalysesRiskAPI, PortfoliosAPI, Temp
 from axiomapy.odatahelpers import oDataFilterHelper as od
 from axiomapy import axiomaexceptions
 
+def get_results_and_logs(request_id, stat):
+    agg_logs = AnalysesAPI.get_analyses_log(request_id).json()
+
+    if stat in 'Completed':
+        res = AnalysesAPI.get_analyses(request_id=request_id, as_csv=True).text
+        res_df = pd.read_csv(StringIO(res), delimiter=',')
+    else:
+        res_df = pd.DataFrame()
+        print(json.dumps(agg_logs))
+        print("A problem happened, check the logs file above")
+    return res_df
+
+
+def get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition="AxiomaUS", pricing_source="Default", compute_option="MissingOnly"):
+    hedging_quantity_report = {
+        "name": "Hedging Quantity Report",
+        "aggregationLevelDefinitions": [
+            {
+                "name": "Currency",
+                "item": {
+                    "templateName": "{DefaultTemplateFor_ViewReportingLevelOnPosition}",
+                    "content": {
+                        "attributeName": "Currency",
+                        "drilldown": None
+                    }
+                }
+            },
+            {
+                "name": "ClientId",
+                "item": {
+                    "templateName": "{DefaultTemplateFor_ViewReportingLevelOnPosition}",
+                    "content": {
+                        "attributeName": "ClientId",
+                        "drilldown": None
+                    }
+                }
+            }
+        ],
+        "statisticDefinitions": [{
+                "name": "Coverage",
+                "item": {
+                    "templateName": "AxR-Coverage",
+                    "content": {
+                        "Description": "Coverage stat indicating coverage at instrument level and portfolio level"
+                    }
+                }
+            }]
+    }
+
+    stat_def = {
+            "name": f"HEDGING ({hedging_rule})",
+            "item": {
+                "templateName": "AxR-Hedging Quantities",
+                "content": {
+                    "HedgingUniversePortfolio": f"Portfolio={hedging_portfolio_name}",
+                    "RiskFactorReductionRule": hedging_rule
+                }
+            }
+        }
+
+    hedging_quantity_report["statisticDefinitions"].append(stat_def)
+
+    analysis_payload = {
+        "analysisDate": position_date,
+        "positionDate": position_date,
+        "analysisDefinition": None,
+        "dataPartition": data_partition,
+        "riskDataSource": pricing_source,
+        "aggregationOptions": {
+            "aggregate": "OnCompletion",
+            "compute": compute_option
+        },
+        "showFactorModelNameAsRiskFactorPrefix": True
+    }
+
+    analysis_payload["analysisDefinition"] = hedging_quantity_report
+    status, headers = utils.request_aggregation(analysis_payload, unhedged_portfolio_id, timelimit=3600)
+    hedges_quantity_df = get_results_and_logs(request_id=int(headers.headers["location"].split("/")[-1]),
+                                          stat=status.json()["status"])
+
+    return hedges_quantity_df
+
+
 def run_risk_decomp_report(unhedged_portfolio_id, position_date, data_partition, pricing_source, risk_settings="Default", risk_statistic="Default"):
     # Break down the portfolio to risk factors
     risk_decomp_json = {
@@ -95,7 +178,7 @@ def run_risk_decomp_report(unhedged_portfolio_id, position_date, data_partition,
 
 
     status, headers = utils.request_aggregation(analysis_payload, unhedged_portfolio_id, timelimit=3600)
-    risk_decomp_df = utils.get_results_and_logs(request_id=int(headers.headers["location"].split("/")[-1]),
+    risk_decomp_df = get_results_and_logs(request_id=int(headers.headers["location"].split("/")[-1]),
                                           stat=status.json()["status"])
     return risk_decomp_df
 
@@ -146,7 +229,7 @@ def run_breakeven_report(swaps_positions, position_date, data_partition, pricing
 
 
     status, headers = utils.request_position_analytics(analysis_payload, timelimit=3600)
-    break_even_df = utils.get_results_and_logs(request_id=int(headers.headers["location"].split("/")[-1]),
+    break_even_df = get_results_and_logs(request_id=int(headers.headers["location"].split("/")[-1]),
                                           stat=status.json()["status"])
     return break_even_df
 
@@ -632,7 +715,7 @@ if not risk_decomp_df.empty:
     my_hedges.extend(my_fx_hedges)
 
 # Get the hedging instruments' quantity needed to hedge the risk factors
-hedges_quantity_df = utils.get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition, pricing_source, "MissingOnly")
+hedges_quantity_df = get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition, pricing_source, "MissingOnly")
 
 # Update the quantity of the hedging instruments
 hedging_dict = {}
