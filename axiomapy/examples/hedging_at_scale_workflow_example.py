@@ -30,12 +30,13 @@ from io import StringIO
 import json
 import re
 import datetime
+from typing import Dict, List
 from axiomapy import AxiomaSession
 from axiomapy.axiomaapi import AnalysesAPI, AnalysesRiskAPI, PortfoliosAPI, TemplatesAPI, utils, enums
 from axiomapy.odatahelpers import oDataFilterHelper as od
 from axiomapy import axiomaexceptions
 
-def get_results_and_logs(request_id, stat):
+def get_results_and_logs(request_id: int, stat: str) -> pd.DataFrame:
     agg_logs = AnalysesAPI.get_analyses_log(request_id).json()
 
     if stat in 'Completed':
@@ -48,7 +49,7 @@ def get_results_and_logs(request_id, stat):
     return res_df
 
 
-def get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_name, position_date, data_partition="AxiomaUS", pricing_source="Default", compute_option="MissingOnly"):
+def get_hedges_quantity(hedging_rule: str, unhedged_portfolio_id: int, hedging_portfolio_name: str, position_date: str, data_partition: str = "AxiomaUS", pricing_source: str = "Default", compute_option: str = "MissingOnly") -> pd.DataFrame:
     hedging_quantity_report = {
         "name": "Hedging Quantity Report",
         "aggregationLevelDefinitions": [
@@ -118,7 +119,7 @@ def get_hedges_quantity(hedging_rule, unhedged_portfolio_id, hedging_portfolio_n
     return hedges_quantity_df
 
 
-def run_risk_decomp_report(unhedged_portfolio_id, position_date, data_partition, pricing_source, risk_settings="Default", risk_statistic="Default"):
+def run_risk_decomp_report(unhedged_portfolio_id: int, position_date: str, data_partition: str, pricing_source: str, risk_settings: str = "Default", risk_statistic: str = "Default") -> pd.DataFrame:
     # Break down the portfolio to risk factors
     risk_decomp_json = {
         "name": "Risk Decomposition",
@@ -160,7 +161,7 @@ def run_risk_decomp_report(unhedged_portfolio_id, position_date, data_partition,
 
     if risk_settings != "Default":
         risk_decomp_json["statisticDefinitions"][0]["item"]["content"]["RiskSettings"] = risk_settings
-    if risk_settings != "Default":
+    if risk_statistic != "Default":
         risk_decomp_json["statisticDefinitions"][0]["item"]["content"]["RiskStatistic"] = risk_statistic
 
     analysis_payload = {
@@ -182,7 +183,7 @@ def run_risk_decomp_report(unhedged_portfolio_id, position_date, data_partition,
                                           stat=status.json()["status"])
     return risk_decomp_df
 
-def run_breakeven_report(swaps_positions, position_date, data_partition, pricing_source):
+def run_breakeven_report(swaps_positions: List[dict], position_date: str, data_partition: str, pricing_source: str) -> pd.DataFrame:
     # Calculate the breakeven (swap) rate of the OTC swaps
     break_even_json = {
         "name": "Break-even rate",
@@ -234,7 +235,7 @@ def run_breakeven_report(swaps_positions, position_date, data_partition, pricing
     return break_even_df
 
 
-def create_ir_hedges(risk_decomp_df, hedging_portfolio_name, hedging_portfolio_id, position_date):
+def create_ir_hedges(risk_decomp_df: pd.DataFrame, hedging_portfolio_name: str, hedging_portfolio_id: int, position_date: str) -> List[dict]:
     # Create constant maturity bonds for duration (GVT interest rate risk factors) hedging
     mask = (risk_decomp_df['RiskType'] == 'Risk Type : Interest Rate') & (
         risk_decomp_df['RiskFactor'].str.contains('GVT', na=False))
@@ -392,8 +393,8 @@ def create_ir_hedges(risk_decomp_df, hedging_portfolio_name, hedging_portfolio_i
 
     return my_ir_hedges
 
-def create_ie_hedges(risk_decomp_df, currency, hedging_portfolio_name, hedging_portfolio_id, position_date, data_partition="AxiomaUS", pricing_source="Default"):
-    def patch_zcils(ie_risk_factor, swap_rate_map):
+def create_ie_hedges(risk_decomp_df: pd.DataFrame, currency: str, hedging_portfolio_name: str, hedging_portfolio_id: int, position_date: str, data_partition: str = "AxiomaUS", pricing_source: str = "Default") -> List[dict]:
+    def patch_zcils(ie_risk_factor: str, swap_rate_map: Dict[str, float]) -> str:
         left, right = ie_risk_factor.split(':')
         currency = left.strip().split('.')[1]
         match = re.match(r'(\d+)([A-Za-z]+)', right.strip())
@@ -488,8 +489,8 @@ def create_ie_hedges(risk_decomp_df, currency, hedging_portfolio_name, hedging_p
 
         return my_ie_hedges
 
-def create_fx_hedges(currencies_list_to_hedge, portfolio_currency, hedging_portfolio_name, hedging_portfolio_id, position_date, data_partition="AxiomaUS", pricing_source="Default"):
-    def patch_fxforward(currency_to_hedge, portfolio_currency, fx_rate_map):
+def create_fx_hedges(currencies_list_to_hedge: List[str], portfolio_currency: str, hedging_portfolio_name: str, hedging_portfolio_id: int, position_date: str, data_partition: str = "AxiomaUS", pricing_source: str = "Default") -> List[dict]:
+    def patch_fxforward(currency_to_hedge: str, portfolio_currency: str, fx_rate_map: Dict[str, float]) -> str:
         start = datetime.datetime.strptime(position_date, '%Y-%m-%d')
         end = start + pd.DateOffset(months=1)
         fx_forward_name = f"FX_Forward_{currency_to_hedge}{portfolio_currency}_{end.strftime('%Y-%m-%d')}"
@@ -586,8 +587,9 @@ hedging_rule = "CONTAINS(#RiskFactorName,\"Currency\")"
 
 # Get the PortfolioId of the unhedged portfolio and make sure it has a default portfolio currency
 try:
-    response = PortfoliosAPI.get_portfolios(filter_results="contains(name, '" + portfolio_name + "')")
+    response = PortfoliosAPI.get_portfolios(filter_results=od.equals("name", portfolio_name))
     portfolios_json = response.json()
+    print(portfolios_json)
     unhedged_portfolio_id = portfolios_json['items'][0]['id']
     default_currency = portfolios_json['items'][0]['defaultCurrency']
     print(f"Unhedged PortfolioId: {unhedged_portfolio_id}, Portfolio Currency: {default_currency}")

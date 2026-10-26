@@ -59,12 +59,12 @@ def request_instrument_analytics(data, timelimit=500):
         print("Still waiting", idx * 5, "seconds")
     return stat, headers
 
-def request_position_analytics(data, timelimit=500):
+def request_position_analytics(data, timelimit=500, polling_freq=5):
     headers = AnalysesRiskAPI.post_positions_analyses(data)
     requestId = int(headers.headers["location"].split("/")[-1])
 
     # Recursively checking the status of the job
-    itns = int(timelimit / 5)
+    itns = int(timelimit / polling_freq)
     for idx in range(itns):
         status = AnalysesAPI.get_analyses_status(requestId)
         stat = status.json()["status"]
